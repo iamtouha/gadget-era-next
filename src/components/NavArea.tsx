@@ -61,7 +61,7 @@ const NavArea = () => {
           </li>
         ))}
       </ul>
-      <div className="mr-0 ml-auto flex items-center gap-1">
+      <div className="mr-0 ml-auto flex items-center">
         <Searchbar />
         <button
           className="block rounded-full p-2 text-2xl hover:bg-primary-500 hover:bg-opacity-20 dark:hidden"

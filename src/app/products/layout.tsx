@@ -1,36 +1,10 @@
-import dynamic from "next/dynamic";
-import { env } from "@/env/server.mjs";
-import type { Brand, Category, ListServerPayload } from "@/types";
-import DynamicFilterForm from "@/components/DynamicFilterForm";
 import FilterForm from "@/components/FilterForm";
 import ProductsLoadingUI from "./loading";
 import { Suspense } from "react";
+import { getBrands, getCategories } from "@/utils/functions";
 
 type Props = {
   children: React.ReactNode;
-};
-
-const getCategories = async () => {
-  const res = await fetch(
-    env.SERVER_URL +
-      "/api/collections/categories/records?sort=-created&filter=(published=true)"
-  );
-  if (!res.ok) {
-    throw new Error("Could not fetch categories.");
-  }
-  const data = (await res.json()) as ListServerPayload<Category>;
-  return data.items;
-};
-const getBrands = async () => {
-  const res = await fetch(
-    env.SERVER_URL +
-      "/api/collections/brands/records?sort=-created&filter=(published=true)"
-  );
-  if (!res.ok) {
-    throw new Error("Could not fetch brands.");
-  }
-  const data = (await res.json()) as ListServerPayload<Brand>;
-  return data.items;
 };
 
 const ProductsLayout = async ({ children }: Props) => {

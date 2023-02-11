@@ -1,5 +1,5 @@
 const ProductsLoadingUI = () => {
-  return <div>ProductsLoadingUI</div>;
+  return <p className="italic">Loading Products...</p>;
 };
 
 export default ProductsLoadingUI;

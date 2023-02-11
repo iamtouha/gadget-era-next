@@ -1,0 +1,50 @@
+.slider {
+  @apply w-72 lg:w-96 mx-auto;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+.slides {
+  display: flex; 
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+
+  /*
+    scroll-snap-points-x: repeat(400px);
+    scroll-snap-type: mandatory;
+    */
+}
+.slides::-webkit-scrollbar {
+  display: none; 
+}
+ 
+.imgWrapper {
+  @apply h-72 w-72 mx-12 lg:h-96 lg:w-96;
+  scroll-snap-align: start;
+  flex-shrink: 0;
+  transform-origin: center center;
+  transform: scale(1);
+  transition: transform 0.5s;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+ 
+.description {
+  @apply leading-loose;
+}
+
+.description > * {
+  @apply mb-4;
+}
+.description > ul > li {
+  list-style-type: disc;
+  @apply ml-6 text-base leading-relaxed;
+}
+ 
+
+ 

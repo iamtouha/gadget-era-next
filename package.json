@@ -12,6 +12,8 @@
     "@headlessui/react": "^1.7.10",
     "@headlessui/tailwindcss": "^0.1.2",
     "@heroicons/react": "^2.0.15",
+    "@next/font": "^13.1.6",
+    "html-react-parser": "^3.0.9",
     "next": "13.1.6",
     "pocketbase": "^0.10.1",
     "react": "18.2.0",

@@ -4,7 +4,7 @@ const Head = () => {
       <title>Products | Gadget Era</title>
       <meta
         name="description"
-        content="Our wristwatches and electronics are carefully selected for their quality, design, and value, and we're always adding new items to our collection. With a wide range of options, you're sure to find exactly what you're looking for. Take a look around and let us know if there's anything we can help with. We'd love to hear your thoughts and answer any questions you may have."
+        content="Shop the latest and most stylish watches at Gadget Era. Our collection features a wide range of brands and styles, from classic timepieces to modern smartwatches. Find the perfect watch to fit your lifestyle, at affordable prices. Free shipping available on all orders. Shop now!"
       ></meta>
     </>
   );
