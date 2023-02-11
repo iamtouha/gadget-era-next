@@ -18,7 +18,7 @@ const ProductCard = ({
     <Link
       key={product.id}
       href={"/product/" + product.key}
-      className="block bg-gray-100 p-2 transition-colors hover:bg-orange-600 hover:bg-opacity-20"
+      className="block bg-gray-100 p-2 transition-colors hover:bg-orange-600 hover:bg-opacity-20 dark:bg-gray-800"
     >
       <div className="relative">
         <Image

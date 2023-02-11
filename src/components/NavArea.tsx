@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Popover } from "@headlessui/react";
 import { SunIcon, MoonIcon, Bars3Icon } from "@heroicons/react/24/solid";
 import { usePathname } from "next/navigation";
+import Searchbar from "./Searchbar";
 
 const getTheme = () => {
   const theme = localStorage.getItem("theme") as "dark" | "light" | null;
@@ -60,9 +61,10 @@ const NavArea = () => {
           </li>
         ))}
       </ul>
-      <div className="mr-0 ml-auto flex items-center gap-2 md:gap-4">
+      <div className="mr-0 ml-auto flex items-center gap-2">
+        <Searchbar />
         <button
-          className="block h-5 w-5 dark:hidden"
+          className="block h-6 w-6 dark:hidden"
           onClick={() => setTheme("dark")}
         >
           <MoonIcon />

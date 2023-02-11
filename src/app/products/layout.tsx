@@ -88,9 +88,7 @@ const ProductsLayout = async ({ children }: Props) => {
                   id="select-sort"
                   className="w-full px-2 py-2 dark:bg-gray-900"
                 >
-                  <option value={"created"} selected>
-                    Created At
-                  </option>
+                  <option value={"created"}>Created At</option>
                 </select>
               </div>
             </form>

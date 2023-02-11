@@ -1,18 +1,62 @@
-import { Fragment, useState, useEffect } from "react";
+"use client";
+
+import { debounce } from "ts-debounce";
+import { Fragment, useState, useEffect, useRef, useCallback } from "react";
 import styles from "@/styles/searchbar.module.css";
 import { Dialog, Combobox, Transition } from "@headlessui/react";
-import Router from "next/router";
+import { useRouter } from "next/navigation";
 
 // icons imports
 import {
   MagnifyingGlassIcon,
   XMarkIcon,
   Bars3BottomLeftIcon,
+  ArrowPathIcon,
+  ExclamationTriangleIcon,
 } from "@heroicons/react/20/solid";
+import { Product } from "@/types";
 
 const Searchbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState("");
+  const [isError, isErrorSet] = useState(false);
+  const [isLoading, isLoadingSet] = useState(false);
+  const [products, productsSet] = useState<Product[]>([]);
+  const router = useRouter();
+  const controller = new AbortController();
+
+  const loadResult = useCallback(
+    debounce((text: string) => {
+      if (!text) {
+        productsSet([]);
+        return;
+      }
+      isErrorSet(false);
+      isLoadingSet(true);
+      fetch("/api/search/" + text, { signal: controller.signal })
+        .then((res) => res.json())
+        .then((data: Product[]) => {
+          productsSet(data);
+        })
+        .catch((e) => {
+          if (e.name === "AbortError") {
+            console.log("req aborted");
+          } else {
+            console.error(e);
+            isErrorSet(true);
+          }
+        })
+        .finally(() => {
+          isLoadingSet(false);
+        });
+    }, 200),
+    []
+  );
+
+  useEffect(() => {
+    loadResult(query);
+    return () => controller.abort();
+  }, [query]);
 
   // handle keyboard shortcuts
   useEffect(() => {
@@ -27,7 +71,7 @@ const Searchbar = () => {
   }, [isOpen]);
 
   return (
-    <section aria-label="search modal">
+    <>
       <button
         aria-label="search"
         aria-keyshortcuts="Ctrl K"
@@ -36,118 +80,140 @@ const Searchbar = () => {
       >
         <MagnifyingGlassIcon className={styles.buttonIcon} aria-hidden="true" />
       </button>
-
-      <Transition appear show={isOpen} as={Fragment}>
-        <Dialog
-          as="div"
-          className={styles.dialog}
-          onClose={() => setIsOpen(false)}
-        >
-          <Transition.Child
-            as={Fragment}
-            enter="ease-out duration-300"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="ease-in duration-200"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
+      <section aria-label="search-modal">
+        <Transition appear show={isOpen} as={Fragment}>
+          <Dialog
+            as="div"
+            className={styles.dialog}
+            onClose={() => setIsOpen(false)}
           >
-            <div className={styles.dialogOverlay} />
-          </Transition.Child>
-          <div className="fixed inset-0 overflow-y-auto">
-            <div className={styles.dialogPanelWrapper}>
-              <Transition.Child
-                as={Fragment}
-                enter="ease-out duration-300"
-                enterFrom="opacity-0 scale-95"
-                enterTo="opacity-100 scale-100"
-                leave="ease-in duration-200"
-                leaveFrom="opacity-100 scale-100"
-                leaveTo="opacity-0 scale-95"
-              >
-                <Dialog.Panel>
-                  <Combobox
-                    onChange={(value: TData) => {
-                      Router.push(`/dashboard/${route}/${value.id}`);
-                      setIsOpen(false);
-                    }}
-                  >
-                    <div className={styles.inputWrapper}>
-                      <Combobox.Button className={styles.iconWrapper}>
-                        <MagnifyingGlassIcon
-                          className={`${styles.icon} text-neutral-500`}
-                          aria-hidden="true"
-                        />
-                      </Combobox.Button>
-                      <Combobox.Input
-                        className={styles.input}
-                        placeholder={`Search ${route}...`}
-                        onChange={(e) => setQuery(e.target.value)}
-                      />
-                    </div>
-                    <Transition
-                      as={Fragment}
-                      leave="transition ease-in duration-100"
-                      leaveFrom="opacity-100"
-                      leaveTo="opacity-0"
-                      afterLeave={() => setQuery("")}
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <div
+                className={"fixed inset-0 bg-gray-900/80 dark:bg-gray-700/80"}
+              />
+            </Transition.Child>
+            <div className="fixed inset-0 overflow-y-auto">
+              <div className={styles.dialogPanelWrapper}>
+                <Transition.Child
+                  as={Fragment}
+                  enter="ease-out duration-300"
+                  enterFrom="opacity-0 scale-95"
+                  enterTo="opacity-100 scale-100"
+                  leave="ease-in duration-200"
+                  leaveFrom="opacity-100 scale-100"
+                  leaveTo="opacity-0 scale-95"
+                >
+                  <Dialog.Panel>
+                    <Combobox
+                      onChange={(val: Product) => {
+                        setIsOpen(false);
+                        router.push("/product/" + val.key);
+                      }}
                     >
-                      <Combobox.Options static className={styles.options}>
-                        {filteredData.length === 0 && query !== "" ? (
-                          <div className={styles.optionNull}>
-                            <span className={styles.optionText}>
-                              No item found
-                            </span>
-                            <span className={`${styles.iconWrapper}`}>
-                              <XMarkIcon
-                                className={styles.icon}
-                                aria-hidden="true"
-                              />
-                            </span>
-                          </div>
-                        ) : (
-                          [].map((item) => (
-                            <Combobox.Option
-                              key={item.id}
-                              className={({ active }) =>
-                                `${styles.option} ${
-                                  active
-                                    ? "bg-primary-600 text-white"
-                                    : "text-title"
-                                }`
-                              }
-                              value={item}
-                            >
-                              {({ active }) => (
-                                <>
-                                  <span className={styles.optionText}>
-                                    {item.name}
-                                  </span>
-                                  <span
-                                    className={`${styles.iconWrapper} ${
-                                      active ? "text-white" : "text-title"
-                                    }`}
-                                  >
-                                    <Bars3BottomLeftIcon
-                                      className={styles.icon}
-                                      aria-hidden="true"
-                                    />
-                                  </span>
-                                </>
-                              )}
-                            </Combobox.Option>
-                          ))
-                        )}
-                      </Combobox.Options>
-                    </Transition>
-                  </Combobox>
-                </Dialog.Panel>
-              </Transition.Child>
+                      <div className={styles.inputWrapper}>
+                        <Combobox.Button className={styles.iconWrapper}>
+                          <MagnifyingGlassIcon
+                            className={`${styles.icon} text-neutral-500`}
+                            aria-hidden="true"
+                          />
+                        </Combobox.Button>
+                        <Combobox.Input
+                          className={
+                            styles.input + " bg-gray-50 dark:bg-gray-900"
+                          }
+                          placeholder={`Search Products`}
+                          onChange={(e) => setQuery(e.target.value)}
+                        />
+                      </div>
+                      <Transition
+                        as={Fragment}
+                        leave="transition ease-in duration-100"
+                        leaveFrom="opacity-100"
+                        leaveTo="opacity-0"
+                        afterLeave={() => setQuery("")}
+                      >
+                        <Combobox.Options
+                          static
+                          className={
+                            styles.options + "  bg-white dark:bg-gray-900"
+                          }
+                        >
+                          {isLoading ? (
+                            <div className={styles.optionLoading}>
+                              <span className={styles.optionText}>
+                                Loading...
+                              </span>
+                              <span className={`${styles.iconWrapper}`}>
+                                <ArrowPathIcon
+                                  className={styles.icon}
+                                  aria-hidden="true"
+                                />
+                              </span>
+                            </div>
+                          ) : isError ? (
+                            <div className={styles.optionError}>
+                              <span className={styles.optionText}>
+                                An Error Occured!
+                              </span>
+                              <span className={`${styles.iconWrapper}`}>
+                                <ExclamationTriangleIcon
+                                  className={styles.icon}
+                                  aria-hidden="true"
+                                />
+                              </span>
+                            </div>
+                          ) : products.length === 0 && query !== "" ? (
+                            <div className={styles.optionNull}>
+                              <span className={styles.optionText}>
+                                No item found
+                              </span>
+                              <span className={`${styles.iconWrapper}`}>
+                                <XMarkIcon
+                                  className={styles.icon}
+                                  aria-hidden="true"
+                                />
+                              </span>
+                            </div>
+                          ) : (
+                            products.map((item) => (
+                              <Combobox.Option
+                                key={item.id}
+                                className={`${styles.option} ui-active:bg-primary-400 ui-active:text-white`}
+                                value={item}
+                              >
+                                <span className={styles.optionText}>
+                                  {item.name}
+                                </span>
+                                <span
+                                  className={`${styles.iconWrapper} dark:text-white`}
+                                >
+                                  <Bars3BottomLeftIcon
+                                    className={styles.icon}
+                                    aria-hidden="true"
+                                  />
+                                </span>
+                              </Combobox.Option>
+                            ))
+                          )}
+                        </Combobox.Options>
+                      </Transition>
+                    </Combobox>
+                  </Dialog.Panel>
+                </Transition.Child>
+              </div>
             </div>
-          </div>
-        </Dialog>
-      </Transition>
-    </section>
+          </Dialog>
+        </Transition>
+      </section>
+    </>
   );
 };
 
