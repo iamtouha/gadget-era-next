@@ -6,6 +6,7 @@ import { z } from "zod";
  */
 export const serverSchema = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]),
+  SERVER_URL: z.string().url(),
 });
 
 /**
@@ -15,6 +16,7 @@ export const serverSchema = z.object({
  */
 export const serverEnv = {
   NODE_ENV: process.env.NODE_ENV,
+  SERVER_URL: process.env.SERVER_URL,
 };
 
 /**
