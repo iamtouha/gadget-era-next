@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import "../styles/globals.css";
 
+
 export default function DashboardLayout({
   children,
 }: {
@@ -16,7 +17,7 @@ export default function DashboardLayout({
             name="viewport"
             content="width=device-width, initial-scale=1.0"
           />
-          <title>Document</title>
+          <title>Gadget Era</title>
         </head>
         <body className="bg-gray-50 dark:bg-gray-900 dark:text-white">
           <Navbar />

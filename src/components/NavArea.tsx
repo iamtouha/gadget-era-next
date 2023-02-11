@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Popover } from "@headlessui/react";
+import { Popover, Switch } from "@headlessui/react";
 import { SunIcon, MoonIcon, Bars3Icon } from "@heroicons/react/24/solid";
 import { usePathname } from "next/navigation";
 import Searchbar from "./Searchbar";
@@ -49,11 +49,11 @@ const NavArea = () => {
         {routes.map((route) => (
           <li
             key={route.name}
-            className={`mx-1 bg-opacity-20 px-2 py-1 transition-colors hover:bg-primary-500 hover:bg-opacity-20 ${
+            className={`mx-2 px-1 py-1 transition-colors hover:text-primary-500 ${
               route.path !== "/" && pathname?.startsWith(route.path)
-                ? "bg-primary-500"
+                ? "text-primary-500"
                 : route.path === pathname
-                ? "bg-primary-500"
+                ? "text-primary-500"
                 : ""
             }`}
           >
@@ -61,19 +61,19 @@ const NavArea = () => {
           </li>
         ))}
       </ul>
-      <div className="mr-0 ml-auto flex items-center gap-2">
+      <div className="mr-0 ml-auto flex items-center gap-1">
         <Searchbar />
         <button
-          className="block h-6 w-6 dark:hidden"
+          className="block rounded-full p-2 text-2xl hover:bg-primary-500 hover:bg-opacity-20 dark:hidden"
           onClick={() => setTheme("dark")}
         >
-          <MoonIcon />
+          <MoonIcon className="h-5 w-5" />
         </button>
         <button
-          className="hidden h-6 w-6 dark:block"
+          className="hidden rounded-full p-2 text-2xl hover:bg-primary-500 hover:bg-opacity-20 dark:block"
           onClick={() => setTheme("light")}
         >
-          <SunIcon />
+          <SunIcon className="h-5 w-5" />
         </button>
         <Popover className="relative lg:hidden">
           <Popover.Button

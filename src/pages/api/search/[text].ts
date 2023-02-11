@@ -10,9 +10,14 @@ export default async function handler(
   if (!text) {
     return res.status(400).send({ message: "Search query not provided." });
   }
+  const searchParams = new URLSearchParams({
+    filter: `(published=true && name~'${text}')`,
+    perPage: "5",
+    sort: "-created",
+  });
   const response = await fetch(
     env.SERVER_URL +
-      `/api/collections/products/records?filter=(name~'${text}')&perPage=5&sort=-created`
+      `/api/collections/products/records?${searchParams.toString()}`
   );
   const data = await response.json();
 
