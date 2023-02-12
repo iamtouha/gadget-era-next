@@ -1,4 +1,4 @@
-import { env } from "@/env/server.mjs";
+import { env } from "@/env/client.mjs";
 import type { ListServerPayload, Product } from "@/types";
 
 export default async function getProduct(key: string) {
@@ -9,10 +9,12 @@ export default async function getProduct(key: string) {
   });
 
   const res = await fetch(
-    `${env.SERVER_URL}/api/collections/products/records?${params.toString()}`,
+    `${
+      env.NEXT_PUBLIC_SERVER_URL
+    }/api/collections/products/records?${params.toString()}`,
     { next: { revalidate: 10 } }
   );
-  console.log(`${env.SERVER_URL}/api/collections/products/records?${params}`);
+
   const data = (await res.json()) as ListServerPayload<Product>;
 
   if (!res.ok || !data.items[0]) {

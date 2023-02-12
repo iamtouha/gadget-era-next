@@ -4,6 +4,7 @@ import { getFileUrl } from "@/utils/functions";
 import getProduct from "@/utils/functions/getProduct";
 import { currency } from "@/utils/formatter";
 import styles from "@/styles/product.module.css";
+import ProductActions from "@/components/ProductActions";
 
 const Product = async ({ params }: { params: { key: string } }) => {
   const product = await getProduct(params.key);
@@ -53,7 +54,9 @@ const Product = async ({ params }: { params: { key: string } }) => {
               </div>
             </div>
             <div className="w-full pt-4 md:pt-0">
-              <h2 className="mb-5 text-3xl font-medium">{product.name}</h2>
+              <h2 className="mb-5 text-2xl font-medium md:text-3xl">
+                {product.name}
+              </h2>
               <p className="mb-5 text-sm text-gray-700 dark:text-gray-100">
                 {product.overview}
               </p>
@@ -74,12 +77,7 @@ const Product = async ({ params }: { params: { key: string } }) => {
                   )}
                 </span>
               </div>
-              <div className="flex items-stretch gap-2">
-                <input type={"number"} className="w-24" />
-                <button className="bg-primary-500 py-2 px-4 text-white hover:bg-primary-600">
-                  Add to Cart
-                </button>
-              </div>
+              <ProductActions product={product} />
             </div>
           </div>
         </div>
@@ -87,7 +85,7 @@ const Product = async ({ params }: { params: { key: string } }) => {
       <div className="container mx-auto mt-6 p-2 lg:max-w-screen-lg">
         <h2 className="mb-4 text-2xl">Product Description</h2>
         <article
-          className={`${styles.description} text-gray-800 dark:text-gray-200`}
+          className={`${styles.description} prose prose-slate dark:prose-invert md:prose-lg`}
         >
           {parse(product.description)}
         </article>

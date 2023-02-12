@@ -16,7 +16,7 @@ export default async function handler(
     sort: "-created",
   });
   const response = await fetch(
-    env.SERVER_URL +
+    env.NEXT_PUBLIC_SERVER_URL +
       `/api/collections/products/records?${searchParams.toString()}`
   );
   const data = await response.json();

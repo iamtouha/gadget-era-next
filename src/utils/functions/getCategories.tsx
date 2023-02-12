@@ -1,9 +1,9 @@
-import { env } from "@/env/server.mjs";
+import { env } from "@/env/client.mjs";
 import type { Category, ListServerPayload } from "@/types";
 
 export default async function getCategories() {
   const res = await fetch(
-    env.SERVER_URL +
+    env.NEXT_PUBLIC_SERVER_URL +
       "/api/collections/categories/records?sort=-created&filter=(published=true)"
   );
   if (!res.ok) {

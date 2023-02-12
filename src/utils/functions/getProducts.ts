@@ -1,10 +1,10 @@
-import { env } from "@/env/server.mjs";
+import { env } from "@/env/client.mjs";
 import { ListServerPayload, Product } from "@/types";
 type SearchParams = { [key: string]: string | string[] | undefined };
 
 export default async function getProductsList(queryParams?: SearchParams) {
   const res = await fetch(
-    env.SERVER_URL +
+    env.NEXT_PUBLIC_SERVER_URL +
       `/api/collections/products/records?` +
       buildSearchParams(queryParams)
   );

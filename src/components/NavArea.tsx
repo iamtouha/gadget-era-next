@@ -2,9 +2,16 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Popover, Switch } from "@headlessui/react";
-import { SunIcon, MoonIcon, Bars3Icon } from "@heroicons/react/24/solid";
+import {
+  SunIcon,
+  MoonIcon,
+  Bars3Icon,
+  ShoppingCartIcon,
+  UserCircleIcon,
+} from "@heroicons/react/24/outline";
 import { usePathname } from "next/navigation";
 import Searchbar from "./Searchbar";
+import { useCartStore } from "@/stores/cart";
 
 const getTheme = () => {
   const theme = localStorage.getItem("theme") as "dark" | "light" | null;
@@ -23,10 +30,13 @@ const routes = [
 ];
 
 const NavArea = () => {
+  const cartLength = useCartStore((state) => state.items.length);
+  const [loaded, loadedSet] = useState(false);
   const [mode, modeSet] = useState("light");
   const pathname = usePathname();
 
   useEffect(() => {
+    loadedSet(true);
     modeSet(getTheme());
   }, []);
 
@@ -61,27 +71,46 @@ const NavArea = () => {
           </li>
         ))}
       </ul>
-      <div className="mr-0 ml-auto flex items-center">
+      <div className="mr-0 ml-auto flex items-center md:gap-3">
         <Searchbar />
+        <Link
+          href={"/account"}
+          className="block gap-1 rounded-full p-2 hover:bg-primary-500 hover:bg-opacity-20 md:flex md:items-center md:py-1 md:px-2"
+        >
+          <UserCircleIcon className="h-5 w-5 sm:h-6 sm:w-6 md:h-5 md:w-5" />
+          <span className="hidden md:block">Account</span>
+        </Link>
+        <Link
+          href={"/cart"}
+          className="relative block gap-1 rounded-full p-2 hover:bg-primary-500 hover:bg-opacity-20 md:flex md:items-center md:py-1 md:px-2"
+        >
+          {cartLength && loaded ? (
+            <span className="absolute top-0 left-0 h-4 w-4 rounded-full bg-primary-500 p-0.5 text-center text-xs leading-none">
+              {cartLength}
+            </span>
+          ) : null}
+          <ShoppingCartIcon className="h-5 w-5 sm:h-6 sm:w-6 md:h-5 md:w-5" />
+          <span className="hidden md:block">Cart</span>
+        </Link>
         <button
-          className="block rounded-full p-2 text-2xl hover:bg-primary-500 hover:bg-opacity-20 dark:hidden"
+          className="block rounded-full p-2 hover:bg-primary-500 hover:bg-opacity-20 dark:hidden"
           onClick={() => setTheme("dark")}
         >
-          <MoonIcon className="h-5 w-5" />
+          <MoonIcon className="h-5 w-5 sm:h-6 sm:w-6 md:h-5 md:w-5" />
         </button>
         <button
-          className="hidden rounded-full p-2 text-2xl hover:bg-primary-500 hover:bg-opacity-20 dark:block"
+          className="hidden rounded-full p-2 hover:bg-primary-500 hover:bg-opacity-20 dark:block"
           onClick={() => setTheme("light")}
         >
-          <SunIcon className="h-5 w-5" />
+          <SunIcon className="h-5 w-5 sm:h-6 sm:w-6 md:h-5 md:w-5" />
         </button>
         <Popover className="relative lg:hidden">
           <Popover.Button
             className={
-              "px-1 py-1 text-2xl transition-colors hover:bg-primary-500 hover:bg-opacity-20"
+              "px-1 py-1 transition-colors hover:bg-primary-500 hover:bg-opacity-20"
             }
           >
-            <Bars3Icon className="h-8 w-8" />
+            <Bars3Icon className="h-7 w-7 sm:h-8 sm:w-8" />
           </Popover.Button>
 
           <Popover.Panel className="absolute right-0 z-10 bg-gray-50 shadow dark:bg-gray-800">

@@ -79,6 +79,7 @@ const Searchbar = () => {
         className={styles.button}
       >
         <MagnifyingGlassIcon className={styles.buttonIcon} aria-hidden="true" />
+        <span className="hidden md:block">Search</span>
       </button>
       <section aria-label="search-modal">
         <Transition appear show={isOpen} as={Fragment}>

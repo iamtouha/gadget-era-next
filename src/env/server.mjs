@@ -8,6 +8,7 @@ import { env as clientEnv, formatErrors } from "./client.mjs";
 const _serverEnv = serverSchema.safeParse(serverEnv);
 
 if (!_serverEnv.success) {
+  console.log(serverEnv);
   console.error(
     "❌ Invalid environment variables:\n",
     ...formatErrors(_serverEnv.error.format()),
