@@ -1,0 +1,13 @@
+.input {
+    @apply mt-1 w-full border border-gray-300 px-4 py-2 bg-gray-100;
+}
+.label {
+    @apply block mt-2;
+}
+.errors{
+    @apply text-red-500 py-1 text-sm;
+}
+ 
+:global(.dark) .input {
+  @apply bg-gray-800 border-gray-700;
+}

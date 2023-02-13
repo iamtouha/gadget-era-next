@@ -1,5 +1,5 @@
 import { env } from "@/env/server.mjs";
-import type { ListServerPayload, Product } from "@/types";
+import type { ListServerPayload, Product } from "@/utils/types";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useCartStore } from "@/stores/cart";
-import type { Product } from "@/types";
+import type { Product } from "@/utils/types";
 
 const ProductActions = ({ product }: { product: Product }) => {
   const cart = useCartStore();

@@ -27,6 +27,34 @@ export type Brand = {
   key: string;
 };
 
+export type OrderItem = {
+  id: string;
+  order: string;
+  product: string | Product;
+  rate: number;
+  units: string;
+};
+
+export type Order = {
+  id: string;
+  payment_reference: string;
+  receiver: string;
+  phone: string;
+  email: string;
+  address: string;
+  shipping: string;
+  total: number;
+  cod: boolean;
+  status:
+    | "pending"
+    | "confirmed"
+    | "cancelled"
+    | "rejected"
+    | "shipped"
+    | "delivered";
+  created: string;
+};
+
 export type ListServerPayload<T extends Object> = {
   page: number;
   perPage: number;

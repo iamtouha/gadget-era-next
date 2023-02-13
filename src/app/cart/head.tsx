@@ -4,7 +4,7 @@ const CartHead = () => {
   return (
     <>
       <title>Cart | Gadget Era</title>
-      <title>Products added to your cart.</title>
+      <meta name="description" content="Products added to your cart."></meta>
     </>
   );
 };

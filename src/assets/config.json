@@ -1,0 +1,22 @@
+{
+  "shipping": {
+    "local": 70,
+    "national": 120,
+    "local-districts": ["dhaka"]
+  },
+  "payment": {
+    "bkash": "01936299699",
+    "nagad": "01936299699",
+    "rocket": "01936299699"
+  },
+  "contact": {
+    "email": "info@gadgeterabd.com",
+    "phone": "+880 1517-019546",
+    "address": "Boalia, Rajshahi 6204, Bangladesh",
+    "social": {
+      "facebook": "https://www.facebook.com/bdgadgetera",
+      "instagram": "https://www.instagram.com/gadget.era/",
+      "messenger": "https://m.me/bdgadgetera"
+    }
+  }
+}

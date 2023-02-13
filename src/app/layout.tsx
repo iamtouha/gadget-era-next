@@ -1,6 +1,8 @@
 import { Poppins } from "@next/font/google";
 import Navbar from "@/components/Navbar";
 import "../styles/globals.css";
+import "react-toastify/dist/ReactToastify.css";
+import CustomToastContainer from "@/components/ToastContainer";
 
 const poppins = Poppins({
   weight: ["300", "400", "500", "600", "700"],
@@ -28,6 +30,7 @@ export default function DashboardLayout({
           <Navbar />
           <div className="h-14" />
           {children}
+          <CustomToastContainer />
         </body>
       </html>
     </>

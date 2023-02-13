@@ -14,7 +14,7 @@ import {
   ArrowPathIcon,
   ExclamationTriangleIcon,
 } from "@heroicons/react/20/solid";
-import { Product } from "@/types";
+import { Product } from "@/utils/types";
 
 const Searchbar = () => {
   const [isOpen, setIsOpen] = useState(false);

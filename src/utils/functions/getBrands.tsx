@@ -1,5 +1,5 @@
 import { env } from "@/env/client.mjs";
-import type { Brand, ListServerPayload } from "@/types";
+import type { Brand, ListServerPayload } from "@/utils/types";
 
 export default async function getBrands() {
   const res = await fetch(

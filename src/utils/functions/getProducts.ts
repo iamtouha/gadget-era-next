@@ -1,5 +1,5 @@
 import { env } from "@/env/client.mjs";
-import { ListServerPayload, Product } from "@/types";
+import { ListServerPayload, Product } from "@/utils/types";
 type SearchParams = { [key: string]: string | string[] | undefined };
 
 export default async function getProductsList(queryParams?: SearchParams) {

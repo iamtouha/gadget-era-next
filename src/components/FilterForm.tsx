@@ -9,7 +9,7 @@ import {
   ChevronUpDownIcon,
   CheckIcon,
 } from "@heroicons/react/20/solid";
-import type { Brand, Category } from "@/types";
+import type { Brand, Category } from "@/utils/types";
 
 type Props = {
   brands: Brand[];

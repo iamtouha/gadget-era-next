@@ -1,4 +1,4 @@
-import type { Product } from "@/types";
+import type { Product } from "@/utils/types";
 import { currency } from "@/utils/formatter";
 import { getFileUrl } from "@/utils/functions";
 import Image from "next/image";

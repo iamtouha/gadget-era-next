@@ -1,15 +1,16 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { Product } from "@/types";
+import { Product } from "@/utils/types";
 
+export type CartItem = {
+  productId: string;
+  productName: string;
+  imageUrl: string;
+  price: number;
+  units: number;
+};
 interface CartState {
-  items: Array<{
-    productId: string;
-    productName: string;
-    imageUrl: string;
-    price: number;
-    units: number;
-  }>;
+  items: Array<CartItem>;
   add: (product: Product, units: number) => void;
   remove: (productId: string) => void;
   clear: () => void;

@@ -6,6 +6,7 @@ import { useCartStore } from "@/stores/cart";
 import { currency } from "@/utils/formatter";
 import { getFileUrl } from "@/utils/functions";
 import Image from "next/image";
+import Link from "next/link";
 
 const Cart = () => {
   const [loadedOnClient, loadedOnClientSet] = useState(false);
@@ -58,7 +59,7 @@ const Cart = () => {
                     <td className="py-2 px-4">
                       <button
                         onClick={() => cart.remove(item.productId)}
-                        className="rounded bg-red-500 py-2 px-2 font-bold text-white hover:bg-red-600"
+                        className="bg-red-500 py-2 px-2 font-bold text-white hover:bg-red-600"
                       >
                         <TrashIcon className="h-5 w-5" />
                       </button>
@@ -82,9 +83,12 @@ const Cart = () => {
           </p>
         </div>
         <div className="mt-8 flex justify-end">
-          <button className="rounded bg-primary-500 py-2 px-4 font-bold text-white hover:bg-primary-600">
-            Checkout
-          </button>
+          <Link
+            href={"/cart/order"}
+            className="bg-primary-500 py-2 px-4 font-bold text-white hover:bg-primary-600"
+          >
+            Place Order
+          </Link>
         </div>
       </div>
     </main>

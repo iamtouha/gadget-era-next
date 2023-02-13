@@ -1,5 +1,5 @@
 import { env } from "@/env/client.mjs";
-import type { Category, ListServerPayload } from "@/types";
+import type { Category, ListServerPayload } from "@/utils/types";
 
 export default async function getCategories() {
   const res = await fetch(
