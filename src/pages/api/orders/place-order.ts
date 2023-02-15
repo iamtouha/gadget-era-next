@@ -32,7 +32,6 @@ export default async function handler(
 
   const payment_reference = getReference();
   const id = getId();
-
   const {
     district,
     upazila,
@@ -47,6 +46,9 @@ export default async function handler(
     items: CartItem[];
     shipping: number;
   };
+  if (!items?.length)
+    return res.status(400).send({ message: "Invalid request." });
+    
   try {
     const record = await pb.collection("orders").create<Order>({
       id,

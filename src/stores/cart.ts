@@ -23,18 +23,21 @@ export const useCartStore = create<CartState>()(
     (set, get) => ({
       items: [],
       add: ({ id, name, price, discounted_price, images }, units) => {
-        set((prev) => ({
-          items: [
-            ...prev.items,
-            {
-              productId: id,
-              productName: name,
-              price: discounted_price ? discounted_price : price,
-              imageUrl: images[0] ?? "",
-              units,
-            },
-          ],
-        }));
+        set((prev) => {
+          const otherItems = prev.items.filter((item) => item.productId !== id);
+          return {
+            items: [
+              ...otherItems,
+              {
+                productId: id,
+                productName: name,
+                price: discounted_price ? discounted_price : price,
+                imageUrl: images[0] ?? "",
+                units,
+              },
+            ],
+          };
+        });
       },
       remove(productId) {
         set((prev) => ({

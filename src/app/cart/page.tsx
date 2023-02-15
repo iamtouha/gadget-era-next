@@ -32,7 +32,6 @@ const Cart = () => {
               </tr>
             </thead>
             <tbody>
-              {}
               {loadedOnClient && cart.items.length ? (
                 cart.items.map((item) => (
                   <tr

@@ -30,9 +30,18 @@ export type Brand = {
 export type OrderItem = {
   id: string;
   order: string;
-  product: string | Product;
+  product: string;
   rate: number;
-  units: string;
+  units: number;
+  expand?: { product: Product };
+};
+
+export type Payment = {
+  id: string;
+  ref_id: string;
+  payment_id: string;
+  method: "bkash" | "rocket" | "nagad";
+  user?: string;
 };
 
 export type Order = {
@@ -42,7 +51,7 @@ export type Order = {
   phone: string;
   email: string;
   address: string;
-  shipping: string;
+  shipping: number;
   total: number;
   cod: boolean;
   status:

@@ -13,11 +13,13 @@ module.exports = {
       },
       fontFamily: {
         sans: ["var(--font-poppins)", ...fontFamily.sans],
+        print: [...fontFamily.sans],
       },
     },
   },
   plugins: [
     require("@headlessui/tailwindcss"),
     require("@tailwindcss/typography"),
+    require("@tailwindcss/line-clamp"),
   ],
 };
