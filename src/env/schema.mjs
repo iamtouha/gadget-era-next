@@ -6,6 +6,7 @@ import { z } from "zod";
  */
 export const serverSchema = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]),
+  BACKEND_URL: z.string().url(),
   SMTP_PORT: z.string(),
   SMTP_HOST: z.string(),
   SMTP_USERNAME: z.string(),
@@ -19,6 +20,7 @@ export const serverSchema = z.object({
  */
 export const serverEnv = {
   NODE_ENV: process.env.NODE_ENV,
+  BACKEND_URL: process.env.BACKEND_URL,
   SMTP_PORT: process.env.SMTP_PORT,
   SMTP_HOST: process.env.SMTP_HOST,
   SMTP_USERNAME: process.env.SMTP_USERNAME,
