@@ -1,5 +1,5 @@
 .button {
-   @apply rounded-full p-2 md:py-1 md:px-2 hover:bg-primary-500 hover:bg-opacity-25 transition-colors md:flex md:items-center md:gap-1;
+   @apply p-2 md:py-1 md:px-2 hover:text-primary-500 transition-colors md:flex md:items-center md:gap-1;
 }
 .buttonIcon {
   @apply w-5 h-5 sm:w-6 sm:h-6 md:h-5 md:w-5;

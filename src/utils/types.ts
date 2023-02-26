@@ -18,6 +18,7 @@ export type Category = {
   name: string;
   cover: string;
   key: string;
+  overview: string;
 };
 
 export type Brand = {

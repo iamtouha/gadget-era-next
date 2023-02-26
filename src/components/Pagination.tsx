@@ -1,105 +1,101 @@
 "use client";
+  
+import {
+  ChevronDoubleLeftIcon,
+  ChevronRightIcon,
+  ChevronDoubleRightIcon,
+  ChevronLeftIcon,
+} from "@heroicons/react/24/solid";
+import { useRouter } from "next/navigation";
 
-const Pagination = ({
-  currentPage,
-  totalPages,
-}: {
+interface PaginationProps {
   currentPage: number;
   totalPages: number;
-}) => {
-  const pageNumbers = [];
-  for (let i = 1; i <= totalPages; i++) {
-    pageNumbers.push(i);
-  }
+  path: string;
+}
 
+const Pagination: React.FC<PaginationProps> = ({
+  path,
+  currentPage,
+  totalPages,
+}) => {
+  const router = useRouter();
+  const isFirstPage = currentPage === 1;
+  const isLastPage = currentPage === totalPages;
+  const pagesToShow = [currentPage - 1, currentPage, currentPage + 1].filter(
+    (page) => page > 0 && page <= totalPages
+  );
+  const onPageChange = (n: number) => {
+    const params = new URLSearchParams(window.location.search);
+    params.set("page", `${n}`);
+    router.push(path + "?" + params.toString());
+  };
   return (
-    <nav aria-label="Page navigation example">
-      <ul className="inline-flex items-center -space-x-px">
-        <li>
-          <a
-            href="#"
-            className="ml-0 block rounded-l-lg border border-gray-300 bg-white px-3 py-2 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-          >
-            <span className="sr-only">Previous</span>
-            <svg
-              aria-hidden="true"
-              className="h-5 w-5"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                clip-rule="evenodd"
-              ></path>
-            </svg>
-          </a>
-        </li>
-        <li>
-          <a
-            href="#"
-            className="border border-gray-300 bg-white px-3 py-2 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-          >
-            1
-          </a>
-        </li>
-        <li>
-          <a
-            href="#"
-            className="border border-gray-300 bg-white px-3 py-2 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-          >
-            2
-          </a>
-        </li>
-        <li>
-          <a
-            href="#"
-            aria-current="page"
-            className="z-10 border border-blue-300 bg-blue-50 px-3 py-2 leading-tight text-blue-600 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
-          >
-            3
-          </a>
-        </li>
-        <li>
-          <a
-            href="#"
-            className="border border-gray-300 bg-white px-3 py-2 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-          >
-            4
-          </a>
-        </li>
-        <li>
-          <a
-            href="#"
-            className="border border-gray-300 bg-white px-3 py-2 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-          >
-            5
-          </a>
-        </li>
-        <li>
-          <a
-            href="#"
-            className="block rounded-r-lg border border-gray-300 bg-white px-3 py-2 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-          >
-            <span className="sr-only">Next</span>
-            <svg
-              aria-hidden="true"
-              className="h-5 w-5"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                clip-rule="evenodd"
-              ></path>
-            </svg>
-          </a>
-        </li>
-      </ul>
-    </nav>
+    <div className="mt-6 flex justify-center lg:justify-start">
+      <button
+        onClick={() => onPageChange(1)}
+        className={`mx-1 px-3 py-2 ${
+          isFirstPage
+            ? "cursor-not-allowed bg-gray-400/40 text-gray-500 dark:bg-gray-800"
+            : "cursor-pointer bg-primary-500/30 transition-colors hover:bg-primary-600/50"
+        }`}
+        disabled={isFirstPage}
+      >
+        <ChevronDoubleLeftIcon className="h-4 w-4" />
+      </button>
+
+      <button
+        onClick={() => onPageChange(currentPage - 1)}
+        className={`mx-1 px-3 py-2 ${
+          isFirstPage
+            ? "cursor-not-allowed bg-gray-400/40 text-gray-500 dark:bg-gray-800"
+            : "cursor-pointer bg-primary-500/30 transition-colors hover:bg-primary-600/50"
+        }`}
+        disabled={isFirstPage}
+      >
+        <ChevronLeftIcon className="h-4 w-4" />
+      </button>
+
+      {pagesToShow.map((page) => (
+        <button
+          key={page}
+          onClick={() => onPageChange(page)}
+          className={`mx-1 px-3 py-2 ${
+            currentPage === page
+              ? "cursor-not-allowed bg-primary-500/60"
+              : "cursor-pointer bg-primary-500/30 transition-colors hover:bg-primary-600/50"
+          }`}
+          disabled={currentPage === page}
+        >
+          {page}
+        </button>
+      ))}
+
+      <button
+        onClick={() => onPageChange(currentPage + 1)}
+        className={`mx-1 px-3 py-2 ${
+          isLastPage
+            ? "cursor-not-allowed bg-gray-400/40 text-gray-500 dark:bg-gray-800"
+            : "cursor-pointer bg-primary-500/30 transition-colors hover:bg-primary-600/50"
+        }`}
+        disabled={isLastPage}
+      >
+        {" "}
+        <ChevronRightIcon className="h-4 w-4" />
+      </button>
+
+      <button
+        onClick={() => onPageChange(totalPages)}
+        className={`mx-1 px-3 py-2 ${
+          isLastPage
+            ? "cursor-not-allowed bg-gray-400/40 text-gray-500 dark:bg-gray-800"
+            : "cursor-pointer bg-primary-500/30 transition-colors hover:bg-primary-600/50"
+        }`}
+        disabled={isLastPage}
+      >
+        <ChevronDoubleRightIcon className="h-4 w-4" />
+      </button>
+    </div>
   );
 };
 

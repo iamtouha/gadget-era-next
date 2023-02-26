@@ -4,17 +4,10 @@ import Image from "next/image";
 import { getFileUrl } from "@/utils/functions";
 import pb from "@/utils/pb";
 import dayjs from "dayjs";
-import { currency, number } from "@/utils/formatter";
+import { currency } from "@/utils/formatter";
 import config from "@/assets/config.json";
-import {
-  EnvelopeIcon,
-  GlobeAltIcon,
-  LinkIcon,
-  MapPinIcon,
-  PhoneIcon,
-} from "@heroicons/react/24/outline";
 import Invoice from "@/components/Invoice";
-import PrintBtn from "@/components/PrintBtn";
+import OrderActions from "@/components/OrderActions";
 
 const getOrder = (orderId: string) => {
   return new Promise<Order | null>((resolve, reject) => {
@@ -44,25 +37,10 @@ const getItems = (orderId: string) => {
   });
 };
 
-const getPayment = (orderId: string) => {
-  return new Promise<Payment | null>((resolve, reject) => {
-    pb.collection("payments")
-      .getFirstListItem<Payment>(`(order='${orderId}')`)
-      .then((item) => resolve(item))
-      .catch((e) => {
-        if (e.status === 404) {
-          return resolve(null);
-        }
-        reject(e);
-      });
-  });
-};
-
 const Order = async ({ params }: { params: { orderId: string } }) => {
-  const [order, orderItems, payment] = await Promise.all([
+  const [order, orderItems] = await Promise.all([
     getOrder(params.orderId),
     getItems(params.orderId),
-    getPayment(params.orderId),
   ]);
 
   if (!order) {
@@ -71,29 +49,80 @@ const Order = async ({ params }: { params: { orderId: string } }) => {
 
   return (
     <main>
+      {order.status === "pending" && !order.cod ? (
+        <div className="container mx-auto px-4 pt-8 print:hidden md:max-w-screen-md">
+          <div className="bg-white p-3 shadow dark:bg-gray-800 sm:p-6">
+            <h2 className="mb-4 text-lg font-bold md:text-2xl">
+              Complete your payment
+            </h2>
+            <p className="">For payment, use Reference</p>
+            <p className="my-2 inline-block rounded bg-gray-200 px-2 py-2 text-3xl dark:bg-gray-600">
+              {order.payment_reference}
+            </p>
+            <p>Payment Methods:</p>
+            <ul>
+              <li>{`Bkash : ${config.payment.bkash} (Personal)`}</li>
+              <li>{`Nagad: ${config.payment.nagad} (Personal)`}</li>
+            </ul>
+            {/* <p className="mt-2 text-sm">
+              Your payment will be verified within 2 hours after payment.
+            </p> */}
+          </div>
+        </div>
+      ) : null}
       <div className="container mx-auto px-4 py-8 print:hidden md:max-w-screen-md">
         <div className="bg-white p-3 shadow dark:bg-gray-800 sm:p-6">
-          <h2 className="mb-4 text-2xl font-bold">Order#{order.id}</h2>
-          <div className="mb-4 flex justify-between">
-            <p className="font-bold">Date:</p>
+          <div className="mb-4 flex flex-wrap items-center justify-between">
+            <h2 className="text-lg font-bold md:text-2xl">Order#{order.id}</h2>
+            <span
+              className={`${
+                {
+                  pending: "bg-amber-500",
+                  confirmed: "bg-green-500",
+                  cancelled: "bg-red-500",
+                  rejected: "bg-red-500",
+                  shipped: "bg-green-500",
+                  delivered: "bg-green-500",
+                }[order.status]
+              } rounded-full px-2 py-1 text-sm text-white`}
+            >
+              {order.status}
+            </span>
+          </div>
+
+          <div className="mb-2 flex justify-between">
+            <p className="font-medium">Date:</p>
             <p>{dayjs(order.created).format("DD/MM/YYYY hh:mm A")}</p>
           </div>
-          <div className="mb-4 flex justify-between">
-            <p className="font-bold">Receiver Name:</p>
+          <div className="mb-2 flex justify-between">
+            <p className="font-medium">Receiver Name:</p>
             <p>{order.receiver}</p>
           </div>
-          <div className="mb-4 flex justify-between">
-            <p className="font-bold">Phone Number:</p>
+          {order.cod ? (
+            <div className="mb-2 flex justify-between">
+              <p className="font-medium">Cash on Delivery:</p>
+              <p>Yes</p>
+            </div>
+          ) : (
+            <div className="mb-2 flex justify-between">
+              <p className="font-medium">Payment Reference:</p>
+              <p>{order.payment_reference}</p>
+            </div>
+          )}
+
+          <div className="mb-2 flex justify-between">
+            <p className="font-medium">Phone Number:</p>
             <p>{order.phone}</p>
           </div>
-          <div className="mb-4 flex justify-between">
-            <p className="font-bold">Email:</p>
+          <div className="mb-2 flex justify-between">
+            <p className="font-medium">Email:</p>
             <p>{order.email}</p>
           </div>
-          <div className="mb-4 flex justify-between">
-            <p className="font-bold">Shipping Address:</p>
+          <div className="mb-2 flex justify-between">
+            <p className="font-medium">Shipping Address:</p>
             <p>{order.address}</p>
           </div>
+
           <div className="mb-4">
             <p className="mb-2 font-bold">Items:</p>
             <ul>
@@ -138,7 +167,7 @@ const Order = async ({ params }: { params: { orderId: string } }) => {
               </li>
             </ul>
           </div>
-          <PrintBtn />
+          <OrderActions order={order} />
         </div>
       </div>
       <Invoice order={order} items={orderItems} />

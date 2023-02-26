@@ -1,6 +1,7 @@
 import ProductCard from "@/components/ProductCard";
 import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 import { getProducts } from "@/utils/functions";
+import Pagination from "@/components/Pagination";
 
 type Props = {
   searchParams?: { [key: string]: string | string[] | undefined };
@@ -20,8 +21,13 @@ const Products = async (props: Props) => {
       <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4  2xl:grid-cols-5">
         {productsList.items.map((product) => (
           <ProductCard key={product.id} product={product} />
-        ))}{" "}
+        ))}
       </div>
+      <Pagination
+        currentPage={+((props.searchParams?.page as string) ?? 1)}
+        totalPages={productsList.totalPages}
+        path="/products"
+      />
     </>
   );
 };

@@ -1,5 +1,7 @@
+import Loading from "@/components/Loading";
+
 const ProductsLoadingUI = () => {
-  return <p className="italic">Loading Products...</p>;
+  return <Loading />;
 };
 
 export default ProductsLoadingUI;

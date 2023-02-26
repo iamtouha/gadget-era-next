@@ -1,10 +1,19 @@
 import { env } from "@/env/client.mjs";
 import type { Category, ListServerPayload } from "@/utils/types";
 
-export default async function getCategories() {
+type Props = { perPage: number; page: number } | undefined;
+
+export default async function getCategories(props: Props = undefined) {
+  const params = new URLSearchParams();
+  params.set("sort", "-created");
+  params.set("filter", "(published=true)");
+  params.set("page", `${props?.page ?? 1}`);
+  params.set("perPage", `${props?.perPage ?? 99}`);
+
   const res = await fetch(
-    env.NEXT_PUBLIC_SERVER_URL +
-      "/api/collections/categories/records?sort=-created&filter=(published=true)"
+    `${
+      env.NEXT_PUBLIC_SERVER_URL
+    }/api/collections/categories/records?${params.toString()}`
   );
   if (!res.ok) {
     throw new Error("Could not fetch categories.");

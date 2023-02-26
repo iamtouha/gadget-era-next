@@ -75,17 +75,17 @@ const NavArea = () => {
         <Searchbar />
         <Link
           href={"/account"}
-          className="block gap-1 rounded-full p-2 hover:bg-primary-500 hover:bg-opacity-20 md:flex md:items-center md:py-1 md:px-2"
+          className="block gap-1 p-2 hover:text-primary-500 md:flex md:items-center md:py-1 md:px-2"
         >
           <UserCircleIcon className="h-5 w-5 sm:h-6 sm:w-6 md:h-5 md:w-5" />
           <span className="hidden md:block">Account</span>
         </Link>
         <Link
           href={"/cart"}
-          className="relative block gap-1 rounded-full p-2 hover:bg-primary-500 hover:bg-opacity-20 md:flex md:items-center md:py-1 md:px-2"
+          className="relative block gap-1 p-2 hover:bg-opacity-20 hover:text-primary-500 md:flex md:items-center md:py-1 md:px-2"
         >
           {cartLength && loaded ? (
-            <span className="absolute top-0 left-0 h-4 w-4 rounded-full bg-primary-500 p-0.5 text-center text-xs leading-none">
+            <span className="absolute top-0 left-0 h-4 w-4 bg-primary-500 p-0.5 text-center text-xs leading-none">
               {cartLength}
             </span>
           ) : null}
@@ -93,13 +93,13 @@ const NavArea = () => {
           <span className="hidden md:block">Cart</span>
         </Link>
         <button
-          className="block rounded-full p-2 hover:bg-primary-500 hover:bg-opacity-20 dark:hidden"
+          className="block p-2 hover:text-primary-500 dark:hidden"
           onClick={() => setTheme("dark")}
         >
           <MoonIcon className="h-5 w-5 sm:h-6 sm:w-6 md:h-5 md:w-5" />
         </button>
         <button
-          className="hidden rounded-full p-2 hover:bg-primary-500 hover:bg-opacity-20 dark:block"
+          className="hidden p-2 hover:text-primary-500 dark:block"
           onClick={() => setTheme("light")}
         >
           <SunIcon className="h-5 w-5 sm:h-6 sm:w-6 md:h-5 md:w-5" />
@@ -118,7 +118,7 @@ const NavArea = () => {
               {routes.map((route) => (
                 <li
                   key={route.name}
-                  className="mx-1 my-2 px-4 py-1 transition-colors hover:bg-primary-500 hover:bg-opacity-20"
+                  className="mx-1 my-2 px-4 py-1 transition-colors hover:text-primary-500"
                 >
                   <Link href={route.path}>{route.name}</Link>
                 </li>
