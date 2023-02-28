@@ -8,6 +8,19 @@ import { currency } from "@/utils/formatter";
 import config from "@/assets/config.json";
 import Invoice from "@/components/Invoice";
 import OrderActions from "@/components/OrderActions";
+import { Metadata } from "next";
+
+type Props = { params: { orderId: string } };
+
+export function generateMetadata({ params }: Props): Metadata {
+  return {
+    title: "Track your order",
+    description: "Track order #" + params.orderId,
+    openGraph: {
+      images: [{ url: "/api/og?text=Track Your Order" }],
+    },
+  };
+}
 
 const getOrder = (orderId: string) => {
   return new Promise<Order | null>((resolve, reject) => {
@@ -37,7 +50,7 @@ const getItems = (orderId: string) => {
   });
 };
 
-const Order = async ({ params }: { params: { orderId: string } }) => {
+const Order = async ({ params }: Props) => {
   const [order, orderItems] = await Promise.all([
     getOrder(params.orderId),
     getItems(params.orderId),

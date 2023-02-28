@@ -2,8 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+.cart-units-input::-webkit-inner-spin-button,
+.cart-units-input::-webkit-outer-spin-button {
+  opacity: 1;
+}
 
-.cart-units-input::-webkit-inner-spin-button, 
-.cart-units-input::-webkit-outer-spin-button {  
-   opacity: 1;
+.product-slider::-webkit-scrollbar {
+  @apply xl:hidden;
 }

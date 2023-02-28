@@ -5,8 +5,22 @@ import getProduct from "@/utils/functions/getProduct";
 import { currency } from "@/utils/formatter";
 import styles from "@/styles/product.module.css";
 import ProductActions from "@/components/ProductActions";
+import type { Metadata } from "next";
 
-const Product = async ({ params }: { params: { key: string } }) => {
+type Props = { params: { key: string } };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { name, images, id, overview } = await getProduct(params.key);
+  return {
+    title: name,
+    description: overview,
+    openGraph: {
+      images: [{ url: getFileUrl("products", id, images[0] ?? "") }],
+    },
+  };
+}
+
+const Product = async ({ params }: Props) => {
   const product = await getProduct(params.key);
 
   return (
@@ -29,6 +43,7 @@ const Product = async ({ params }: { params: { key: string } }) => {
                           src={getFileUrl("products", product.id, img)}
                           fill
                           alt={img}
+                          className="object-contain"
                         />
                       </div>
                     </span>
@@ -95,3 +110,4 @@ const Product = async ({ params }: { params: { key: string } }) => {
 };
 
 export default Product;
+

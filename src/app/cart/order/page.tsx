@@ -13,6 +13,9 @@ import type { Order } from "@/utils/types";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
+ 
+
+
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const placeOrder = (
@@ -23,6 +26,8 @@ const placeOrder = (
     method: "POST",
     body: JSON.stringify(arg),
   }).then((res) => res.json());
+
+  
 
 function Order() {
   const cart = useCartStore();

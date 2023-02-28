@@ -11,6 +11,7 @@ export type Product = {
   updated: string;
   in_stock: boolean;
   published: boolean;
+  model: string;
 };
 
 export type Category = {
@@ -19,12 +20,14 @@ export type Category = {
   cover: string;
   key: string;
   overview: string;
+  expand?: Record<string, unknown>;
 };
 
 export type Brand = {
   id: string;
   name: string;
   logo: string;
+  overview: string;
   key: string;
 };
 

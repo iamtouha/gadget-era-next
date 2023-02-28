@@ -8,6 +8,7 @@ import { getFileUrl } from "@/utils/functions";
 import Image from "next/image";
 import Link from "next/link";
 
+ 
 const Cart = () => {
   const [loadedOnClient, loadedOnClientSet] = useState(false);
 

@@ -2,6 +2,15 @@ import { getCategories, getFileUrl } from "@/utils/functions";
 import type { Category } from "@/utils/types";
 import Link from "next/link";
 
+export const metadata = {
+  title: "Categories",
+  description:
+    "Find the latest and greatest in electronics at Gadget Era. Our wide range of categories includes wristwatches, headphones, speakers, smartwatches and more. With our high-quality products and unbeatable prices, you'll find everything you need to stay on top of the latest trends and technology. Shop now and experience the future of gadgets.",
+  openGraph: {
+    images: [{ url: "/api/og?text=Categories" }],
+  },
+};
+
 const Categories = async () => {
   const categories = await getCategories();
 
@@ -25,7 +34,7 @@ function Card({ category }: { category: Category }) {
   return (
     <Link
       href={"/categories/" + category.key}
-      className="overflow-hidden border shadow transition-shadow hover:shadow-lg dark:border-gray-600 dark:bg-gray-800/80 dark:shadow-none"
+      className="overflow-hidden border shadow transition hover:shadow-lg dark:border-gray-600 dark:shadow-none dark:hover:bg-gray-800/80"
     >
       <img
         src={getFileUrl("categories", category.id, category.cover)}

@@ -1,6 +1,6 @@
 import React from "react";
 import type { Metadata } from "next";
-import { getCategory, getFileUrl } from "@/utils/functions";
+import { getBrand, getFileUrl } from "@/utils/functions";
 import ProductCard from "@/components/ProductCard";
 import EmptyProductsList from "@/components/EmptyList";
 import Pagination from "@/components/Pagination";
@@ -15,43 +15,49 @@ export async function generateMetadata({
   params,
   searchParams,
 }: Props): Promise<Metadata> {
-  const category = await getCategory({
+  const brand = await getBrand({
     key: params?.key ?? "",
     page: searchParams?.page ? +searchParams?.page : 1,
   });
   return {
-    title: category.name,
-    description: category.overview,
+    title: brand.name,
+    description: brand.overview,
     openGraph: {
-      images: [{ url: getFileUrl("products", category.id, category.cover) }],
+      images: [{ url: getFileUrl("products", brand.id, brand.logo) }],
     },
   };
 }
 
-const Category = async ({ params, searchParams }: Props) => {
+const Brand = async ({ params, searchParams }: Props) => {
   const key = params?.key ?? "";
   const page = searchParams?.page ? +searchParams?.page : 1;
 
-  const category = await getCategory({ key, page });
+  const brand = await getBrand({ key, page });
 
   return (
     <main className="container mx-auto mt-6 p-2 xl:max-w-screen-xl">
-      <div className="relative mb-8 h-56 lg:h-72">
-        <Image
-          src={getFileUrl("categories", category.id, category.cover)}
-          alt={category.name}
-          fill
-          className="object-cover"
-        />
-        <div className="absolute inset-x-0 bottom-0 px-6 py-4 text-white">
-          <h1 className=" mb-4 inline-block bg-gray-600 px-4 py-2 text-2xl font-medium lg:text-4xl">
-            {category.name}
-          </h1>
+      <div className="mb-8 flex flex-col items-center gap-4 md:flex-row md:items-end">
+        <div className="bg-gray-100 p-2 dark:bg-gray-600">
+          <Image
+            src={getFileUrl("brands", brand.id, brand.logo ?? "")}
+            alt={brand.name}
+            width={120}
+            height={120}
+            className="aspect-square object-contain"
+          />
+        </div>
+
+        <div className="text-center md:flex-1 md:text-left">
+          <h1 className="mb-2 text-2xl lg:text-3xl">{brand.name}</h1>
+          <p className="text-gray-700 line-clamp-5 dark:text-gray-300 md:line-clamp-3">
+            {brand.overview}
+          </p>
         </div>
       </div>
-      {category.totalItems > 0 ? (
+
+      {brand.totalItems > 0 ? (
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-          {category.items.map((product) => (
+          {brand.items.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
@@ -60,11 +66,11 @@ const Category = async ({ params, searchParams }: Props) => {
       )}
       <Pagination
         currentPage={page}
-        totalPages={category.totalPages}
-        path={"/categories/" + key}
+        totalPages={brand.totalPages}
+        path={"/brands/" + key}
       />
     </main>
   );
 };
 
-export default Category;
+export default Brand;
