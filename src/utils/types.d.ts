@@ -1,3 +1,9 @@
+export type User = {
+  id: string;
+  username: string;
+  email: string;
+};
+
 export type Product = {
   id: string;
   name: string;
@@ -66,6 +72,7 @@ export type Order = {
     | "shipped"
     | "delivered";
   created: string;
+  expand?: Record<string, unknown>;
 };
 
 export type ListServerPayload<T extends Object> = {

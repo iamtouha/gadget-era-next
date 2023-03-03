@@ -3,17 +3,29 @@
 import useSwr from "swr";
 import { ArrowLeftOnRectangleIcon } from "@heroicons/react/24/solid";
 import Loading from "./Loading";
-
-const fetchUser = (url: string) => fetch(url).then((res) => res.json());
+import pb from "@/utils/pb";
+import { deleteCookie } from "cookies-next";
+import { useRouter } from "next/navigation";
+import { fetchUser } from "@/utils/functions";
 
 const UserAccount = () => {
+  const router = useRouter();
   const { data: user, isLoading } = useSwr("/api/user", fetchUser);
+
+  const signOut = () => {
+    pb.authStore.clear();
+    deleteCookie("token");
+    router.push("/user/signin");
+  };
 
   if (isLoading) {
     return <Loading />;
   }
+
+  if (!user) return <></>;
+
   return (
-    <div>
+    <section aria-label="my account">
       <h1 className="my-6 text-3xl font-bold">My Account</h1>
       <dl className="space-y-4 text-gray-900 dark:text-gray-100">
         <div className="space-y-2">
@@ -28,7 +40,10 @@ const UserAccount = () => {
           </dt>
           <dd className="text-gray-700 dark:text-gray-300">{user.email}</dd>
         </div>
-        <button className="flex items-center space-x-2 border border-transparent bg-red-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
+        <button
+          onClick={signOut}
+          className="flex items-center space-x-2 border border-transparent bg-red-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+        >
           <ArrowLeftOnRectangleIcon
             className="-ml-1 mr-2 h-5 w-5"
             aria-hidden="true"
@@ -36,7 +51,7 @@ const UserAccount = () => {
           <span>Sign out</span>
         </button>
       </dl>
-    </div>
+    </section>
   );
 };
 

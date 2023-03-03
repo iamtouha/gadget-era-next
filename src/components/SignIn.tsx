@@ -20,7 +20,7 @@ const SignIn = () => {
     },
     onSuccess: (data: Record<string, any>) => {
       if (data.success) {
-        toast.success("Welcome, " + data.user?.username);
+        toast.success("Welcome back, " + data.user?.username);
         router.push("/user/account");
         return;
       }
@@ -60,7 +60,7 @@ const SignIn = () => {
           htmlFor="password"
           className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
         >
-          Set a password
+          Your password
         </label>
         <input
           type="password"

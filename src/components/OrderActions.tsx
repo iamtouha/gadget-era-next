@@ -3,7 +3,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import type { Order } from "@/utils/types";
 
-function OrderActions({ order }: { order: Order }) {
+function OrderActions(/* { order }: { order: Order } */) {
   let [isOpen, setIsOpen] = useState(false);
 
   function closeModal() {

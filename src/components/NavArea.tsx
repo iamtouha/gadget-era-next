@@ -1,7 +1,7 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Fragment } from "react";
 import Link from "next/link";
-import { Popover, Switch } from "@headlessui/react";
+import { Popover, Menu, Transition } from "@headlessui/react";
 import {
   SunIcon,
   MoonIcon,
@@ -85,7 +85,7 @@ const NavArea = () => {
           className="relative block gap-1 p-2 hover:bg-opacity-20 hover:text-primary-500 md:flex md:items-center md:py-1 md:px-2"
         >
           {cartLength && loaded ? (
-            <span className="absolute top-0 left-0 h-4 w-4 bg-primary-500 p-0.5 text-center text-xs leading-none">
+            <span className="absolute top-0 left-0 h-4 w-4 bg-primary-500 p-0.5 text-center text-xs leading-none text-white">
               {cartLength}
             </span>
           ) : null}
@@ -104,28 +104,47 @@ const NavArea = () => {
         >
           <SunIcon className="h-5 w-5 sm:h-6 sm:w-6 md:h-5 md:w-5" />
         </button>
-        <Popover className="relative lg:hidden">
-          <Popover.Button
-            className={
-              "px-1 py-1 transition-colors hover:bg-primary-500 hover:bg-opacity-20"
-            }
-          >
-            <Bars3Icon className="h-7 w-7 sm:h-8 sm:w-8" />
-          </Popover.Button>
-
-          <Popover.Panel className="absolute right-0 z-10 bg-gray-50 shadow dark:bg-gray-800">
-            <ul className="">
-              {routes.map((route) => (
-                <li
-                  key={route.name}
-                  className="mx-1 my-2 px-4 py-1 transition-colors hover:text-primary-500"
-                >
-                  <Link href={route.path}>{route.name}</Link>
-                </li>
-              ))}
-            </ul>
-          </Popover.Panel>
-        </Popover>
+        <Menu as={"div"} className="relative lg:hidden">
+          <div>
+            <Menu.Button
+              className={
+                "px-1 py-1 transition-colors hover:bg-primary-500 hover:bg-opacity-20"
+              }
+            >
+              <Bars3Icon className="h-7 w-7 sm:h-8 sm:w-8" />
+            </Menu.Button>
+            <Transition
+              as={Fragment}
+              enter="transition ease-out duration-100"
+              enterFrom="transform opacity-0 scale-95"
+              enterTo="transform opacity-100 scale-100"
+              leave="transition ease-in duration-75"
+              leaveFrom="transform opacity-100 scale-100"
+              leaveTo="transform opacity-0 scale-95"
+            >
+              <Menu.Items className="absolute right-0 mt-2 w-48 origin-top-right divide-y divide-gray-100 bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-gray-800">
+                <div className="px-1 py-1">
+                  {routes.map((route) => (
+                    <Menu.Item key={route.name}>
+                      {({ active }) => (
+                        <Link
+                          href={route.path}
+                          className={`${
+                            active
+                              ? "bg-primary-500 text-white"
+                              : "text-gray-900 dark:text-gray-100"
+                          } group flex w-full items-center px-2 py-2 text-sm`}
+                        >
+                          {route.name}
+                        </Link>
+                      )}
+                    </Menu.Item>
+                  ))}
+                </div>
+              </Menu.Items>
+            </Transition>
+          </div>
+        </Menu>
       </div>
     </>
   );

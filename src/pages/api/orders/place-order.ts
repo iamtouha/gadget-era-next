@@ -23,6 +23,7 @@ const orderSchema = orderFormSchema.merge(
       })
       .array(),
     shipping: z.number(),
+    userId: z.string().optional(),
   })
 );
 
@@ -60,6 +61,7 @@ export default async function handler(
     street,
     phone,
     email,
+    userId,
     receiver,
     shipping,
     cod,
@@ -72,6 +74,7 @@ export default async function handler(
   try {
     const record = await pb.collection("orders").create<Order>({
       id,
+      user: userId,
       payment_reference: cod ? undefined : payment_reference,
       receiver,
       phone,
@@ -122,6 +125,9 @@ const sendOrderConfirmationEmail = async (orderDetails: Order) => {
       <p>Your order will be shipped to the following address: ${
         orderDetails.address
       }</p>
+      <p>To track your order, <a href="https://www/gadgeterabd.com/order/${
+        orderDetails.id
+      }">Click Here</a></p>
       <p>Thank you again for choosing Gadget Era. We look forward to delivering your order and providing you with the best possible customer experience.</p>
       <p>Best regards,</p>
       <p>Gadget Era Team</p>

@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import type { Order, OrderItem, Payment } from "@/utils/types";
+import type { Order, OrderItem } from "@/utils/types";
 import Image from "next/image";
 import { getFileUrl } from "@/utils/functions";
 import pb from "@/utils/pb";
@@ -25,7 +25,7 @@ export function generateMetadata({ params }: Props): Metadata {
 const getOrder = (orderId: string) => {
   return new Promise<Order | null>((resolve, reject) => {
     pb.collection("orders")
-      .getOne<Order>(orderId)
+      .getOne<Order>(orderId, { expand: "order_items(order).product" })
       .then((item) => resolve(item))
       .catch((e) => {
         if (e.status === 404) {
@@ -36,25 +36,9 @@ const getOrder = (orderId: string) => {
   });
 };
 
-const getItems = (orderId: string) => {
-  return new Promise<OrderItem[]>((resolve, reject) => {
-    pb.collection("order_items")
-      .getList<OrderItem>(1, 30, {
-        filter: `(order='${orderId}')`,
-        expand: "product",
-      })
-      .then((list) => resolve(list.items))
-      .catch((e) => {
-        reject(e);
-      });
-  });
-};
-
 const Order = async ({ params }: Props) => {
-  const [order, orderItems] = await Promise.all([
-    getOrder(params.orderId),
-    getItems(params.orderId),
-  ]);
+  const order = await getOrder(params.orderId);
+  const orderItems = order?.expand?.["order_items(order)"] as OrderItem[];
 
   if (!order) {
     notFound();
@@ -180,7 +164,7 @@ const Order = async ({ params }: Props) => {
               </li>
             </ul>
           </div>
-          <OrderActions order={order} />
+          <OrderActions />
         </div>
       </div>
       <Invoice order={order} items={orderItems} />

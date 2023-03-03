@@ -6,13 +6,10 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  console.log("fetch user");
   if (req.method !== "GET")
     return res.status(400).send({ message: "Method not allowed." });
 
   const token = getCookie("token", { req, res });
-
-  console.log(token);
 
   if (!token) return res.status(400).send({ message: "User not signed in." });
 

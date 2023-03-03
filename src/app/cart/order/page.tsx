@@ -12,28 +12,32 @@ import styles from "@/styles/order.module.css";
 import type { Order } from "@/utils/types";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-
- 
-
+import { fetchUser } from "@/utils/functions";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const placeOrder = (
   url: string,
-  { arg }: { arg: OrderFormInput & { items: CartItem[]; shipping: number } }
+  {
+    arg,
+  }: {
+    arg: OrderFormInput & {
+      items: CartItem[];
+      shipping: number;
+      userId?: string;
+    };
+  }
 ) =>
   fetch(url, {
     method: "POST",
     body: JSON.stringify(arg),
   }).then((res) => res.json());
 
-  
-
 function Order() {
   const cart = useCartStore();
   const router = useRouter();
   const [loaded, setLoaded] = useState(false);
-  const { data: user, isLoading } = useSWR("/api/user", fetcher);
+  const { data: user } = useSWR("/api/user", fetchUser);
   const {
     register,
     handleSubmit,
@@ -64,9 +68,18 @@ function Order() {
     district ? "/api/districts/" + district : null,
     fetcher
   );
-  const { trigger, isMutating, error } = useSWRMutation<Order>(
+  const { trigger, isMutating } = useSWRMutation<Order>(
     "/api/orders/place-order",
-    placeOrder
+    placeOrder,
+    {
+      onError: () => {
+        toast.error("Could not place the order.");
+      },
+      onSuccess: (data) => {
+        cart.clear();
+        router.push("/order/" + data.id);
+      },
+    }
   );
 
   const shippingCharge = useMemo(() => {
@@ -88,31 +101,27 @@ function Order() {
     }
   }, [user]);
 
-  const onSubmit = handleSubmit(async (data) => {
-    const placedOrder = await trigger({
-      ...data,
-      district: dist.data?.find((item) => item.id === data.district)?.name,
-      upazila: upazila.data?.find((item) => item.id === data.upazila)?.name,
-      shipping: shippingCharge,
-      items: cart.items,
-    }).catch(() => {
-      toast.error("Could not place the order.");
-    });
-    if (!placedOrder) {
-      toast.error("Could not place the order.");
-      return;
-    }
-    cart.clear();
-    router.push("/order/" + placedOrder.id);
-  });
-
   return (
     <div className="container mx-auto p-2 lg:max-w-screen-lg">
       <h1 className="mb-0 mt-10 text-2xl md:text-3xl">Place Order</h1>
       {loaded && cart.items.length ? (
         <div className="grid grid-cols-1 gap-2 md:grid-cols-3">
           <div className="order-2 p-2 dark:bg-gray-900 md:order-1 md:col-span-2">
-            <form onSubmit={onSubmit}>
+            <form
+              onSubmit={handleSubmit(async (data) =>
+                trigger({
+                  ...data,
+                  district: dist.data?.find((item) => item.id === data.district)
+                    ?.name,
+                  upazila: upazila.data?.find(
+                    (item) => item.id === data.upazila
+                  )?.name,
+                  shipping: shippingCharge,
+                  items: cart.items,
+                  userId: user?.id,
+                })
+              )}
+            >
               <label className={styles.label}>
                 Receiver Name
                 <input

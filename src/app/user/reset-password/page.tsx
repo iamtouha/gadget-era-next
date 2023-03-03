@@ -1,8 +1,7 @@
 import Link from "next/link";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import SignIn from "@/components/SignIn";
-
+import ResetPassword from "@/components/ResetPassword";
 
 const page = () => {
   const cookieStore = cookies();
@@ -14,22 +13,16 @@ const page = () => {
 
   return (
     <main className="container mx-auto md:max-w-screen-md">
-      <h1 className="lg:text4xl mt-8 mb-6 text-center text-2xl">Sign In</h1>
-      <SignIn />
+      <h1 className="lg:text4xl mt-8 mb-6 text-center text-2xl">
+        Reset Password
+      </h1>
+      <ResetPassword />
       <p className="mt-4">
         <Link
           href={"/user/signup"}
           className="text-primary-500 hover:underline"
         >
-          Don't have an account? Sign Up instead.
-        </Link>
-      </p>
-      <p className="mt-4">
-        <Link
-          href={"/user/reset-password"}
-          className="text-primary-500 hover:underline"
-        >
-          Forgot Password? Reset now.
+          Sign up instead
         </Link>
       </p>
     </main>
