@@ -39,6 +39,7 @@ function Order() {
     handleSubmit,
     watch,
     reset,
+    setValue,
     formState: { errors },
   } = useForm<OrderFormInput>({
     resolver: zodResolver(orderFormSchema),
@@ -81,6 +82,11 @@ function Order() {
   useEffect(() => {
     setLoaded(true);
   }, []);
+  useEffect(() => {
+    if (user) {
+      setValue("email", user.email);
+    }
+  }, [user]);
 
   const onSubmit = handleSubmit(async (data) => {
     const placedOrder = await trigger({
