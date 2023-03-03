@@ -6,3 +6,4 @@ export { default as getBrands } from "./getBrands";
 export { default as getCategory } from "./getCategory";
 export { default as getBrand } from "./getBrand";
 export { default as getPageData } from "./getPageData";
+export { default as getVariants } from "./getVariants";

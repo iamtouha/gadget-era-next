@@ -1,16 +1,32 @@
-import pb from "@/utils/pb";
-import { OrderFormInput } from "@/utils/schema";
-import { customAlphabet } from "nanoid";
 import type { NextApiRequest, NextApiResponse } from "next";
-import type { CartItem } from "@/stores/cart";
+import { z } from "zod";
+import { customAlphabet } from "nanoid";
+import nodemailer from "nodemailer";
+import { env } from "@/env/server.mjs";
+import pb from "@/utils/pb";
+import { currency } from "@/utils/formatter";
+import { orderFormSchema, type OrderFormInput } from "@/utils/schema";
 import type { Order, OrderItem } from "@/utils/types";
 
 const getReference = customAlphabet("0123456789", 6);
 const getId = customAlphabet("0123456789ABCDEF", 15);
 
-import nodemailer from "nodemailer";
-import { env } from "@/env/server.mjs";
-import { currency } from "@/utils/formatter";
+const orderSchema = orderFormSchema.merge(
+  z.object({
+    items: z
+      .object({
+        productId: z.string(),
+        productName: z.string(),
+        imageUrl: z.string().optional(),
+        price: z.number(),
+        units: z.number(),
+      })
+      .array(),
+    shipping: z.number(),
+  })
+);
+
+type OrderSchema = z.infer<typeof orderSchema>;
 
 // Define the email content and transport options
 const transporter = nodemailer.createTransport({
@@ -30,6 +46,12 @@ export default async function handler(
   if (req.method !== "POST")
     return res.status(400).send({ message: "Method not allowed." });
 
+  const data = JSON.parse(req.body) as OrderSchema;
+
+  if (!orderSchema.safeParse(data).success) {
+    return res.status(400).send("Invalid request");
+  }
+
   const payment_reference = getReference();
   const id = getId();
   const {
@@ -42,13 +64,11 @@ export default async function handler(
     shipping,
     cod,
     items,
-  } = JSON.parse(req.body) as OrderFormInput & {
-    items: CartItem[];
-    shipping: number;
-  };
+  } = data;
+
   if (!items?.length)
     return res.status(400).send({ message: "Invalid request." });
-    
+
   try {
     const record = await pb.collection("orders").create<Order>({
       id,
@@ -89,7 +109,7 @@ const sendOrderConfirmationEmail = async (orderDetails: Order) => {
   const mailOptions = {
     from: '"Gadget Era" <support@gadgeterabd.com>',
     to: orderDetails.email,
-    bcc: "touha98@gmail.com",
+    bcc: env.BCC_EMAIL,
     subject: "Your Order Confirmation from Gadget Era",
 
     html: `

@@ -11,6 +11,7 @@ export const serverSchema = z.object({
   SMTP_HOST: z.string(),
   SMTP_USERNAME: z.string(),
   SMTP_PASSWORD: z.string(),
+  BCC_EMAIL: z.string().email(),
 });
 
 /**
@@ -25,6 +26,7 @@ export const serverEnv = {
   SMTP_HOST: process.env.SMTP_HOST,
   SMTP_USERNAME: process.env.SMTP_USERNAME,
   SMTP_PASSWORD: process.env.SMTP_PASSWORD,
+  BCC_EMAIL: process.env.BCC_EMAIL,
 };
 
 /**

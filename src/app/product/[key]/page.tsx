@@ -1,16 +1,18 @@
+import Link from "next/link";
 import Image from "next/image";
 import parse from "html-react-parser";
-import { getFileUrl } from "@/utils/functions";
-import getProduct from "@/utils/functions/getProduct";
-import { currency } from "@/utils/formatter";
-import styles from "@/styles/product.module.css";
-import ProductActions from "@/components/ProductActions";
 import type { Metadata } from "next";
+import { getFileUrl } from "@/utils/functions";
+import { getProduct, getVariants } from "@/utils/functions";
+import { currency } from "@/utils/formatter";
+import ProductActions from "@/components/ProductActions";
+import styles from "@/styles/product.module.css";
 
 type Props = { params: { key: string } };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { name, images, id, overview } = await getProduct(params.key);
+
   return {
     title: name,
     description: overview,
@@ -22,6 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 const Product = async ({ params }: Props) => {
   const product = await getProduct(params.key);
+  const variants = await getVariants(product.model);
 
   return (
     <main>
@@ -72,13 +75,12 @@ const Product = async ({ params }: Props) => {
               <h2 className="mb-5 text-2xl font-medium md:text-3xl">
                 {product.name}
               </h2>
-              <p className="mb-5 text-sm text-gray-700 dark:text-gray-100">
-                {product.overview}
-              </p>
               <div className="mb-5">
-                <span className="text-gray-600 dark:text-gray-100">Price:</span>
+                <span className="text-lg text-gray-600 dark:text-gray-100">
+                  Price:
+                </span>
 
-                <span className="ml-2 font-medium text-gray-700 dark:text-gray-100">
+                <span className="ml-2 text-lg font-medium text-gray-900 dark:text-gray-100">
                   {product.discounted_price ? (
                     <>
                       {currency.format(product.discounted_price)}
@@ -92,7 +94,53 @@ const Product = async ({ params }: Props) => {
                   )}
                 </span>
               </div>
+              <div className="mb-1">
+                <span className="text-gray-600 dark:text-gray-100">Model:</span>
+
+                <span className="ml-2 font-medium text-gray-700 dark:text-gray-100">
+                  {product.model}
+                </span>
+              </div>
+              <div className="mb-8">
+                <span className="text-gray-600 dark:text-gray-100">
+                  Availability:
+                </span>
+
+                <span className="ml-2 font-medium text-gray-700 dark:text-gray-100">
+                  {product.in_stock ? "in stock" : "out of stock"}
+                </span>
+              </div>
+
               <ProductActions product={product} />
+              {variants.length > 1 ? (
+                <nav aria-label="product variants">
+                  Similar products:
+                  <div className="mt-2 flex flex-wrap gap-4">
+                    {variants
+                      .filter((item) => item.id !== product.id)
+                      .map((item) => (
+                        <Link
+                          href={"/product/" + item.key}
+                          key={item.id}
+                          className="relative block h-24 w-24 focus:outline"
+                        >
+                          <Image
+                            src={getFileUrl(
+                              "products",
+                              item.id,
+                              item.images[0] ?? ""
+                            )}
+                            title={item.name}
+                            alt={item.name}
+                            width={96}
+                            height={96}
+                            className="leading-none"
+                          />
+                        </Link>
+                      ))}
+                  </div>
+                </nav>
+              ) : null}
             </div>
           </div>
         </div>
@@ -110,4 +158,3 @@ const Product = async ({ params }: Props) => {
 };
 
 export default Product;
-

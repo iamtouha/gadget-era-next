@@ -74,7 +74,7 @@ const NavArea = () => {
       <div className="mr-0 ml-auto flex items-center md:gap-3">
         <Searchbar />
         <Link
-          href={"/account"}
+          href={"/user/account"}
           className="block gap-1 p-2 hover:text-primary-500 md:flex md:items-center md:py-1 md:px-2"
         >
           <UserCircleIcon className="h-5 w-5 sm:h-6 sm:w-6 md:h-5 md:w-5" />

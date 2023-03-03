@@ -33,7 +33,7 @@ function Order() {
   const cart = useCartStore();
   const router = useRouter();
   const [loaded, setLoaded] = useState(false);
-
+  const { data: user, isLoading } = useSWR("/api/user", fetcher);
   const {
     register,
     handleSubmit,
@@ -54,6 +54,7 @@ function Order() {
   });
   const district = watch("district");
   const cod = watch("cod");
+
   const dist = useSWR<{ id: string; name: string }[]>(
     "/api/districts",
     fetcher
