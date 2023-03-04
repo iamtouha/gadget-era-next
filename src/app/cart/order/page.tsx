@@ -15,10 +15,10 @@ import { toast } from "react-toastify";
 import { fetchUser } from "@/utils/functions";
 import { Metadata } from "next";
 
-export const generateMetadata: () => Metadata = () => ({
-  title: "Order",
-  description: "View your Order.",
-});
+// export const generateMetadata: () => Metadata = () => ({
+//   title: "Order",
+//   description: "View your Order.",
+// });
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 const placeOrder = (url: string, { arg }: { arg: unknown }) =>
@@ -27,7 +27,7 @@ const placeOrder = (url: string, { arg }: { arg: unknown }) =>
     body: JSON.stringify(arg),
   }).then((res) => res.json());
 
-export default function Order() {
+export default function PlaceOrder() {
   const cart = useCartStore();
   const router = useRouter();
   const [loaded, setLoaded] = useState(false);
