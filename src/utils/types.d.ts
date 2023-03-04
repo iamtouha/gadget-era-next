@@ -25,8 +25,11 @@ export type Category = {
   name: string;
   cover: string;
   key: string;
+  published: boolean;
   overview: string;
   expand?: Record<string, unknown>;
+  created: string;
+  updated: string;
 };
 
 export type Brand = {
@@ -35,6 +38,9 @@ export type Brand = {
   logo: string;
   overview: string;
   key: string;
+  published: boolean;
+  created: string;
+  updated: string;
 };
 
 export type OrderItem = {
