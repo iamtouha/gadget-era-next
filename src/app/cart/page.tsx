@@ -7,8 +7,13 @@ import { currency } from "@/utils/formatter";
 import { getFileUrl } from "@/utils/functions";
 import Image from "next/image";
 import Link from "next/link";
+import { Metadata } from "next";
 
- 
+export const generateMetadata: () => Metadata = () => ({
+  title: "Cart",
+  description: "Products added to your cart",
+}); 
+
 const Cart = () => {
   const [loadedOnClient, loadedOnClientSet] = useState(false);
 

@@ -4,7 +4,7 @@ import useSWR from "swr";
 import useSWRMutation from "swr/mutation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { type CartItem, useCartStore } from "@/stores/cart";
+import { useCartStore } from "@/stores/cart";
 import { currency } from "@/utils/formatter";
 import { orderFormSchema, type OrderFormInput } from "@/utils/schema";
 import config from "@/assets/config.json";
@@ -13,27 +13,16 @@ import type { Order } from "@/utils/types";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { fetchUser } from "@/utils/functions";
+import { Metadata } from "next";
+
+export const generateMetadata: () => Metadata = () => ({
+  title: "Order",
+  description: "View your Order.",
+});
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
-const placeOrder = (
-  url: string,
-  {
-    arg,
-  }: {
-    arg: OrderFormInput & {
-      items: CartItem[];
-      shipping: number;
-      userId?: string;
-    };
-  }
-) =>
-  fetch(url, {
-    method: "POST",
-    body: JSON.stringify(arg),
-  }).then((res) => res.json());
-
-function Order() {
+export default function Order() {
   const cart = useCartStore();
   const router = useRouter();
   const [loaded, setLoaded] = useState(false);
@@ -70,7 +59,11 @@ function Order() {
   );
   const { trigger, isMutating } = useSWRMutation<Order>(
     "/api/orders/place-order",
-    placeOrder,
+    (url: string, { arg }: { arg: unknown }) =>
+      fetch(url, {
+        method: "POST",
+        body: JSON.stringify(arg),
+      }).then((res) => res.json()),
     {
       onError: () => {
         toast.error("Could not place the order.");
@@ -120,7 +113,7 @@ function Order() {
                   items: cart.items,
                   userId: user?.id,
                 });
-                return; 
+                return;
               })}
             >
               <label className={styles.label}>
@@ -284,5 +277,4 @@ function Order() {
     </div>
   );
 }
-
-export default Order;
+ 

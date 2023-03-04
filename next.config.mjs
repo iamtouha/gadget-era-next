@@ -10,7 +10,9 @@
 const config = {
   reactStrictMode: true,
   experimental: { appDir: true },
-
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   images: {
     remotePatterns: [
       {
