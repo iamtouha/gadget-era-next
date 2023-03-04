@@ -36,7 +36,7 @@ const getOrder = async (orderId: string) => {
   }
 };
 
-const Order = async ({ params }: Props) => {
+const OrderPage = async ({ params }: Props) => {
   const order = await getOrder(params.orderId);
   const orderItems = order?.expand?.["order_items(order)"] as OrderItem[];
 
@@ -172,4 +172,4 @@ const Order = async ({ params }: Props) => {
   );
 };
 
-export default Order;
+export default OrderPage;

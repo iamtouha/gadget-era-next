@@ -21,6 +21,11 @@ export const generateMetadata: () => Metadata = () => ({
 });
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
+const placeOrder = (url: string, { arg }: { arg: unknown }) =>
+  fetch(url, {
+    method: "POST",
+    body: JSON.stringify(arg),
+  }).then((res) => res.json());
 
 export default function Order() {
   const cart = useCartStore();
@@ -57,13 +62,9 @@ export default function Order() {
     district ? "/api/districts/" + district : null,
     fetcher
   );
-  const { trigger, isMutating } = useSWRMutation<Order>(
+  const { trigger, isMutating } = useSWRMutation(
     "/api/orders/place-order",
-    (url: string, { arg }: { arg: unknown }) =>
-      fetch(url, {
-        method: "POST",
-        body: JSON.stringify(arg),
-      }).then((res) => res.json()),
+    placeOrder,
     {
       onError: () => {
         toast.error("Could not place the order.");
@@ -277,4 +278,3 @@ export default function Order() {
     </div>
   );
 }
- 
