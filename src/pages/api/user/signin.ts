@@ -2,7 +2,7 @@ import pb from "@/utils/pb";
 import { signinFormSchema, type SigninFormInput } from "@/utils/schema";
 import { setCookie } from "cookies-next";
 import type { NextApiRequest, NextApiResponse } from "next";
-import type { ClientResponseError } from "pocketbase";
+// import type { ClientResponseError } from "pocketbase";
 
 export default async function handler(
   req: NextApiRequest,
@@ -11,7 +11,7 @@ export default async function handler(
   if (req.method !== "POST")
     return res.status(400).send({ message: "Method not allowed." });
 
-  if (!req.body) {
+  if (!req.body || typeof req.body !== 'string') {
     return res.status(400).send({ message: "Invalid request" });
   }
 

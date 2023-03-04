@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import config from "@/assets/config.json";
 import { currency, number } from "@/utils/formatter";
-import { Order, OrderItem } from "@/utils/types";
+import type { Order, OrderItem } from "@/utils/types";
 import {
   EnvelopeIcon,
   GlobeAltIcon,
@@ -129,11 +129,11 @@ const Invoice = ({ order, items }: { order: Order; items: OrderItem[] }) => {
       <div className="grid grid-cols-2 pt-20">
         <div>
           <div className="mx-auto h-0.5 w-60 bg-black"></div>
-          <p className="text-center">Executive's Sign</p>
+          <p className="text-center">{"Executive's Sign"}</p>
         </div>
         <div>
           <div className="mx-auto h-0.5 w-60 bg-black"></div>
-          <p className="text-center">Customer's Sign</p>
+          <p className="text-center">{"Customer's Sign"}</p>
         </div>
       </div>
       <div className="inset-x-0 bottom-2 print:fixed">

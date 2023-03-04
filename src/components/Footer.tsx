@@ -12,6 +12,7 @@ const Footer = () => {
           <a
             href={config.contact.social.facebook}
             target="_blank"
+            rel="noreferrer"
             className="mr-6 text-gray-600 dark:text-gray-200"
           >
             <svg
@@ -27,6 +28,7 @@ const Footer = () => {
           <a
             href={config.contact.social.instagram}
             target="_blank"
+            rel="noreferrer"
             className="mr-6 text-gray-600 dark:text-gray-200"
           >
             <svg

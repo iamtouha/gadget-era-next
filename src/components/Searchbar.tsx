@@ -1,7 +1,7 @@
 "use client";
 
 import { debounce } from "ts-debounce";
-import { Fragment, useState, useEffect, useRef, useCallback } from "react";
+import { Fragment, useState, useEffect, useCallback } from "react";
 import styles from "@/styles/searchbar.module.css";
 import { Dialog, Combobox, Transition } from "@headlessui/react";
 import { useRouter } from "next/navigation";
@@ -14,7 +14,7 @@ import {
   ArrowPathIcon,
   ExclamationTriangleIcon,
 } from "@heroicons/react/20/solid";
-import { Product } from "@/utils/types";
+import type { Product } from "@/utils/types";
 
 const Searchbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -35,17 +35,20 @@ const Searchbar = () => {
       isLoadingSet(true);
       fetch("/api/search/" + text, { signal: controller.signal })
         .then((res) => res.json())
-        .then((data: Product[]) => {
-          productsSet(data);
-        })
-        .catch((e) => {
-          if (e.name === "AbortError") {
-            console.log("req aborted");
-          } else {
-            console.error(e);
-            isErrorSet(true);
+        .then(
+          (data: Product[]) => {
+            productsSet(data);
+          },
+          (e: Error) => {
+            if (e.name === "AbortError") {
+              console.log("req aborted");
+            } else {
+              console.error(e);
+              isErrorSet(true);
+            }
           }
-        })
+        )
+
         .finally(() => {
           isLoadingSet(false);
         });

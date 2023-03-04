@@ -3,7 +3,7 @@ import UserOrders from "@/components/UserOrders";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
-const Account = async () => {
+const Account = () => {
   const cookieStore = cookies();
   const token = cookieStore.get("token");
 

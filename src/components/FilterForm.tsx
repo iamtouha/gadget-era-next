@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useCallback, useEffect, useMemo, useState } from "react";
+import { Fragment, useEffect, useMemo, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { Disclosure, Listbox, Switch, Transition } from "@headlessui/react";
 
@@ -21,19 +21,19 @@ const FilterForm = ({ brands, categories }: Props) => {
   const router = useRouter();
 
   const [selectedCategory, selectedCategorySet] = useState<Category | null>(
-    categories.find((cat) => cat.id === searchParams.get("category")) ?? null
+    categories.find((cat) => cat.id === searchParams?.get("category")) ?? null
   );
   const [selectedBrand, selectedBrandSet] = useState<Brand | null>(
-    brands.find((item) => item.id === searchParams.get("brand")) ?? null
+    brands.find((item) => item.id === searchParams?.get("brand")) ?? null
   );
   const [selectedSorting, selectedSortingSet] = useState(
-    searchParams.get("sort") ?? ""
+    searchParams?.get("sort") ?? ""
   );
   const [inStock, inStockSet] = useState(
-    searchParams.get("stock") ? true : false
+    searchParams?.get("stock") ? true : false
   );
   const [discount, discountSet] = useState(
-    searchParams.get("discount") ? true : false
+    searchParams?.get("discount") ? true : false
   );
 
   useEffect(() => {

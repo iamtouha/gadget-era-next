@@ -6,19 +6,25 @@ import useSWRMutation from "swr/mutation";
 import { toast } from "react-toastify";
 import { signinFormSchema, type SigninFormInput } from "@/utils/schema";
 import { useRouter } from "next/navigation";
+import { User } from "@/utils/types";
+
+type SigninReturn = {
+  user?: User;
+  message?: string;
+  success?: boolean;
+};
 
 const signIn = async (url: string, { arg }: { arg: SigninFormInput }) => {
   const res = await fetch(url, { method: "POST", body: JSON.stringify(arg) });
-  return await res.json();
+  return (await res.json()) as SigninReturn;
 };
-
 const SignIn = () => {
   const router = useRouter();
   const { trigger, isMutating } = useSWRMutation("/api/user/signin", signIn, {
     onError: (error) => {
-      toast.error(error.message);
+      toast.error(error?.message);
     },
-    onSuccess: (data: Record<string, any>) => {
+    onSuccess: (data) => {
       if (data.success) {
         toast.success("Welcome back, " + data.user?.username);
         router.push("/user/account");

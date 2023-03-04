@@ -1,4 +1,5 @@
 import { env } from "@/env/server.mjs";
+import { ListServerPayload, Order } from "@/utils/types";
 import { getCookie } from "cookies-next";
 import type { NextApiRequest, NextApiResponse } from "next";
 
@@ -11,7 +12,7 @@ export default async function handler(
   }
   const token = getCookie("token", { req, res });
 
-  if (!token) {
+  if (!token || typeof token !== "string") {
     return res.status(402).send("Forbidden.");
   }
 
@@ -23,6 +24,6 @@ export default async function handler(
   if (!response.ok) {
     return res.status(400).send({ message: "Could not fetch orders." });
   }
-  const data = await response.json();
+  const data = (await response.json()) as ListServerPayload<Order>;
   return res.send(data.items);
 }

@@ -11,7 +11,8 @@ export default async function handler(
 
   const token = getCookie("token", { req, res });
 
-  if (!token) return res.status(400).send({ message: "User not signed in." });
+  if (!token || typeof token !== "string")
+    return res.status(400).send({ message: "User not signed in." });
 
   const response = await fetch(
     env.NEXT_PUBLIC_SERVER_URL + "/api/collections/users/records",

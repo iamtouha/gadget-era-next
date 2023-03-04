@@ -5,7 +5,7 @@ export const config = {
   runtime: "experimental-edge",
 };
 
-export default function (req: NextApiRequest) {
+export default function og(req: NextApiRequest) {
   const { searchParams } = new URL(req.url ?? "");
   const text = searchParams.get("text") ?? "Gadget Era";
 

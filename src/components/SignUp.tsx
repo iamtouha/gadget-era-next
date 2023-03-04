@@ -7,10 +7,17 @@ import useSWRMutation from "swr/mutation";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { signupFormSchema, type SignupFormInput } from "@/utils/schema";
+import type { User } from "@/utils/types";
 
 const signUp = async (url: string, { arg }: { arg: SignupFormInput }) => {
   const res = await fetch(url, { method: "POST", body: JSON.stringify(arg) });
-  return await res.json();
+  return (await res.json()) as SigninReturn;
+};
+
+type SigninReturn = {
+  user?: User;
+  message?: string;
+  success?: boolean;
 };
 
 const SignUp = () => {

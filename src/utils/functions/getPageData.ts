@@ -1,5 +1,5 @@
 import { env } from "@/env/client.mjs";
-import type { Category, Product } from "@/utils/types";
+import type { Category, ListServerPayload, Product } from "@/utils/types";
 
 export default async function getPageData() {
   const params = new URLSearchParams();
@@ -19,16 +19,18 @@ export default async function getPageData() {
   if (!res.ok) {
     throw new Error("Could not fetch home page data.");
   }
-  const data = await res.json();
+  const data = (await res.json()) as ListServerPayload<{
+    id: string;
+    expand: {
+      featured_products: Product[];
+      latest_products: Product[];
+      popular_categories: Category[];
+      popular_products: Product[];
+    };
+  }>;
 
   if (!data.items[0]) {
     throw new Error("Could not find home page data.");
   }
-
-  return data.items[0].expand as {
-    featured_products: Product[];
-    latest_products: Product[];
-    popular_categories: Category[];
-    popular_products: Product[];
-  };
+  return data.items[0].expand;
 }

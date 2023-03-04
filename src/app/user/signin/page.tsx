@@ -21,7 +21,7 @@ const page = () => {
           href={"/user/signup"}
           className="text-primary-500 hover:underline"
         >
-          Don't have an account? Sign Up instead.
+          {"Don't have an account? Sign Up instead."}
         </Link>
       </p>
       <p className="mt-4">

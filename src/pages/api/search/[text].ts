@@ -1,6 +1,6 @@
 import { env } from "@/env/server.mjs";
 import type { ListServerPayload, Product } from "@/utils/types";
-import { NextApiRequest, NextApiResponse } from "next";
+import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(
   req: NextApiRequest,
@@ -19,7 +19,7 @@ export default async function handler(
     env.NEXT_PUBLIC_SERVER_URL +
       `/api/collections/products/records?${searchParams.toString()}`
   );
-  const data = await response.json();
+  const data = (await response.json()) as ListServerPayload<Product>;
 
   if (response.ok) {
     const items = data.items as Product[];

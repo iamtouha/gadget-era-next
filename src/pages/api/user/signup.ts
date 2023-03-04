@@ -30,12 +30,12 @@ export default async function handler(
     setCookie("token", token, { req, res });
 
     return res.send({ success: true, user: record });
-  } catch (error: any) {
+  } catch (error) {
     const errorData = (error as ClientResponseError).data;
     if (!errorData) {
-      res.status(400).send({ message: error.message });
+      res.status(400).send({ message: (error as Record<string, unknown>).message });
     }
-    const { data } = errorData;
+    const { data } = errorData as { data: { [key: string]: { code: string } } };
     if (
       data.email?.code === "validation_invalid_email" ||
       data.email?.code === "validation_invalid_username"

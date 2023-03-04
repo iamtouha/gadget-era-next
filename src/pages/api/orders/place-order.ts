@@ -47,6 +47,9 @@ export default async function handler(
   if (req.method !== "POST")
     return res.status(400).send({ message: "Method not allowed." });
 
+  if (typeof req.body !== "string")
+    return res.status(400).send({ message: "Unknown body parameters." });
+
   const data = JSON.parse(req.body) as OrderSchema;
 
   if (!orderSchema.safeParse(data).success) {

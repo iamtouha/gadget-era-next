@@ -1,4 +1,5 @@
 {
+  "root": true,
   "overrides": [
     {
       "extends": [
@@ -18,6 +19,12 @@
   "extends": ["next/core-web-vitals", "plugin:@typescript-eslint/recommended"],
   "rules": {
     "@typescript-eslint/consistent-type-imports": "warn",
+    "@typescript-eslint/no-misused-promises": [
+      "error",
+      { "checksVoidReturn": false }
+    ],
+    "@typescript-eslint/restrict-plus-operands": 0,
+    "@typescript-eslint/no-floating-promises": 0,
     "@typescript-eslint/restrict-template-expressions": [
       "error",
       { "allowNumber": true, "allowNullish": true }

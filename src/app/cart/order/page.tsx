@@ -120,6 +120,7 @@ function Order() {
                   items: cart.items,
                   userId: user?.id,
                 });
+                return; 
               })}
             >
               <label className={styles.label}>

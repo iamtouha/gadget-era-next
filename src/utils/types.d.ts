@@ -81,10 +81,11 @@ export type Order = {
   expand?: Record<string, unknown>;
 };
 
-export type ListServerPayload<T extends Object> = {
+export type ListServerPayload<T extends object> = {
   page: number;
   perPage: number;
   totalItems: number;
   totalPages: number;
   items: T[];
+  message?: string;
 };

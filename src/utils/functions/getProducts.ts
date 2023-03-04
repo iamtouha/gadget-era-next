@@ -6,7 +6,7 @@ export default async function getProductsList(queryParams?: SearchParams) {
   const res = await fetch(
     env.NEXT_PUBLIC_SERVER_URL +
       `/api/collections/products/records?` +
-      buildSearchParams(queryParams)
+      buildSearchParams(queryParams) ?? ""
   );
   if (!res.ok) {
     console.log(await res.json());
@@ -21,8 +21,10 @@ const buildSearchParams = (queryParams?: SearchParams) => {
   const { brand, category, sort, stock, page, discount } = queryParams;
 
   let filter = "published=true";
-  if (brand) filter += ` && brand='${brand}'`;
-  if (category) filter += ` && category='${category}'`;
+  if (brand && typeof brand === "string") filter += ` && brand='${brand}'`;
+  if (category && typeof category === "string")
+    filter += ` && category='${category}'`;
+
   if (stock) filter += ` && in_stock=true`;
   if (discount) filter += ` && discounted_price>0`;
 

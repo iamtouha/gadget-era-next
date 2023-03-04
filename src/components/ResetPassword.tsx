@@ -8,7 +8,7 @@ import { z } from "zod";
 
 const fetchReset = async (url: string, { arg }: { arg: string }) => {
   const res = await fetch(url, { method: "POST", body: arg });
-  return await res.json();
+  return (await res.json()) as Record<string, unknown>;
 };
 
 const ResetPassword = () => {
@@ -17,14 +17,16 @@ const ResetPassword = () => {
     fetchReset,
     {
       onError: (error) => {
-        toast.error(error.message);
+        toast.error((error as Record<string, unknown>)?.message as string);
       },
-      onSuccess: (data: Record<string, any>) => {
+      onSuccess: (data) => {
         if (data.success) {
           toast.success("Please check your inbox for instructions.");
           return;
         }
-        toast.error(data.message ?? "An error occured while signin.");
+        toast.error(
+          (data.message as string) ?? "An error occured while signin."
+        );
       },
     }
   );
@@ -36,8 +38,10 @@ const ResetPassword = () => {
     resolver: zodResolver(z.object({ email: z.string().email() })),
   });
 
+  const onSubmit: () => void = handleSubmit((data) => trigger(data.email));
+
   return (
-    <form onSubmit={handleSubmit((data) => trigger(data.email))}>
+    <form onSubmit={onSubmit}>
       <div className="mb-6">
         <label
           htmlFor="username"
