@@ -8,7 +8,7 @@ import { currency } from "@/utils/formatter";
 import config from "@/assets/config.json";
 import Invoice from "@/components/Invoice";
 import OrderActions from "@/components/OrderActions";
-import { Metadata } from "next";
+import type { Metadata } from "next";
 
 type Props = { params: { orderId: string } };
 
@@ -22,18 +22,18 @@ export function generateMetadata({ params }: Props): Metadata {
   };
 }
 
-const getOrder = (orderId: string) => {
-  return new Promise<Order | null>((resolve, reject) => {
-    pb.collection("orders")
-      .getOne<Order>(orderId, { expand: "order_items(order).product" })
-      .then((item) => resolve(item))
-      .catch((e) => {
-        if (e.status === 404) {
-          return resolve(null);
-        }
-        reject(e);
-      });
-  });
+const getOrder = async (orderId: string) => {
+  try {
+    const order = pb
+      .collection("orders")
+      .getOne<Order>(orderId, { expand: "order_items(order).product" });
+    return order;
+  } catch (e) {
+    if ((e as Record<string, unknown>).status === 404) {
+      return null;
+    }
+    throw new Error();
+  }
 };
 
 const Order = async ({ params }: Props) => {
@@ -140,7 +140,7 @@ const Order = async ({ params }: Props) => {
                       {item.expand?.product.name}
                     </p>
                     <p className="text-sm leading-none text-gray-600 dark:text-gray-200">
-                      {currency.format(item.rate)} &times; {item.units + " pcs"}
+                      {currency.format(item.rate)} &times; {`${item.units} pcs`}
                     </p>
                   </div>
                   <p className="ml-auto mr-0 flex-1 text-right">

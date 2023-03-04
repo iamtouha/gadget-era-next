@@ -99,7 +99,7 @@ function Order() {
     if (user) {
       setValue("email", user.email);
     }
-  }, [user]);
+  }, [user, setValue]);
 
   return (
     <div className="container mx-auto p-2 lg:max-w-screen-lg">
@@ -108,7 +108,7 @@ function Order() {
         <div className="grid grid-cols-1 gap-2 md:grid-cols-3">
           <div className="order-2 p-2 dark:bg-gray-900 md:order-1 md:col-span-2">
             <form
-              onSubmit={handleSubmit(async (data) =>
+              onSubmit={handleSubmit((data) => {
                 trigger({
                   ...data,
                   district: dist.data?.find((item) => item.id === data.district)
@@ -119,8 +119,8 @@ function Order() {
                   shipping: shippingCharge,
                   items: cart.items,
                   userId: user?.id,
-                })
-              )}
+                });
+              })}
             >
               <label className={styles.label}>
                 Receiver Name
@@ -199,7 +199,7 @@ function Order() {
                       <p className={styles.errors}>{errors.upazila.message}</p>
                     )}
                   </label>
-                  <label className={styles.label + " col-span-2"}>
+                  <label className={`${styles.label ?? ""} col-span-2`}>
                     Street Address
                     <textarea
                       className={styles.input}

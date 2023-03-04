@@ -33,7 +33,7 @@ const Product = async ({ params }: Props) => {
           <div className="grid grid-cols-1 md:grid-cols-2">
             <div className="w-full">
               <div className={styles.slider}>
-                <div className={`${styles.slides}`}>
+                <div className={`${styles.slides ?? ""}`}>
                   {product.images.map((img, i) => (
                     <span key={img}>
                       <div
@@ -58,7 +58,7 @@ const Product = async ({ params }: Props) => {
                   <a
                     key={img}
                     className="relative block h-16 w-16 focus:outline"
-                    href={"#slide-" + i}
+                    href={`#slide-${i}`}
                   >
                     <Image
                       src={getFileUrl("products", product.id, img)}

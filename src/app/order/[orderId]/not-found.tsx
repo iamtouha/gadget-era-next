@@ -7,7 +7,7 @@ const NotFound = () => {
         Order Not Found
       </h1>
       <p className="mb-8 text-lg text-gray-600 dark:text-gray-400">
-        Sorry, we couldn't find the this order.
+        Sorry, seems like your order is not found.
       </p>
       <Link
         href="/"
