@@ -25,36 +25,33 @@ const Searchbar = () => {
   const router = useRouter();
   const controller = new AbortController();
 
-  const loadResult = useCallback(
-    debounce((text: string) => {
-      if (!text) {
-        productsSet([]);
-        return;
-      }
-      isErrorSet(false);
-      isLoadingSet(true);
-      fetch("/api/search/" + text, { signal: controller.signal })
-        .then((res) => res.json())
-        .then(
-          (data: Product[]) => {
-            productsSet(data);
-          },
-          (e: Error) => {
-            if (e.name === "AbortError") {
-              console.log("req aborted");
-            } else {
-              console.error(e);
-              isErrorSet(true);
-            }
+  const loadResult = debounce((text: string) => {
+    if (!text) {
+      productsSet([]);
+      return;
+    }
+    isErrorSet(false);
+    isLoadingSet(true);
+    fetch("/api/search/" + text, { signal: controller.signal })
+      .then((res) => res.json())
+      .then(
+        (data: Product[]) => {
+          productsSet(data);
+        },
+        (e: Error) => {
+          if (e.name === "AbortError") {
+            console.log("req aborted");
+          } else {
+            console.error(e);
+            isErrorSet(true);
           }
-        )
+        }
+      )
 
-        .finally(() => {
-          isLoadingSet(false);
-        });
-    }, 200),
-    []
-  );
+      .finally(() => {
+        isLoadingSet(false);
+      });
+  }, 200); 
 
   useEffect(() => {
     loadResult(query);

@@ -21,6 +21,7 @@ export function generateMetadata({ params }: Props): Metadata {
     },
   };
 }
+export const revalidate = 10;
 
 const getOrder = async (orderId: string) => {
   try {
