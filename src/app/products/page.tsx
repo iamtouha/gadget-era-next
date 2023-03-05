@@ -3,9 +3,20 @@ import { getProducts } from "@/utils/functions";
 import Pagination from "@/components/Pagination";
 import EmptyProductsList from "@/components/EmptyList";
 
+export const metadata = {
+  title: "Products",
+  description: "Browse Gadget Era's Product catalogue!",
+  openGraph: {
+    images: [{ url: "/api/og?text=Products" }],
+  },
+};
+
+export const revalidate = 0;
+
 type Props = {
   searchParams?: { [key: string]: string | string[] | undefined };
 };
+
 
 const Products = async (props: Props) => {
   const productsList = await getProducts(props.searchParams);

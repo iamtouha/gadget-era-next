@@ -10,6 +10,7 @@ export const metadata = {
     images: [{ url: "/api/og?text=Categories" }],
   },
 };
+export const revalidate = 3600;
 
 const Categories = async () => {
   const categories = await getCategories();

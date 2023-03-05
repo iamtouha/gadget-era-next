@@ -11,6 +11,8 @@ export const metadata = {
   },
 };
 
+export const revalidate = 3600;
+
 const Brands = async () => {
   const brands = await getBrands();
 

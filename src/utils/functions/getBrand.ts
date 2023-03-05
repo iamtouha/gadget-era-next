@@ -31,7 +31,7 @@ export default async function getBrand({ key, page }: Params) {
 
   const productParams = new URLSearchParams({
     page: `${page}`,
-    perPage: "20",
+    perPage: "12",
     sort: "-created",
     filter: `(published=true && brand='${brand.id}')`,
   });

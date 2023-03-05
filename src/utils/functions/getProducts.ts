@@ -35,7 +35,7 @@ const buildSearchParams = (queryParams?: SearchParams) => {
 
   const urlParams = new URLSearchParams({
     page: (page as string | undefined) ?? "1",
-    perPage: "20",
+    perPage: "12",
     filter: `(${filter})`,
     sort: order ? order : "-created",
   });

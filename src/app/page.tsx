@@ -6,6 +6,8 @@ import LatestProducts from "@/components/LatestProducts";
 import "keen-slider/keen-slider.min.css";
 import PopularProducts from "@/components/PopularProducts";
 
+export const revalidate = 3600;
+
 const Homepage = async () => {
   const {
     popular_categories,

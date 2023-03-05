@@ -32,7 +32,7 @@ export default async function getCategory({ key, page }: Params) {
 
   const productParams = new URLSearchParams({
     page: `${page}`,
-    perPage: "20",
+    perPage: "12",
     sort: "-created",
     filter: `(published=true && category='${category.id}')`,
   });

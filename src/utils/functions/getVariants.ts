@@ -4,7 +4,7 @@ import { ListServerPayload, Product } from "@/utils/types";
 export default async function getVariants(model: string) {
   const urlParams = new URLSearchParams({
     page: "1",
-    perPage: "20",
+    perPage: "12",
     filter: `(model='${model}')`,
   });
   const res = await fetch(
