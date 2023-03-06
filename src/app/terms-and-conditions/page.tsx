@@ -1,3 +1,12 @@
+export const metadata = {
+  title: "Terms & Conditions",
+  description: `Welcome to Gadget Era, an online ecommerce electronic website that
+  offers a wide range of electronic products and gadgets. By accessing
+  or using this website, you agree to comply with and be bound by the
+  following terms and conditions of use. Please read these terms
+  carefully before using this website.`,
+};
+
 const TermsAndConditions = () => {
   return (
     <main className="mx-auto container lg:max-w-screen-lg">

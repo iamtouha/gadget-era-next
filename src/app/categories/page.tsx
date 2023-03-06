@@ -1,5 +1,6 @@
 import { getCategories, getFileUrl } from "@/utils/functions";
 import type { Category } from "@/utils/types";
+import Image from "next/image";
 import Link from "next/link";
 
 export const metadata = {
@@ -7,6 +8,8 @@ export const metadata = {
   description:
     "Find the latest and greatest in electronics at Gadget Era. Our wide range of categories includes wristwatches, headphones, speakers, smartwatches and more. With our high-quality products and unbeatable prices, you'll find everything you need to stay on top of the latest trends and technology. Shop now and experience the future of gadgets.",
   openGraph: {
+    description:
+      "Find the latest and greatest in electronics at Gadget Era. Our wide range of categories includes wristwatches, headphones, speakers, smartwatches and more. With our high-quality products and unbeatable prices, you'll find everything you need to stay on top of the latest trends and technology. Shop now and experience the future of gadgets.",
     images: [{ url: "/api/og?text=Categories" }],
   },
 };
@@ -37,9 +40,11 @@ function Card({ category }: { category: Category }) {
       href={"/categories/" + category.key}
       className="overflow-hidden border shadow transition hover:shadow-lg dark:border-gray-600 dark:shadow-none dark:hover:bg-gray-800/80"
     >
-      <img
+      <Image
         src={getFileUrl("categories", category.id, category.cover)}
         alt={category.name}
+        height={224}
+        width={400}
         className="h-56 w-full object-cover"
       />
       <div className="p-4">

@@ -37,7 +37,7 @@ const LatestProducts = ({ products }: { products: Product[] }) => {
           key={product.id}
           className={`keen-slider__slide number-slide${n + 1} p-2`}
         >
-          <Link href={"/product/" + product.key}>
+          <Link href={"/product/" + product.key} aria-label={product.name}>
             <Image
               src={getFileUrl("products", product.id, product.images[0] ?? "")}
               className="h-full w-full object-contain"

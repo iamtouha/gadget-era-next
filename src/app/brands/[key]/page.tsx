@@ -24,6 +24,7 @@ export async function generateMetadata({
     description: brand.overview,
     openGraph: {
       images: [{ url: getFileUrl("products", brand.id, brand.logo) }],
+      description: brand.overview,
     },
   };
 }

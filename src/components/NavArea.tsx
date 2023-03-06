@@ -75,6 +75,7 @@ const NavArea = () => {
         <Searchbar />
         <Link
           href={"/user/account"}
+          aria-label="User Account"
           className="block gap-1 p-2 hover:text-primary-500 md:flex md:items-center md:py-1 md:px-2"
         >
           <UserCircleIcon className="h-5 w-5 sm:h-6 sm:w-6 md:h-5 md:w-5" />
@@ -82,6 +83,7 @@ const NavArea = () => {
         </Link>
         <Link
           href={"/cart"}
+          aria-label="Cart"
           className="relative block gap-1 p-2 hover:bg-opacity-20 hover:text-primary-500 md:flex md:items-center md:py-1 md:px-2"
         >
           {cartLength && loaded ? (
@@ -93,12 +95,14 @@ const NavArea = () => {
           <span className="hidden md:block">Cart</span>
         </Link>
         <button
+          aria-label="Toggle Dark Mode button"
           className="block p-2 hover:text-primary-500 dark:hidden"
           onClick={() => setTheme("dark")}
         >
           <MoonIcon className="h-5 w-5 sm:h-6 sm:w-6 md:h-5 md:w-5" />
         </button>
         <button
+          aria-label="Toggle light Mode button"
           className="hidden p-2 hover:text-primary-500 dark:block"
           onClick={() => setTheme("light")}
         >
@@ -107,6 +111,7 @@ const NavArea = () => {
         <Menu as={"div"} className="relative lg:hidden">
           <div>
             <Menu.Button
+              aria-label="Menu"
               className={
                 "px-1 py-1 transition-colors hover:bg-primary-500 hover:bg-opacity-20"
               }

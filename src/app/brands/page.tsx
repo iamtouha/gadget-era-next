@@ -8,6 +8,8 @@ export const metadata = {
     "Explore the latest gadget brands at Gadget Era. Find high-quality and budget-friendly products from trusted brands. Satisfaction guaranteed or your money back.",
   openGraph: {
     images: [{ url: "/api/og?text=Brands" }],
+    description:
+      "Explore the latest gadget brands at Gadget Era. Find high-quality and budget-friendly products from trusted brands. Satisfaction guaranteed or your money back.",
   },
 };
 

@@ -20,6 +20,8 @@ export const metadata = {
     "Shop the latest wristwatches and electronics at Gadget Era. Find high-quality products at affordable prices, with exceptional customer service. Discover why we're the go-to destination for wristwatches and electronics.",
   openGraph: {
     images: [{ url: "/api/og?text=Welcome%20to%20Gadget%20Era!" }],
+    description:
+      "Shop the latest wristwatches and electronics at Gadget Era. Find high-quality products at affordable prices, with exceptional customer service. Discover why we're the go-to destination for wristwatches and electronics.",
   },
 };
 

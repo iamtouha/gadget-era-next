@@ -24,6 +24,7 @@ export async function generateMetadata({
     description: category.overview,
     openGraph: {
       images: [{ url: getFileUrl("products", category.id, category.cover) }],
+      description: category.overview,
     },
   };
 }
@@ -41,6 +42,7 @@ const Category = async ({ params, searchParams }: Props) => {
           src={getFileUrl("categories", category.id, category.cover)}
           alt={category.name}
           fill
+          priority
           className="object-cover"
         />
         <div className="absolute inset-x-0 bottom-0 px-6 py-4 text-white">

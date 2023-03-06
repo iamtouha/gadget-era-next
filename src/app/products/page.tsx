@@ -8,6 +8,7 @@ export const metadata = {
   description: "Browse Gadget Era's Product catalogue!",
   openGraph: {
     images: [{ url: "/api/og?text=Products" }],
+    description: "Browse Gadget Era's Product catalogue!",
   },
 };
 

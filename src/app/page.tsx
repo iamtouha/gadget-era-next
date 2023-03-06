@@ -20,6 +20,7 @@ const Homepage = async () => {
     <main className="container mx-auto xl:max-w-screen-xl">
       <section aria-label="hero section" className="relative mt-8">
         <Image
+          priority
           src={HeroImg}
           alt="Gadget Era Home"
           className="h-[340px] object-cover md:h-[440px] lg:h-[500px]"
@@ -107,6 +108,7 @@ const Homepage = async () => {
                   alt={category.name}
                   width={512}
                   height={288}
+                  loading="lazy"
                   className="aspect-video w-full object-cover"
                 />
                 <h1 className="absolute bottom-3 left-3 bg-black/50 px-2 text-3xl font-semibold text-white">

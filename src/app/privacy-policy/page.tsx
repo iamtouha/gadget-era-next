@@ -1,3 +1,11 @@
+export const metadata = {
+  title: "Privacy Policy",
+  description: `Gadget Era is committed to protecting your privacy and personal
+  information. This privacy policy explains how we collect, use, and
+  protect your information when you use our website. Please read this
+  privacy policy carefully before using our website.`,
+};
+
 const PrivacyPolicy = () => {
   return (
     <main className="mx-auto container lg:max-w-screen-lg">

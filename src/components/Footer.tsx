@@ -45,9 +45,9 @@ const Footer = () => {
       <div className="mx-6 py-10 text-center md:text-left">
         <div className="grid-1 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           <div className="">
-            <h6 className="mb-4 flex items-center justify-center font-semibold uppercase md:justify-start">
+            <h3 className="mb-4 flex items-center justify-center font-semibold uppercase md:justify-start">
               Gadget Era
-            </h6>
+            </h3>
             <p>
               Gadget Era is an online retail shop for top quality electronic
               gadgets, watches and mobile accessories in Bangladesh.
