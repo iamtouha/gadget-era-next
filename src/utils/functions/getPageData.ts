@@ -14,7 +14,8 @@ export default async function getPageData() {
   const res = await fetch(
     `${
       env.NEXT_PUBLIC_SERVER_URL
-    }/api/collections/homepage/records?${params.toString()}`
+    }/api/collections/homepage/records?${params.toString()}`,
+    { next: { revalidate: 3600 } }
   );
   if (!res.ok) {
     throw new Error("Could not fetch home page data.");

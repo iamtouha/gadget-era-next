@@ -18,6 +18,7 @@ export type Product = {
   in_stock: boolean;
   published: boolean;
   model: string;
+  expand?: Record<string, unknown>;
 };
 
 export type Category = {
