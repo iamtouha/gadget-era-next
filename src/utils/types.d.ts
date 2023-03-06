@@ -29,6 +29,7 @@ export type Category = {
   published: boolean;
   overview: string;
   expand?: Record<string, unknown>;
+  google_taxonomy_id: string;
   created: string;
   updated: string;
 };

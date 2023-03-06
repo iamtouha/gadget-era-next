@@ -5,7 +5,6 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 export async function GET(request: Request) {
   const products = await pb.collection("products").getFullList<Product>({
-    filter: `(published=true)`,
     expand: "category,brand",
   });
   const data_source = products.map((item) => ({
@@ -14,12 +13,15 @@ export async function GET(request: Request) {
     description: `${item.overview} To see full specifications, visit: https://www.gadgeterabd.com/product/${item.key}`,
     price: item.price,
     sale_price: item.discounted_price ? item.discounted_price : "",
-    availability: item.in_stock,
+    availability: item.in_stock ? "in stock" : "out of stock",
     condition: "new",
     link: `https://www.gadgeterabd.com/product/${item.key}`,
     image_link: getFileUrl("products", item.id, item.images[0] ?? ""),
+    age_group: "all ages",
     brand: (item.expand?.brand as Brand).name,
-    category: (item.expand?.category as Category).name,
+    google_product_category: (item.expand?.category as Category)
+      .google_taxonomy_id,
+    status: item.published ? "active" : "archived",
   }));
   let columns = Object.keys(data_source[0]).join();
   const items = data_source
