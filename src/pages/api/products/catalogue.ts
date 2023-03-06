@@ -12,5 +12,9 @@ export default async function handler(
   const products = await pb
     .collection("products")
     .getFullList<Product>({ filter: `(published=true)` });
-  return res.send(products);
+  return res.send(
+    products.map((item) => ({
+      id: item.key,
+    }))
+  );
 }

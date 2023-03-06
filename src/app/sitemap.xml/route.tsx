@@ -2,7 +2,7 @@ import { getFileUrl } from "@/utils/functions";
 import pb from "@/utils/pb";
 import type { Brand, Category, Product } from "@/utils/types";
 
-export const revalidate = 10;
+export const revalidate = 0;
 
 export async function GET() {
   const baseUrl = "https://www.gadgeterabd.com";

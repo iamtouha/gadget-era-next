@@ -10,6 +10,8 @@ import styles from "@/styles/product.module.css";
 
 type Props = { params: { key: string } };
 
+export const revalidate = 3600;
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { name, images, id, overview } = await getProduct(params.key);
 
