@@ -8,22 +8,29 @@ export async function GET(request: Request) {
     filter: `(published=true)`,
     expand: "category,brand",
   });
-  const data_source = products.map((item) => {
-    return {
-      id: item.key,
-      title: item.name,
-      description: `${item.overview} To see full specifications, visit: https://www.gadgeterabd.com/product/${item.key}`,
-      price: item.price,
-      sale_price: item.discounted_price ? item.discounted_price : undefined,
-      availability: item.in_stock,
-      condition: "new",
-      link: `https://www.gadgeterabd.com/product/${item.key}`,
-      image_link: getFileUrl("products", item.id, item.images[0] ?? ""),
-      brand: (item.expand?.brand as Brand).name,
-      category: (item.expand?.category as Category).name,
-    };
-  });
-  return new Response(JSON.stringify(data_source), {
-    headers: { "content-type": "application/json" },
+  const data_source = products.map((item) => ({
+    id: item.id,
+    title: item.name,
+    description: `${item.overview} To see full specifications, visit: https://www.gadgeterabd.com/product/${item.key}`,
+    price: item.price,
+    sale_price: item.discounted_price ? item.discounted_price : "",
+    availability: item.in_stock,
+    condition: "new",
+    link: `https://www.gadgeterabd.com/product/${item.key}`,
+    image_link: getFileUrl("products", item.id, item.images[0] ?? ""),
+    brand: (item.expand?.brand as Brand).name,
+    category: (item.expand?.category as Category).name,
+  }));
+  let columns = Object.keys(data_source[0]).join();
+  const items = data_source
+    .map((item) => JSON.stringify(Object.values(item)))
+    .join("\n")
+    .replace(/(^\[)|(\]$)/gm, "");
+
+  return new Response(`${columns}\n${items}`, {
+    headers: {
+      "Content-Type": "text/csv",
+      "Content-Disposition": `attachment;filename=catalogue ${new Date().toDateString()}.csv`,
+    },
   });
 }
