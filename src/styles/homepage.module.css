@@ -1,0 +1,67 @@
+.hero-section {
+  @apply relative mt-8;
+}
+.hero-section img {
+  @apply h-[340px] object-cover md:h-[440px] lg:h-[500px];
+}
+.hero-section div {
+  @apply absolute inset-0 flex flex-col items-start justify-center px-6 py-4;
+}
+.hero-text {
+  @apply bg-gray-200/70 py-8 px-6 text-center shadow sm:w-1/2 sm:text-left xl:w-[45%];
+}
+:global(.dark) .hero-text {
+  @apply bg-gray-600/70 shadow-none;
+}
+.hero-text h1 {
+  @apply mb-4 text-2xl font-medium lg:text-4xl;
+}
+.hero-text p {
+  @apply mb-8 text-sm text-gray-700;
+}
+:global(.dark) .hero-text p {
+  @apply text-gray-200;
+}
+.hero-text a {
+  @apply bg-primary-500 px-4 py-2 text-lg font-medium transition-colors hover:bg-primary-600;
+}
+
+.section-title {
+  @apply mb-8 text-center text-2xl lg:text-4xl;
+}
+
+.reel {
+  @apply gap-4 pb-4 grid grid-flow-col overflow-x-auto snap-mandatory snap-x scroll-p-4 auto-cols-[67%] sm:auto-cols-[50%] md:auto-cols-[32%] lg:auto-cols-[24%] xl:auto-cols-fr;
+}
+
+.shadow-effect {
+  @apply shadow hover:shadow-lg transition-shadow;
+}
+
+.reel > * {
+  scroll-snap-align: start;
+}
+
+.view-more-card {
+    @apply flex aspect-square w-full items-center bg-gray-300/80 p-6 transition-colors hover:bg-gray-300;
+}
+:global(.dark) .view-more-card {
+    @apply bg-gray-700 hover:bg-gray-600;
+}
+
+.featured-product-card {
+    @apply relative;
+}
+.featured-product-card button {
+    @apply  absolute left-1/2 transform -translate-x-1/2 bottom-3 px-4 py-2 hover:bg-primary-500/90 transition-colors bg-primary-500/60;
+}
+
+.category-card {
+    @apply relative;
+}
+.category-card img {
+    @apply aspect-video w-full object-cover mx-auto block;
+}
+.category-card h1 {
+    @apply absolute inset-2 top-auto sm:right-auto bg-primary-500/60 px-2 text-2xl lg:text-3xl font-medium;
+}
