@@ -118,7 +118,7 @@ export async function GET() {
            <priority>0.5</priority>
        </url>
     </urlset>
-  `
+  `.replaceAll("&", "and")
   );
   response.headers.append("content-type", "text/xml");
 
