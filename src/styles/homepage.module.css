@@ -14,7 +14,7 @@
   @apply bg-neutral-600/70 shadow-none;
 }
 .hero-text h1 {
-  @apply mb-4 text-2xl font-medium lg:text-4xl;
+  @apply mb-4 text-2xl font-medium lg:text-4xl w-full;
 }
 .hero-text p {
   @apply mb-8 text-sm text-neutral-700;
@@ -23,7 +23,7 @@
   @apply text-neutral-200;
 }
 .hero-text a {
-  @apply bg-primary-500 px-4 py-2 text-lg font-medium transition-colors hover:bg-primary-600;
+  @apply bg-primary-500 px-4 py-2 text-lg font-medium transition-colors hover:bg-primary-600 mx-auto sm:mx-0 block;
 }
 
 .section-title {

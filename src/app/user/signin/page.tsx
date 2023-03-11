@@ -13,7 +13,7 @@ const page = () => {
   }
 
   return (
-    <main className="container mx-auto md:max-w-screen-md">
+    <main className="container mx-auto md:max-w-screen-md p-2">
       <h1 className="lg:text4xl mt-8 mb-6 text-center text-2xl">Sign In</h1>
       <SignIn />
       <p className="mt-4">
