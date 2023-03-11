@@ -31,7 +31,7 @@
 }
 
 .reel {
-  @apply gap-4 pb-4 grid grid-flow-col overflow-x-auto snap-mandatory snap-x scroll-p-4 auto-cols-[67%] sm:auto-cols-[50%] md:auto-cols-[32%] lg:auto-cols-[24%] xl:auto-cols-fr;
+  @apply gap-4 pb-4 grid grid-flow-col overflow-x-auto scroll-p-4 auto-cols-[67%] sm:auto-cols-[50%] md:auto-cols-[32%] lg:auto-cols-[24%] xl:auto-cols-fr;
 }
 
 .shadow-effect {
@@ -39,29 +39,30 @@
 }
 
 .reel > * {
-  scroll-snap-align: start;
+  /* scroll-snap-align: start; */
 }
 
 .view-more-card {
-    @apply flex aspect-square w-full items-center bg-neutral-300/80 p-6 transition-colors hover:bg-neutral-300;
+  @apply flex aspect-square w-full items-center bg-neutral-300/80 p-6 transition-colors hover:bg-neutral-300;
+  /* @apply snap-mandatory snap-x; */
 }
 :global(.dark) .view-more-card {
-    @apply bg-neutral-700 hover:bg-neutral-600;
+  @apply bg-neutral-700 hover:bg-neutral-600;
 }
 
 .featured-product-card {
-    @apply relative;
+  @apply relative;
 }
 .featured-product-card button {
-    @apply  absolute left-1/2 transform -translate-x-1/2 bottom-3 px-4 py-2 hover:bg-primary-500/90 transition-colors bg-primary-500/60;
+  @apply absolute left-1/2 transform -translate-x-1/2 bottom-3 px-4 py-2 hover:bg-primary-500/90 transition-colors bg-primary-500/60;
 }
 
 .category-card {
-    @apply relative;
+  @apply relative;
 }
 .category-card img {
-    @apply aspect-video w-full object-cover mx-auto block;
+  @apply aspect-video w-full object-cover mx-auto block;
 }
 .category-card h1 {
-    @apply absolute inset-2 top-auto sm:right-auto bg-primary-500/60 px-2 text-2xl lg:text-3xl font-medium;
+  @apply absolute inset-2 top-auto sm:right-auto bg-primary-500/60 px-2 text-2xl lg:text-3xl font-medium;
 }
