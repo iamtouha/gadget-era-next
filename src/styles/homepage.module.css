@@ -32,19 +32,19 @@
 
 .reel {
   @apply gap-4 pb-4 grid grid-flow-col overflow-x-auto scroll-p-4 auto-cols-[67%] sm:auto-cols-[50%] md:auto-cols-[32%] lg:auto-cols-[24%] xl:auto-cols-fr;
-}
-
-.shadow-effect {
-  @apply shadow hover:shadow-lg transition-shadow;
+  /* @apply snap-mandatory snap-x; */
 }
 
 .reel > * {
   /* scroll-snap-align: start; */
 }
 
+.shadow-effect {
+  @apply shadow hover:shadow-lg transition-shadow;
+}
+
 .view-more-card {
   @apply flex aspect-square w-full items-center bg-neutral-300/80 p-6 transition-colors hover:bg-neutral-300;
-  /* @apply snap-mandatory snap-x; */
 }
 :global(.dark) .view-more-card {
   @apply bg-neutral-700 hover:bg-neutral-600;
