@@ -51,14 +51,14 @@ const SignUp = () => {
       <div className="mb-6">
         <label
           htmlFor="username"
-          className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+          className="mb-2 block text-sm font-medium text-neutral-900 dark:text-white"
         >
           Your username
         </label>
         <input
           type="text"
           id="username"
-          className="dark:shadow-sm-light block w-full border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+          className="dark:shadow-sm-light block w-full border border-neutral-300 bg-neutral-50 p-2.5 text-sm text-neutral-900 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:border-neutral-600 dark:bg-neutral-700 dark:text-white dark:placeholder-neutral-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
           placeholder="yourname"
           {...register("username")}
           required
@@ -68,14 +68,14 @@ const SignUp = () => {
       <div className="mb-6">
         <label
           htmlFor="email"
-          className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+          className="mb-2 block text-sm font-medium text-neutral-900 dark:text-white"
         >
           Your email
         </label>
         <input
           type="email"
           id="email"
-          className="dark:shadow-sm-light block w-full border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+          className="dark:shadow-sm-light block w-full border border-neutral-300 bg-neutral-50 p-2.5 text-sm text-neutral-900 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:border-neutral-600 dark:bg-neutral-700 dark:text-white dark:placeholder-neutral-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
           placeholder="name@email.com"
           {...register("email")}
           required
@@ -85,14 +85,14 @@ const SignUp = () => {
       <div className="mb-6">
         <label
           htmlFor="password"
-          className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+          className="mb-2 block text-sm font-medium text-neutral-900 dark:text-white"
         >
           Set a password
         </label>
         <input
           type="password"
           id="password"
-          className="dark:shadow-sm-light block w-full border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+          className="dark:shadow-sm-light block w-full border border-neutral-300 bg-neutral-50 p-2.5 text-sm text-neutral-900 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:border-neutral-600 dark:bg-neutral-700 dark:text-white dark:placeholder-neutral-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
           required
           {...register("password")}
         />
@@ -101,14 +101,14 @@ const SignUp = () => {
       <div className="mb-6">
         <label
           htmlFor="password2"
-          className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+          className="mb-2 block text-sm font-medium text-neutral-900 dark:text-white"
         >
           Confirm password
         </label>
         <input
           type="password"
           id="password2"
-          className="dark:shadow-sm-light block w-full border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+          className="dark:shadow-sm-light block w-full border border-neutral-300 bg-neutral-50 p-2.5 text-sm text-neutral-900 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:border-neutral-600 dark:bg-neutral-700 dark:text-white dark:placeholder-neutral-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
           required
           {...register("passwordConfirm")}
         />
@@ -126,13 +126,13 @@ const SignUp = () => {
           <input
             id="terms"
             type="checkbox"
-            className="focus:ring-3 h-4 w-4 rounded border border-gray-300 bg-gray-50 focus:ring-primary-300 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600 dark:focus:ring-offset-gray-800"
+            className="focus:ring-3 h-4 w-4 rounded border border-neutral-300 bg-neutral-50 focus:ring-primary-300 dark:border-neutral-600 dark:bg-neutral-700 dark:ring-offset-neutral-800 dark:focus:ring-primary-600 dark:focus:ring-offset-neutral-800"
             required
           />
         </div>
         <label
           htmlFor="terms"
-          className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+          className="ml-2 text-sm font-medium text-neutral-900 dark:text-neutral-300"
         >
           I agree with the{" "}
           <Link

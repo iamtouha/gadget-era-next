@@ -27,18 +27,22 @@ const UserAccount = () => {
   return (
     <section aria-label="my account">
       <h1 className="my-6 text-3xl font-bold">My Account</h1>
-      <dl className="space-y-4 text-gray-900 dark:text-gray-100">
+      <dl className="space-y-4 text-neutral-900 dark:text-neutral-100">
         <div className="space-y-2">
-          <dt className="font-medium text-gray-500 dark:text-gray-400">
+          <dt className="font-medium text-neutral-500 dark:text-neutral-400">
             Username
           </dt>
-          <dd className="text-gray-700 dark:text-gray-300">{user.username}</dd>
+          <dd className="text-neutral-700 dark:text-neutral-300">
+            {user.username}
+          </dd>
         </div>
         <div className="space-y-2">
-          <dt className="font-medium text-gray-500 dark:text-gray-400">
+          <dt className="font-medium text-neutral-500 dark:text-neutral-400">
             Email
           </dt>
-          <dd className="text-gray-700 dark:text-gray-300">{user.email}</dd>
+          <dd className="text-neutral-700 dark:text-neutral-300">
+            {user.email}
+          </dd>
         </div>
         <button
           onClick={signOut}

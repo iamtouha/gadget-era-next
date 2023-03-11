@@ -40,7 +40,7 @@ const Brand = async ({ params, searchParams }: Props) => {
   return (
     <main className="container mx-auto mt-6 p-2 xl:max-w-screen-xl">
       <div className="mb-8 flex flex-col items-center gap-4 md:flex-row md:items-end">
-        <div className="bg-gray-100 p-2 dark:bg-gray-600">
+        <div className="bg-neutral-100 p-2 dark:bg-neutral-600">
           <Image
             src={getFileUrl("brands", brand.id, brand.logo ?? "")}
             alt={brand.name}
@@ -52,7 +52,7 @@ const Brand = async ({ params, searchParams }: Props) => {
 
         <div className="text-center md:flex-1 md:text-left">
           <h1 className="mb-2 text-2xl lg:text-3xl">{brand.name}</h1>
-          <p className="text-gray-700 line-clamp-5 dark:text-gray-300 md:line-clamp-3">
+          <p className="text-neutral-700 line-clamp-5 dark:text-neutral-300 md:line-clamp-3">
             {brand.overview}
           </p>
         </div>

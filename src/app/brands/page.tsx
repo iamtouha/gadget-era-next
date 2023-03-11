@@ -38,7 +38,7 @@ function Card({ brand }: { brand: Brand }) {
   return (
     <Link
       href={"/brands/" + brand.key}
-      className="grid place-items-center overflow-hidden p-2 transition hover:bg-gray-100 hover:shadow dark:bg-gray-500 dark:hover:bg-gray-600"
+      className="grid place-items-center overflow-hidden p-2 transition hover:bg-neutral-100 hover:shadow dark:bg-neutral-500 dark:hover:bg-neutral-600"
     >
       <div className="py-4">
         <img

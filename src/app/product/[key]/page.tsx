@@ -31,7 +31,7 @@ const Product = async ({ params }: Props) => {
 
   return (
     <main>
-      <div className="bg-gray-200 p-2 dark:bg-gray-800 md:mt-6 md:px-10">
+      <div className="bg-neutral-200 p-2 dark:bg-neutral-800 md:mt-6 md:px-10">
         <div className="container mx-auto p-2 xl:max-w-screen-xl">
           <div className="grid grid-cols-1 md:grid-cols-2">
             <div className="w-full">
@@ -79,11 +79,11 @@ const Product = async ({ params }: Props) => {
                 {product.name}
               </h2>
               <div className="mb-5">
-                <span className="text-lg text-gray-600 dark:text-gray-100">
+                <span className="text-lg text-neutral-600 dark:text-neutral-100">
                   Price:
                 </span>
 
-                <span className="ml-2 text-lg font-medium text-gray-900 dark:text-gray-100">
+                <span className="ml-2 text-lg font-medium text-neutral-900 dark:text-neutral-100">
                   {product.discounted_price ? (
                     <>
                       {currency.format(product.discounted_price)}
@@ -98,18 +98,20 @@ const Product = async ({ params }: Props) => {
                 </span>
               </div>
               <div className="mb-1">
-                <span className="text-gray-600 dark:text-gray-100">Model:</span>
+                <span className="text-neutral-600 dark:text-neutral-100">
+                  Model:
+                </span>
 
-                <span className="ml-2 font-medium text-gray-700 dark:text-gray-100">
+                <span className="ml-2 font-medium text-neutral-700 dark:text-neutral-100">
                   {product.model}
                 </span>
               </div>
               <div className="mb-8">
-                <span className="text-gray-600 dark:text-gray-100">
+                <span className="text-neutral-600 dark:text-neutral-100">
                   Availability:
                 </span>
 
-                <span className="ml-2 font-medium text-gray-700 dark:text-gray-100">
+                <span className="ml-2 font-medium text-neutral-700 dark:text-neutral-100">
                   {product.in_stock ? "in stock" : "out of stock"}
                 </span>
               </div>

@@ -4,7 +4,7 @@ import NavArea from "./NavArea";
 
 const Navbar = () => {
   return (
-    <nav className="fixed inset-x-0 top-0 z-20 flex border-b bg-gray-50 px-4 py-2 dark:border-b-gray-700 dark:bg-gray-800 print:hidden">
+    <nav className="fixed inset-x-0 top-0 z-20 flex border-b bg-neutral-50 px-4 py-2 dark:border-b-neutral-700 dark:bg-neutral-800 print:hidden">
       <Link href={"/"} className="flex items-center gap-1 sm:gap-2">
         <Image
           src={"/logo.svg"}

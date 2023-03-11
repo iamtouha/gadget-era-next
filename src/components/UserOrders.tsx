@@ -22,7 +22,7 @@ const UserOrders = () => {
       ) : (
         <table className="table-collapse w-full text-left">
           <thead>
-            <tr className="bg-gray-200 dark:bg-gray-700">
+            <tr className="bg-neutral-200 dark:bg-neutral-700">
               <th className="py-2 px-4">Receiver</th>
               <th className="py-2 px-4">Address</th>
               <th className="py-2 px-4">Total</th>
@@ -32,7 +32,10 @@ const UserOrders = () => {
           <tbody>
             {orders?.length ? (
               orders.map((order) => (
-                <tr key={order.id} className="bg-white py-2 dark:bg-gray-800">
+                <tr
+                  key={order.id}
+                  className="bg-white py-2 dark:bg-neutral-800"
+                >
                   <td className="py-2 px-4">{order.receiver}</td>
                   <td className="py-2 px-4">{order.address}</td>
                   <td className="py-2 px-4">
@@ -49,7 +52,7 @@ const UserOrders = () => {
                 </tr>
               ))
             ) : (
-              <tr className="bg-white dark:bg-gray-800">
+              <tr className="bg-white dark:bg-neutral-800">
                 <td colSpan={5} className="py-6 px-4 text-center italic">
                   No product in cart.
                 </td>

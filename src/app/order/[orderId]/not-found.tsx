@@ -2,11 +2,11 @@ import Link from "next/link";
 
 const NotFound = () => {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-gray-100 dark:bg-gray-900">
-      <h1 className="mb-4 text-4xl font-bold text-gray-800 dark:text-white">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-neutral-100 dark:bg-neutral-900">
+      <h1 className="mb-4 text-4xl font-bold text-neutral-800 dark:text-white">
         Order Not Found
       </h1>
-      <p className="mb-8 text-lg text-gray-600 dark:text-gray-400">
+      <p className="mb-8 text-lg text-neutral-600 dark:text-neutral-400">
         Sorry, seems like your order is not found.
       </p>
       <Link

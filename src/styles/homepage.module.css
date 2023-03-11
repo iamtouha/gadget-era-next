@@ -8,19 +8,19 @@
   @apply absolute inset-0 flex flex-col items-start justify-center px-6 py-4;
 }
 .hero-text {
-  @apply bg-gray-200/70 py-8 px-6 text-center shadow sm:w-1/2 sm:text-left xl:w-[45%];
+  @apply bg-neutral-200/70 py-8 px-6 text-center shadow sm:w-1/2 sm:text-left xl:w-[45%];
 }
 :global(.dark) .hero-text {
-  @apply bg-gray-600/70 shadow-none;
+  @apply bg-neutral-600/70 shadow-none;
 }
 .hero-text h1 {
   @apply mb-4 text-2xl font-medium lg:text-4xl;
 }
 .hero-text p {
-  @apply mb-8 text-sm text-gray-700;
+  @apply mb-8 text-sm text-neutral-700;
 }
 :global(.dark) .hero-text p {
-  @apply text-gray-200;
+  @apply text-neutral-200;
 }
 .hero-text a {
   @apply bg-primary-500 px-4 py-2 text-lg font-medium transition-colors hover:bg-primary-600;
@@ -43,10 +43,10 @@
 }
 
 .view-more-card {
-    @apply flex aspect-square w-full items-center bg-gray-300/80 p-6 transition-colors hover:bg-gray-300;
+    @apply flex aspect-square w-full items-center bg-neutral-300/80 p-6 transition-colors hover:bg-neutral-300;
 }
 :global(.dark) .view-more-card {
-    @apply bg-gray-700 hover:bg-gray-600;
+    @apply bg-neutral-700 hover:bg-neutral-600;
 }
 
 .featured-product-card {

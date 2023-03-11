@@ -100,7 +100,7 @@ export default function PlaceOrder() {
       <h1 className="mb-0 mt-10 text-2xl md:text-3xl">Place Order</h1>
       {loaded && cart.items.length ? (
         <div className="grid grid-cols-1 gap-2 md:grid-cols-3">
-          <div className="order-2 p-2 dark:bg-gray-900 md:order-1 md:col-span-2">
+          <div className="order-2 p-2 dark:bg-neutral-900 md:order-1 md:col-span-2">
             <form
               onSubmit={handleSubmit((data) => {
                 trigger({
@@ -151,7 +151,7 @@ export default function PlaceOrder() {
               {errors.email && (
                 <p className={styles.errors}>{errors.email.message}</p>
               )}
-              <fieldset className="mt-2 border p-1 dark:border-gray-600">
+              <fieldset className="mt-2 border p-1 dark:border-neutral-600">
                 <legend>&nbsp;Shipping Address&nbsp;</legend>
                 <div className="grid grid-cols-2 gap-2">
                   <label className={styles.label}>
@@ -236,7 +236,7 @@ export default function PlaceOrder() {
           </div>
 
           <div className="order-1 md:order-2">
-            <table className="my-10 w-full bg-gray-100 dark:bg-gray-800">
+            <table className="my-10 w-full bg-neutral-100 dark:bg-neutral-800">
               <caption className="mb-2 text-left text-lg font-medium">
                 Order Summary
               </caption>
@@ -271,7 +271,7 @@ export default function PlaceOrder() {
           </div>
         </div>
       ) : (
-        <div className="bg-gray-100 py-6 text-center italic dark:bg-gray-800">
+        <div className="bg-neutral-100 py-6 text-center italic dark:bg-neutral-800">
           Add products to cart to place order.
         </div>
       )}

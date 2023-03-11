@@ -48,7 +48,7 @@ const Category = async ({ params, searchParams }: Props) => {
           className="object-cover"
         />
         <div className="absolute inset-x-0 bottom-0 px-6 py-4 text-white">
-          <h1 className=" mb-4 inline-block bg-gray-600 px-4 py-2 text-2xl font-medium lg:text-4xl">
+          <h1 className=" mb-4 inline-block bg-neutral-600 px-4 py-2 text-2xl font-medium lg:text-4xl">
             {category.name}
           </h1>
         </div>

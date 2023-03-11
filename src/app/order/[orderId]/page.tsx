@@ -49,12 +49,12 @@ const OrderPage = async ({ params }: Props) => {
     <main>
       {order.status === "pending" && !order.cod ? (
         <div className="container mx-auto px-4 pt-8 print:hidden md:max-w-screen-md">
-          <div className="bg-white p-3 shadow dark:bg-gray-800 sm:p-6">
+          <div className="bg-white p-3 shadow dark:bg-neutral-800 sm:p-6">
             <h2 className="mb-4 text-lg font-bold md:text-2xl">
               Complete your payment
             </h2>
             <p className="">For payment, use Reference</p>
-            <p className="my-2 inline-block rounded bg-gray-200 px-2 py-2 text-3xl dark:bg-gray-600">
+            <p className="my-2 inline-block rounded bg-neutral-200 px-2 py-2 text-3xl dark:bg-neutral-600">
               {order.payment_reference}
             </p>
             <p>Payment Methods:</p>
@@ -69,7 +69,7 @@ const OrderPage = async ({ params }: Props) => {
         </div>
       ) : null}
       <div className="container mx-auto px-4 py-8 print:hidden md:max-w-screen-md">
-        <div className="bg-white p-3 shadow dark:bg-gray-800 sm:p-6">
+        <div className="bg-white p-3 shadow dark:bg-neutral-800 sm:p-6">
           <div className="mb-4 flex flex-wrap items-center justify-between">
             <h2 className="text-lg font-bold md:text-2xl">Order#{order.id}</h2>
             <span
@@ -140,7 +140,7 @@ const OrderPage = async ({ params }: Props) => {
                     <p className="mb-1 leading-tight line-clamp-2">
                       {item.expand?.product.name}
                     </p>
-                    <p className="text-sm leading-none text-gray-600 dark:text-gray-200">
+                    <p className="text-sm leading-none text-neutral-600 dark:text-neutral-200">
                       {currency.format(item.rate)} &times; {`${item.units} pcs`}
                     </p>
                   </div>

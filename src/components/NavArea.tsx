@@ -127,7 +127,7 @@ const NavArea = () => {
               leaveFrom="transform opacity-100 scale-100"
               leaveTo="transform opacity-0 scale-95"
             >
-              <Menu.Items className="absolute right-0 mt-2 w-48 origin-top-right divide-y divide-gray-100 bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-gray-800">
+              <Menu.Items className="absolute right-0 mt-2 w-48 origin-top-right divide-y divide-neutral-100 bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-neutral-800">
                 <div className="px-1 py-1">
                   {routes.map((route) => (
                     <Menu.Item key={route.name}>
@@ -137,7 +137,7 @@ const NavArea = () => {
                           className={`${
                             active
                               ? "bg-primary-500 text-white"
-                              : "text-gray-900 dark:text-gray-100"
+                              : "text-neutral-900 dark:text-neutral-100"
                           } group flex w-full items-center px-2 py-2 text-sm`}
                         >
                           {route.name}

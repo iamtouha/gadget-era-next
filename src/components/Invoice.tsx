@@ -27,8 +27,8 @@ const Invoice = ({ order, items }: { order: Order; items: OrderItem[] }) => {
         </div>
         <div className="w-1/2 text-right">
           <p className="text-lg uppercase">Invoice</p>
-          <p className="ml-2 text-gray-700">INV#{order.id}</p>
-          <p className="ml-2 text-gray-700">
+          <p className="ml-2 text-neutral-700">INV#{order.id}</p>
+          <p className="ml-2 text-neutral-700">
             Date: {dayjs(order.created).format("DD/MM/YYYY hh:mm A")}
           </p>
         </div>
@@ -36,25 +36,25 @@ const Invoice = ({ order, items }: { order: Order; items: OrderItem[] }) => {
       <div className="mb-4 grid grid-cols-2 gap-2">
         <div>
           <h2 className="mb-1 font-medium">Billed To:</h2>
-          <p className="text-gray-700">{order.receiver}</p>
-          <p className="flex leading-tight text-gray-700">
+          <p className="text-neutral-700">{order.receiver}</p>
+          <p className="flex leading-tight text-neutral-700">
             <MapPinIcon className="mr-1 mt-1 h-4 w-4" />{" "}
             <span className="flex-1">{order.address}</span>
           </p>
-          <p className="flex items-center text-gray-700">
+          <p className="flex items-center text-neutral-700">
             <EnvelopeIcon className="mr-1 h-4 w-4" /> {order.email}
           </p>
-          <p className="flex items-center text-gray-700">
+          <p className="flex items-center text-neutral-700">
             <PhoneIcon className="mr-1 h-4 w-4" /> {order.phone}
           </p>
         </div>
         <div>
           <h2 className="mb-1 font-medium">Billed By:</h2>
-          <p className="text-gray-700">{"Gadget Era Team"}</p>
-          <p className="flex items-center text-gray-700">
+          <p className="text-neutral-700">{"Gadget Era Team"}</p>
+          <p className="flex items-center text-neutral-700">
             <MapPinIcon className="mr-1 h-4 w-4" /> {config.contact.address}
           </p>
-          <p className="flex items-center text-gray-700">
+          <p className="flex items-center text-neutral-700">
             <PhoneIcon className="mr-1 h-4 w-4" /> {config.contact.phone}
           </p>
         </div>

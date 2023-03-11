@@ -12,7 +12,7 @@
   @apply mx-auto min-h-full w-[89vw] max-w-screen-sm pt-[25vh];
 }
 .inputWrapper {
-  @apply relative w-full cursor-default overflow-hidden text-left shadow-md ring-1 ring-gray-500/75;
+  @apply relative w-full cursor-default overflow-hidden text-left shadow-md ring-1 ring-neutral-500/75;
   @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-purple-300;
 }
 .iconWrapper {
@@ -25,7 +25,7 @@
   @apply w-full border-none py-3 pl-10 pr-4 text-sm font-medium leading-5 outline-none;
 }
 .options {
-  @apply absolute mt-1 max-h-60 w-full overflow-auto text-sm shadow-lg ring-1 ring-gray-500/75 focus:outline-none;
+  @apply absolute mt-1 max-h-60 w-full overflow-auto text-sm shadow-lg ring-1 ring-neutral-500/75 focus:outline-none;
 }
 .optionNull {
   @apply relative cursor-default select-none py-3 pl-10 pr-4 font-medium;

@@ -2,7 +2,7 @@ import { ImageResponse } from "@vercel/og";
 import type { NextApiRequest } from "next";
 
 export const config = {
-  runtime: "experimental-edge",
+  runtime: "edge",
 };
 
 export default function og(req: NextApiRequest) {
@@ -11,7 +11,7 @@ export default function og(req: NextApiRequest) {
 
   return new ImageResponse(
     (
-      <div tw="flex flex-col h-full w-full items-center text-white justify-center p-2 bg-gray-900">
+      <div tw="flex flex-col h-full w-full items-center text-white justify-center p-2 bg-neutral-900">
         <div tw="h-[100px]"></div>
         <div
           style={{
@@ -20,7 +20,7 @@ export default function og(req: NextApiRequest) {
           }}
           tw="flex p-1.5 mb-16"
         >
-          <div tw="flex flex-col bg-gray-900 text-white py-2">
+          <div tw="flex flex-col bg-neutral-900 text-white py-2">
             <h1 tw="text-7xl text-center mx-6">{text}</h1>
           </div>
         </div>

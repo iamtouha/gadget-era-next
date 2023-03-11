@@ -15,7 +15,7 @@ const CartList = () => {
   }, []);
   const cart = useCartStore();
   return (
-    // <ul className="bg-gray-200 dark:bg-gray-800 shadow-lg p-4">
+    // <ul className="bg-neutral-200 dark:bg-neutral-800 shadow-lg p-4">
     //   {loadedOnClient && cart.items.length ? (
     //     cart.items.map((item) => (
     //       <li key={item.productId} className="my-1 flex gap-2">
@@ -29,7 +29,7 @@ const CartList = () => {
     //           <p className="mb-1 leading-tight line-clamp-2">
     //             {item.productName}
     //           </p>
-    //           <p className="text-sm leading-none text-gray-600 dark:text-gray-200">
+    //           <p className="text-sm leading-none text-neutral-600 dark:text-neutral-200">
     //             {currency.format(item.price)} &times; {`${item.units} pcs`}
     //           </p>
     //         </div>
@@ -39,7 +39,7 @@ const CartList = () => {
     //       </li>
     //     ))
     //   ) : (
-    //     <li className="bg-white dark:bg-gray-800 py-6 px-4 text-center italic">
+    //     <li className="bg-white dark:bg-neutral-800 py-6 px-4 text-center italic">
     //       No product in cart.
     //     </li>
     //   )}
@@ -48,7 +48,7 @@ const CartList = () => {
       <div className="overflow-x-auto">
         <table className="table-collapse w-full text-left">
           <thead>
-            <tr className="bg-gray-200 dark:bg-gray-700">
+            <tr className="bg-neutral-200 dark:bg-neutral-700">
               <th className="py-2 px-4">Product</th>
               <th className="py-2 px-4">Price</th>
               <th className="py-2 px-4">Quantity</th>
@@ -59,7 +59,10 @@ const CartList = () => {
           <tbody>
             {loadedOnClient && cart.items.length ? (
               cart.items.map((item) => (
-                <tr key={item.productId} className="bg-white dark:bg-gray-800">
+                <tr
+                  key={item.productId}
+                  className="bg-white dark:bg-neutral-800"
+                >
                   <td title={item.productName} className="py-2 px-4">
                     <Image
                       src={getFileUrl(
@@ -88,7 +91,7 @@ const CartList = () => {
                 </tr>
               ))
             ) : (
-              <tr className="bg-white dark:bg-gray-800">
+              <tr className="bg-white dark:bg-neutral-800">
                 <td colSpan={5} className="py-6 px-4 text-center italic">
                   No product in cart.
                 </td>

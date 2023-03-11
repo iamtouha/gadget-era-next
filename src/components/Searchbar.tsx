@@ -98,7 +98,9 @@ const Searchbar = () => {
               leaveTo="opacity-0"
             >
               <div
-                className={"fixed inset-0 bg-gray-900/80 dark:bg-gray-700/80"}
+                className={
+                  "fixed inset-0 bg-neutral-900/80 dark:bg-neutral-700/80"
+                }
               />
             </Transition.Child>
             <div className="fixed inset-0 overflow-y-auto">
@@ -128,7 +130,7 @@ const Searchbar = () => {
                         </Combobox.Button>
                         <Combobox.Input
                           className={
-                            styles.input + " bg-gray-50 dark:bg-gray-900"
+                            styles.input + " bg-neutral-50 dark:bg-neutral-900"
                           }
                           placeholder={`Search Products`}
                           onChange={(e) => setQuery(e.target.value)}
@@ -144,7 +146,7 @@ const Searchbar = () => {
                         <Combobox.Options
                           static
                           className={
-                            styles.options + "  bg-white dark:bg-gray-900"
+                            styles.options + "  bg-white dark:bg-neutral-900"
                           }
                         >
                           {isLoading ? (

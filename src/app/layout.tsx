@@ -41,7 +41,7 @@ export default function DashboardLayout({
             content="width=device-width, initial-scale=1.0"
           />
         </head>
-        <body className="bg-gray-50 dark:bg-gray-900 dark:text-white">
+        <body className="bg-neutral-50 dark:bg-neutral-900 dark:text-white">
           <Navbar />
           <div className="h-14" />
           <div className="min-h-[100vh]">

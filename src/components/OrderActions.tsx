@@ -54,7 +54,7 @@ function OrderActions(/* { order }: { order: Order } */) {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-gray-900">
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-neutral-900">
                   <Dialog.Title
                     as="h3"
                     className="text-lg font-medium leading-6"
@@ -62,7 +62,7 @@ function OrderActions(/* { order }: { order: Order } */) {
                     Cancel this order?
                   </Dialog.Title>
                   <div className="mt-2">
-                    <p className="text-sm text-gray-500 dark:text-gray-300">
+                    <p className="text-sm text-neutral-500 dark:text-neutral-300">
                       {order.status !== "shipped"
                         ? "You cannot undo this action."
                         : "Your order is alread"}

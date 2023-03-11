@@ -3,8 +3,8 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-100 text-center text-gray-600 dark:bg-gray-800 dark:text-gray-200 lg:text-left">
-      <div className="flex items-center justify-center border-b-2 border-gray-200 p-6 dark:border-gray-500 lg:justify-between">
+    <footer className="bg-neutral-100 text-center text-neutral-600 dark:bg-neutral-800 dark:text-neutral-200 lg:text-left">
+      <div className="flex items-center justify-center border-b-2 border-neutral-200 p-6 dark:border-neutral-500 lg:justify-between">
         <div className="mr-12 hidden lg:block">
           {/* <span>Get connected with us on social networks:</span> */}
         </div>
@@ -13,7 +13,7 @@ const Footer = () => {
             href={config.contact.social.facebook}
             target="_blank"
             rel="noreferrer"
-            className="mr-6 text-gray-600 dark:text-gray-200"
+            className="mr-6 text-neutral-600 dark:text-neutral-200"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -29,7 +29,7 @@ const Footer = () => {
             href={config.contact.social.instagram}
             target="_blank"
             rel="noreferrer"
-            className="mr-6 text-gray-600 dark:text-gray-200"
+            className="mr-6 text-neutral-600 dark:text-neutral-200"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -60,7 +60,7 @@ const Footer = () => {
             <p className="mb-4">
               <Link
                 href="/products"
-                className="text-gray-600 dark:text-gray-200"
+                className="text-neutral-600 dark:text-neutral-200"
               >
                 All Products
               </Link>
@@ -69,13 +69,16 @@ const Footer = () => {
             <p className="mb-4">
               <Link
                 href="/categories"
-                className="text-gray-600 dark:text-gray-200"
+                className="text-neutral-600 dark:text-neutral-200"
               >
                 Categories
               </Link>
             </p>
             <p className="mb-4">
-              <Link href="/brands" className="text-gray-600 dark:text-gray-200">
+              <Link
+                href="/brands"
+                className="text-neutral-600 dark:text-neutral-200"
+              >
                 Brands
               </Link>
             </p>
@@ -87,7 +90,7 @@ const Footer = () => {
             <p className="mb-4">
               <Link
                 href="/about-us"
-                className="text-gray-600 dark:text-gray-200"
+                className="text-neutral-600 dark:text-neutral-200"
               >
                 About Us
               </Link>
@@ -95,7 +98,7 @@ const Footer = () => {
             <p className="mb-4">
               <Link
                 href="/privacy-policy"
-                className="text-gray-600 dark:text-gray-200"
+                className="text-neutral-600 dark:text-neutral-200"
               >
                 Privacy Policy
               </Link>
@@ -103,7 +106,7 @@ const Footer = () => {
             <p className="mb-4">
               <Link
                 href="/terms-and-conditions"
-                className="text-gray-600 dark:text-gray-200"
+                className="text-neutral-600 dark:text-neutral-200"
               >
                 Terms & Conditions
               </Link>
@@ -155,7 +158,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="bg-gray-200 p-6 text-center dark:bg-gray-900">
+      <div className="bg-neutral-200 p-6 text-center dark:bg-neutral-900">
         <span>© 2023 Copyright: Gadget Era</span>
       </div>
     </footer>

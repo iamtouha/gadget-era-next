@@ -36,7 +36,7 @@ const Pagination: React.FC<PaginationProps> = ({
         onClick={() => onPageChange(1)}
         className={`mx-1 px-3 py-2 ${
           isFirstPage
-            ? "cursor-not-allowed bg-gray-400/40 text-gray-500 dark:bg-gray-800"
+            ? "cursor-not-allowed bg-neutral-400/40 text-neutral-500 dark:bg-neutral-800"
             : "cursor-pointer bg-primary-500/30 transition-colors hover:bg-primary-600/50"
         }`}
         disabled={isFirstPage}
@@ -48,7 +48,7 @@ const Pagination: React.FC<PaginationProps> = ({
         onClick={() => onPageChange(currentPage - 1)}
         className={`mx-1 px-3 py-2 ${
           isFirstPage
-            ? "cursor-not-allowed bg-gray-400/40 text-gray-500 dark:bg-gray-800"
+            ? "cursor-not-allowed bg-neutral-400/40 text-neutral-500 dark:bg-neutral-800"
             : "cursor-pointer bg-primary-500/30 transition-colors hover:bg-primary-600/50"
         }`}
         disabled={isFirstPage}
@@ -75,7 +75,7 @@ const Pagination: React.FC<PaginationProps> = ({
         onClick={() => onPageChange(currentPage + 1)}
         className={`mx-1 px-3 py-2 ${
           isLastPage
-            ? "cursor-not-allowed bg-gray-400/40 text-gray-500 dark:bg-gray-800"
+            ? "cursor-not-allowed bg-neutral-400/40 text-neutral-500 dark:bg-neutral-800"
             : "cursor-pointer bg-primary-500/30 transition-colors hover:bg-primary-600/50"
         }`}
         disabled={isLastPage}
@@ -88,7 +88,7 @@ const Pagination: React.FC<PaginationProps> = ({
         onClick={() => onPageChange(totalPages)}
         className={`mx-1 px-3 py-2 ${
           isLastPage
-            ? "cursor-not-allowed bg-gray-400/40 text-gray-500 dark:bg-gray-800"
+            ? "cursor-not-allowed bg-neutral-400/40 text-neutral-500 dark:bg-neutral-800"
             : "cursor-pointer bg-primary-500/30 transition-colors hover:bg-primary-600/50"
         }`}
         disabled={isLastPage}

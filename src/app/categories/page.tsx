@@ -38,7 +38,7 @@ function Card({ category }: { category: Category }) {
   return (
     <Link
       href={"/categories/" + category.key}
-      className="overflow-hidden border shadow transition hover:shadow-lg dark:border-gray-600 dark:shadow-none dark:hover:bg-gray-800/80"
+      className="overflow-hidden border shadow transition hover:shadow-lg dark:border-neutral-600 dark:shadow-none dark:hover:bg-neutral-800/80"
     >
       <Image
         src={getFileUrl("categories", category.id, category.cover)}

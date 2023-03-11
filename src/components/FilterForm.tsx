@@ -90,17 +90,17 @@ const FilterForm = ({ brands, categories }: Props) => {
             <Disclosure.Panel className="bg-primary-500 bg-opacity-10 p-2">
               <Listbox value={selectedCategory} onChange={selectedCategorySet}>
                 <div className="relative mt-2">
-                  <Listbox.Button className="relative w-full cursor-default bg-white py-2 pl-3 pr-10 text-left focus:outline-none focus-visible:border-primary-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 dark:bg-gray-900 sm:text-sm">
+                  <Listbox.Button className="relative w-full cursor-default bg-white py-2 pl-3 pr-10 text-left focus:outline-none focus-visible:border-primary-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 dark:bg-neutral-900 sm:text-sm">
                     <span className="block truncate">
                       {selectedCategory?.name ?? (
-                        <span className="text-gray-600 dark:text-gray-400">
+                        <span className="text-neutral-600 dark:text-neutral-400">
                           Select a category
                         </span>
                       )}
                     </span>
                     <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                       <ChevronUpDownIcon
-                        className="h-5 w-5 text-gray-400"
+                        className="h-5 w-5 text-neutral-400"
                         aria-hidden="true"
                       />
                     </span>
@@ -111,7 +111,7 @@ const FilterForm = ({ brands, categories }: Props) => {
                     leaveFrom="opacity-100"
                     leaveTo="opacity-0"
                   >
-                    <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-gray-800 sm:text-sm">
+                    <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-neutral-800 sm:text-sm">
                       {categories.map((cat, catIdx) => (
                         <Listbox.Option
                           key={catIdx}
@@ -119,7 +119,7 @@ const FilterForm = ({ brands, categories }: Props) => {
                             `relative cursor-default select-none py-2 pl-10 pr-4 ${
                               active
                                 ? "bg-primary-500 bg-opacity-20 text-primary-900"
-                                : "text-gray-900"
+                                : "text-neutral-900"
                             }`
                           }
                           value={cat}
@@ -151,17 +151,17 @@ const FilterForm = ({ brands, categories }: Props) => {
               </Listbox>{" "}
               <Listbox value={selectedBrand} onChange={selectedBrandSet}>
                 <div className="relative mt-2">
-                  <Listbox.Button className="relative w-full cursor-default bg-white py-2 pl-3 pr-10 text-left focus:outline-none focus-visible:border-primary-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 dark:bg-gray-900 sm:text-sm">
+                  <Listbox.Button className="relative w-full cursor-default bg-white py-2 pl-3 pr-10 text-left focus:outline-none focus-visible:border-primary-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 dark:bg-neutral-900 sm:text-sm">
                     <span className="block truncate">
                       {selectedBrand?.name ?? (
-                        <span className="text-gray-600 dark:text-gray-400">
+                        <span className="text-neutral-600 dark:text-neutral-400">
                           Select a brand
                         </span>
                       )}
                     </span>
                     <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                       <ChevronUpDownIcon
-                        className="h-5 w-5 text-gray-400"
+                        className="h-5 w-5 text-neutral-400"
                         aria-hidden="true"
                       />
                     </span>
@@ -172,7 +172,7 @@ const FilterForm = ({ brands, categories }: Props) => {
                     leaveFrom="opacity-100"
                     leaveTo="opacity-0"
                   >
-                    <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-gray-800 sm:text-sm">
+                    <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-neutral-800 sm:text-sm">
                       {brands.map((brand, brandIdx) => (
                         <Listbox.Option
                           key={brandIdx}
@@ -180,7 +180,7 @@ const FilterForm = ({ brands, categories }: Props) => {
                             `relative cursor-default select-none py-2 pl-10 pr-4 ${
                               active
                                 ? "bg-primary-500 bg-opacity-20 text-primary-900"
-                                : "text-gray-900"
+                                : "text-neutral-900"
                             }`
                           }
                           value={brand}
@@ -214,7 +214,7 @@ const FilterForm = ({ brands, categories }: Props) => {
                 <Switch
                   checked={inStock}
                   onChange={inStockSet}
-                  className={`relative inline-flex h-6 w-11 items-center rounded-full bg-gray-300 ui-checked:bg-primary-600 dark:bg-gray-700 ui-checked:dark:bg-primary-600`}
+                  className={`relative inline-flex h-6 w-11 items-center rounded-full bg-neutral-300 ui-checked:bg-primary-600 dark:bg-neutral-700 ui-checked:dark:bg-primary-600`}
                 >
                   <span
                     className={`inline-block h-4 w-4 translate-x-1 transform rounded-full bg-white transition ui-checked:translate-x-6`}
@@ -226,7 +226,7 @@ const FilterForm = ({ brands, categories }: Props) => {
                 <Switch
                   checked={discount}
                   onChange={discountSet}
-                  className={`relative inline-flex h-6 w-11 items-center rounded-full bg-gray-300 ui-checked:bg-primary-600 dark:bg-gray-700 ui-checked:dark:bg-primary-600`}
+                  className={`relative inline-flex h-6 w-11 items-center rounded-full bg-neutral-300 ui-checked:bg-primary-600 dark:bg-neutral-700 ui-checked:dark:bg-primary-600`}
                 >
                   <span
                     className={`inline-block h-4 w-4 translate-x-1 transform rounded-full bg-white transition ui-checked:translate-x-6`}
@@ -259,7 +259,7 @@ const FilterForm = ({ brands, categories }: Props) => {
               <div>
                 <Listbox value={selectedSorting} onChange={selectedSortingSet}>
                   <div className="relative mt-2">
-                    <Listbox.Button className="relative w-full cursor-default bg-white py-2 pl-3 pr-10 text-left focus:outline-none focus-visible:border-primary-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 dark:bg-gray-900 sm:text-sm">
+                    <Listbox.Button className="relative w-full cursor-default bg-white py-2 pl-3 pr-10 text-left focus:outline-none focus-visible:border-primary-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 dark:bg-neutral-900 sm:text-sm">
                       <span className="block truncate">
                         {selectedSorting === ""
                           ? "created:desc"
@@ -267,7 +267,7 @@ const FilterForm = ({ brands, categories }: Props) => {
                       </span>
                       <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                         <ChevronUpDownIcon
-                          className="h-5 w-5 text-gray-400"
+                          className="h-5 w-5 text-neutral-400"
                           aria-hidden="true"
                         />
                       </span>
@@ -278,14 +278,14 @@ const FilterForm = ({ brands, categories }: Props) => {
                       leaveFrom="opacity-100"
                       leaveTo="opacity-0"
                     >
-                      <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-gray-800 sm:text-sm">
+                      <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-neutral-800 sm:text-sm">
                         <Listbox.Option
                           value={""}
                           className={({ active }) =>
                             `relative cursor-default select-none py-2 pl-10 pr-4 ${
                               active
                                 ? "bg-primary-500 bg-opacity-20 text-primary-900"
-                                : "text-gray-900"
+                                : "text-neutral-900"
                             }`
                           }
                         >
@@ -322,7 +322,7 @@ const FilterForm = ({ brands, categories }: Props) => {
                               `relative cursor-default select-none py-2 pl-10 pr-4 ${
                                 active
                                   ? "bg-primary-500 bg-opacity-20 text-primary-900"
-                                  : "text-gray-900"
+                                  : "text-neutral-900"
                               }`
                             }
                             value={order}

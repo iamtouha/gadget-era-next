@@ -20,7 +20,7 @@ const ProductActions = ({ product }: { product: Product }) => {
     <div className="mb-8 flex items-stretch gap-4">
       <input
         disabled={!product.in_stock || (loadedOnClient && cart.has(product.id))}
-        className="cart-units-input w-16 bg-gray-50 px-3 dark:bg-gray-900"
+        className="cart-units-input w-16 bg-neutral-50 px-3 dark:bg-neutral-900"
         type={"number"}
         value={units}
         min={1}
