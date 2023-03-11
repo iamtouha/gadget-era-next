@@ -6,36 +6,34 @@ export const revalidate = 0;
 
 export async function GET() {
   const baseUrl = "https://www.gadgeterabd.com";
-  const [products, categories, brands] = await Promise.all([
+  const [homepage, products, categories, brands] = await Promise.all([
+    pb.collection("homepage").getFirstListItem("", { sort: "created" }),
     pb.collection("products").getFullList<Product>(),
     pb.collection("categories").getFullList<Category>(),
     pb.collection("brands").getFullList<Brand>(),
   ]);
+  console.log(homepage);
   const response = new Response(
     `<?xml version="1.0" encoding="UTF-8"?>
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
        <url>
            <loc>${baseUrl}/</loc>
-           <lastmod>${new Date().toISOString()}</lastmod>
            <priority>1</priority>
            <changefreq>weekly</changefreq>
        </url>
        <url>
            <loc>${baseUrl}/products/</loc>
-           <lastmod>${new Date().toISOString()}</lastmod>
-           <priority>0.8</priority>
+           <priority>0.9</priority>
            <changefreq>weekly</changefreq>
        </url>
        <url>
            <loc>${baseUrl}/categories/</loc>
-           <lastmod>${new Date().toISOString()}</lastmod>
-           <priority>0.8</priority>
+           <priority>0.9</priority>
            <changefreq>weekly</changefreq>
        </url>
        <url>
            <loc>${baseUrl}/brands/</loc>
-           <lastmod>${new Date().toISOString()}</lastmod>
-           <priority>0.8</priority>
+           <priority>0.9</priority>
            <changefreq>weekly</changefreq>
        </url>
        ${products
@@ -44,8 +42,8 @@ export async function GET() {
            (product) => `
         <url>
             <loc>${baseUrl}/product/${product.key}</loc>
-            <lastmod>${product.updated}</lastmod>
-            <priority>1</priority>
+            <lastmod>${new Date(product.updated).toISOString()}</lastmod>
+            <priority>0.7</priority>
             <changefreq>weekly</changefreq>
             ${product.images
               .map(
@@ -71,8 +69,8 @@ export async function GET() {
            (category) => `
         <url>
             <loc>${baseUrl}/categories/${category.key}</loc>
-            <lastmod>${category.updated}</lastmod>
-            <priority>1</priority>
+            <lastmod>${new Date(category.updated).toISOString()}</lastmod>
+            <priority>0.8</priority>
             <changefreq>weekly</changefreq>
             <image:image>
                 <image:loc>${getFileUrl(
@@ -92,8 +90,8 @@ export async function GET() {
            (brand) => `
         <url>
             <loc>${baseUrl}/brands/${brand.key}</loc>
-            <lastmod>${brand.updated}</lastmod>
-            <priority>1</priority>
+            <lastmod>${new Date(brand.updated).toISOString()}</lastmod>
+            <priority>0.8</priority>
             <changefreq>weekly</changefreq>
             <image:image>
                 <image:loc>${getFileUrl(
@@ -110,12 +108,12 @@ export async function GET() {
        <url>
            <loc>${baseUrl}/terms-and-conditions</loc>
            <lastmod>${new Date("2023-03-04").toISOString()}</lastmod>
-           <priority>0.5</priority>
+           <priority>0.2</priority>
        </url>
        <url>
            <loc>${baseUrl}/terms-privacy-policy</loc>
            <lastmod>${new Date("2023-03-04").toISOString()}</lastmod>
-           <priority>0.5</priority>
+           <priority>0.2</priority>
        </url>
     </urlset>
   `.replaceAll("&", "and")
