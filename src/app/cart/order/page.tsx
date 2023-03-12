@@ -44,7 +44,6 @@ export default function PlaceOrder() {
     defaultValues: {
       cod: false,
       district: "",
-      email: "",
       phone: "",
       street: "",
       receiver: "",

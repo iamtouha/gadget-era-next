@@ -21,7 +21,7 @@ export const signupFormSchema = z.object({
     .trim()
     .min(5, "username is too short")
     .max(32, "username is too long"),
-  email: z.string().email(),
+  email: z.string().email().optional(),
   password: z
     .string()
     .min(8, "password should be minimum 8 characters long")

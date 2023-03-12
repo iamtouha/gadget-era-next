@@ -85,9 +85,7 @@ export default async function handler(
       shipping,
       cod,
       status: "pending",
-      total:
-        items.reduce((acc, item) => acc + item.price * item.units, 0) +
-        shipping,
+      total: items.reduce((acc, item) => acc + item.price * item.units, 0),
       address: `${district}, ${upazila}, ${street}`,
     });
     await Promise.all(
@@ -104,7 +102,9 @@ export default async function handler(
             .create<OrderItem>(item, { $autoCancel: false })
         )
     );
-    await sendOrderConfirmationEmail(record);
+    if (email) {
+      await sendOrderConfirmationEmail(record);
+    }
     return res.status(201).send(record);
   } catch (error) {
     return res.status(500).send({ message: "Could not create the order." });

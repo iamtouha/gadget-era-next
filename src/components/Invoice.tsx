@@ -17,7 +17,7 @@ const Invoice = ({ order, items }: { order: Order; items: OrderItem[] }) => {
         printColorAdjust: "exact",
         WebkitPrintColorAdjust: "exact",
       }}
-      className="mx-auto hidden font-print print:block"
+      className="mx-auto hidden font-print print:block bg-white text-black"
     >
       <div className="mb-4 flex justify-between">
         <div className="w-1/2">
@@ -88,18 +88,7 @@ const Invoice = ({ order, items }: { order: Order; items: OrderItem[] }) => {
               spacing
             </td>
           </tr>
-          <tr>
-            <td className="" colSpan={2}></td>
-            <td
-              colSpan={2}
-              className="border-y border-l border-primary-100 p-2 text-right"
-            >
-              Payment Subtotal
-            </td>
-            <td className="bg-primary-100 p-2 text-right">
-              {number.format(order.total - order.shipping)}
-            </td>
-          </tr>
+
           <tr>
             <td colSpan={2}></td>
             <td
@@ -112,6 +101,20 @@ const Invoice = ({ order, items }: { order: Order; items: OrderItem[] }) => {
               {number.format(order.shipping)}
             </td>
           </tr>
+          {order.discount ? (
+            <tr>
+              <td colSpan={2}></td>
+              <td
+                colSpan={2}
+                className="border-y border-l border-primary-100 p-2 text-right"
+              >
+                {"Discount (-)"}
+              </td>
+              <td className="bg-primary-100 p-2 text-right">
+                {number.format(order.discount)}
+              </td>
+            </tr>
+          ) : null}
           <tr>
             <td colSpan={2}></td>
             <td
@@ -121,7 +124,7 @@ const Invoice = ({ order, items }: { order: Order; items: OrderItem[] }) => {
               Grand Total
             </td>
             <td className="border-y border-primary-100 bg-primary-100 p-2 text-right font-semibold">
-              {currency.format(order.total)}
+              {currency.format(order.total + order.shipping - order.discount)}
             </td>
           </tr>
         </tbody>

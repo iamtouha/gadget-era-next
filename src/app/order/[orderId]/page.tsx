@@ -21,7 +21,7 @@ export function generateMetadata({ params }: Props): Metadata {
     },
   };
 }
-export const revalidate = 10;
+export const revalidate = 0;
 
 const getOrder = async (orderId: string) => {
   try {
@@ -112,10 +112,12 @@ const OrderPage = async ({ params }: Props) => {
             <p className="font-medium">Phone Number:</p>
             <p>{order.phone}</p>
           </div>
-          <div className="mb-2 flex justify-between">
-            <p className="font-medium">Email:</p>
-            <p>{order.email}</p>
-          </div>
+          {order.email ? (
+            <div className="mb-2 flex justify-between">
+              <p className="font-medium">Email:</p>
+              <p>{order.email}</p>
+            </div>
+          ) : null}
           <div className="mb-2 flex justify-between">
             <p className="font-medium">Shipping Address:</p>
             <p>{order.address}</p>
@@ -156,11 +158,24 @@ const OrderPage = async ({ params }: Props) => {
                   {currency.format(order.shipping)}
                 </p>
               </li>
+              {order.discount ? (
+                <>
+                  <hr />
+                  <li className="flex py-2">
+                    <p>{"- Discount"}</p>
+                    <p className="ml-auto mr-0 text-right">
+                      {currency.format(order.discount)}
+                    </p>
+                  </li>
+                </>
+              ) : null}
               <hr />
               <li className="flex py-2">
                 <p>Grand Total</p>
                 <p className="ml-auto mr-0 text-right font-semibold">
-                  {currency.format(order.total)}
+                  {currency.format(
+                    order.total + order.shipping - order.discount
+                  )}
                 </p>
               </li>
             </ul>

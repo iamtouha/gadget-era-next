@@ -67,11 +67,12 @@ export type Order = {
   payment_reference: string;
   receiver: string;
   phone: string;
-  email: string;
+  email?: string;
   address: string;
   shipping: number;
   total: number;
   cod: boolean;
+  discount: number;
   status:
     | "pending"
     | "confirmed"

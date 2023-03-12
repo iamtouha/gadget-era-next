@@ -44,12 +44,14 @@ export default function DashboardLayout({
         <body className="bg-neutral-50 dark:bg-neutral-900 dark:text-white">
           <Navbar />
           <div className="h-14" />
-          <div className="min-h-[100vh]">
+          <div>
             {children}
-            <div className="h-6" />
+            <div className="h-6 print:hidden" />
+          </div>
+          <div className="print:hidden">
+            <CustomToastContainer />
           </div>
           <Footer />
-          <CustomToastContainer />
         </body>
       </html>
     </>
