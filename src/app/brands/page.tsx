@@ -13,7 +13,7 @@ export const metadata = {
   },
 };
 
-export const revalidate = 3600;
+export const revalidate = 86400;
 
 const Brands = async () => {
   const brands = await getBrands();

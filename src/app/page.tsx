@@ -5,7 +5,7 @@ import HeroImg from "../../public/home-cover.jpg";
 import { ArrowRightIcon } from "@heroicons/react/24/solid";
 import styles from "../styles/homepage.module.css";
 
-export const revalidate = 3600;
+export const revalidate = 86400;
 
 const Homepage = async () => {
   const {

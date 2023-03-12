@@ -13,7 +13,8 @@ export default async function getBrands(props: Props = undefined) {
   const res = await fetch(
     `${
       env.NEXT_PUBLIC_SERVER_URL
-    }/api/collections/brands/records?${params.toString()}`
+    }/api/collections/brands/records?${params.toString()}`,
+    { next: { revalidate: 86400 } }
   );
   if (!res.ok) {
     throw new Error("Could not fetch brands.");
