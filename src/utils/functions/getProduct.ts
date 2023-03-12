@@ -17,7 +17,11 @@ export default async function getProduct(key: string) {
 
   const data = (await res.json()) as ListServerPayload<Product>;
 
-  if (!res.ok || !data.items[0]) {
+  if (res.ok && !data.items[0]) {
+    return null;
+  }
+
+  if (!res.ok) {
     throw new Error("Could not load the product");
   }
 

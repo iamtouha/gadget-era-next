@@ -5,6 +5,7 @@ import ProductCard from "@/components/ProductCard";
 import EmptyProductsList from "@/components/EmptyList";
 import Pagination from "@/components/Pagination";
 import Image from "next/image";
+import { notFound } from "next/navigation";
 
 type Props = {
   params?: { key: string };
@@ -21,6 +22,11 @@ export async function generateMetadata({
     key: params?.key ?? "",
     page: searchParams?.page ? +searchParams?.page : 1,
   });
+
+  if (!category) {
+    return {};
+  }
+
   return {
     title: category.name,
     description: category.overview,
@@ -36,6 +42,10 @@ const Category = async ({ params, searchParams }: Props) => {
   const page = searchParams?.page ? +searchParams?.page : 1;
 
   const category = await getCategory({ key, page });
+
+  if (!category) {
+    notFound();
+  }
 
   return (
     <main className="container mx-auto mt-6 p-2 xl:max-w-screen-xl">

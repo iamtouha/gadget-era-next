@@ -16,7 +16,8 @@ export default async function getBrand({ key, page }: Params) {
   const brandsRes = await fetch(
     `${
       env.NEXT_PUBLIC_SERVER_URL
-    }/api/collections/brands/records?${params.toString()}`
+    }/api/collections/brands/records?${params.toString()}`,
+    { next: { revalidate: 86400 } }
   );
   if (!brandsRes.ok) {
     throw new Error("Could not fetch brand.");
@@ -26,7 +27,7 @@ export default async function getBrand({ key, page }: Params) {
   const brand = brandList.items[0];
 
   if (!brand) {
-    throw new Error("Could not load the product");
+    return null;
   }
 
   const productParams = new URLSearchParams({

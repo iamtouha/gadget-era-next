@@ -7,6 +7,8 @@ type Props = {
   children: React.ReactNode;
 };
 
+export const revalidate = 86400;
+
 const ProductsLayout = async ({ children }: Props) => {
   const [categories, brands] = await Promise.all([
     getCategories(),

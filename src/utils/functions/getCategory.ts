@@ -16,7 +16,8 @@ export default async function getCategory({ key, page }: Params) {
   const categoriesRes = await fetch(
     `${
       env.NEXT_PUBLIC_SERVER_URL
-    }/api/collections/categories/records?${params.toString()}`
+    }/api/collections/categories/records?${params.toString()}`,
+    { next: { revalidate: 86400 } }
   );
   if (!categoriesRes.ok) {
     throw new Error("Could not fetch category.");
@@ -27,7 +28,7 @@ export default async function getCategory({ key, page }: Params) {
   const category = categoryList.items[0];
 
   if (!category) {
-    throw new Error("Could not load the product");
+    return null;
   }
 
   const productParams = new URLSearchParams({
@@ -42,6 +43,7 @@ export default async function getCategory({ key, page }: Params) {
       env.NEXT_PUBLIC_SERVER_URL
     }/api/collections/products/records?${productParams.toString()}`
   );
+
 
   if (!productsRes.ok) {
     throw new Error("Could not fetch category.");

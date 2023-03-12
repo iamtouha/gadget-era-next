@@ -7,26 +7,36 @@ import { getProduct, getVariants } from "@/utils/functions";
 import { currency } from "@/utils/formatter";
 import ProductActions from "@/components/ProductActions";
 import styles from "@/styles/product.module.css";
+import { notFound } from "next/navigation";
 
 type Props = { params: { key: string } };
 
 export const revalidate = 3600;
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { name, images, id, overview } = await getProduct(params.key);
+  const product = await getProduct(params.key);
+
+  if (!product) {
+    return {};
+  }
 
   return {
-    title: name,
-    description: overview,
+    title: product.name,
+    description: product.overview,
     openGraph: {
-      images: [{ url: getFileUrl("products", id, images[0] ?? "") }],
-      description: overview,
+      images: [{ url: getFileUrl("products", product.id, product.images[0]) }],
+      description: product.overview,
     },
   };
 }
 
 const Product = async ({ params }: Props) => {
   const product = await getProduct(params.key);
+
+  if (!product) {
+    notFound();
+  }
+
   const variants = await getVariants(product.model);
 
   return (
