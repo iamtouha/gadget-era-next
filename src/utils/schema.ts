@@ -6,7 +6,7 @@ export const orderFormSchema = z.object({
     .string()
     .max(15, "Phone no. is too large")
     .min(11, "Phone no. is too small"),
-  email: z.string().min(5, "Email is too small").email(),
+  email: z.string().email().optional(),
   district: z.string().min(1, "Please select an option"),
   upazila: z.string().min(1, "Please select an option"),
   street: z.string().min(5, "Address is too short"),
@@ -21,7 +21,7 @@ export const signupFormSchema = z.object({
     .trim()
     .min(5, "username is too short")
     .max(32, "username is too long"),
-  email: z.string().email().optional(),
+  email: z.string().email(),
   password: z
     .string()
     .min(8, "password should be minimum 8 characters long")
