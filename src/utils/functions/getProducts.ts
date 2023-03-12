@@ -6,7 +6,8 @@ export default async function getProductsList(queryParams?: SearchParams) {
   const res = await fetch(
     env.NEXT_PUBLIC_SERVER_URL +
       `/api/collections/products/records?` +
-      buildSearchParams(queryParams) ?? ""
+      buildSearchParams(queryParams) ?? "",
+    { next: { revalidate: 10 } }
   );
   if (!res.ok) {
     console.log(await res.json());
