@@ -82,11 +82,16 @@ const Homepage = async () => {
               className={`${styles["featured-product-card"]} ${styles["shadow-effect"]}`}
             >
               <Image
-                src={getFileUrl("products", product.id, product.images[0])}
+                src={getFileUrl(
+                  "products",
+                  product.id,
+                  product.images.reverse()[0]
+                )}
                 alt={product.name}
                 width={512}
                 height={512}
                 className="mx-auto"
+                unoptimized
               />
               <button>view product</button>
             </Link>
