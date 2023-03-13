@@ -60,6 +60,8 @@ const Product = async ({ params }: Props) => {
                           fill
                           alt={img}
                           className="object-contain"
+                          priority={i === 0}
+                          unoptimized
                         />
                       </div>
                     </span>
@@ -79,6 +81,7 @@ const Product = async ({ params }: Props) => {
                       height={64}
                       className="leading-none"
                       alt="thumb"
+                      unoptimized
                     />
                   </a>
                 ))}

@@ -1,7 +1,6 @@
 import { getFileUrl } from "@/utils/functions";
 import pb from "@/utils/pb";
-import type { Brand, Category, Product } from "@/utils/types";
-import type { NextApiRequest, NextApiResponse } from "next";
+import type { Brand, Category, Product } from "@/utils/types";  
 
 export async function GET(request: Request) {
   const products = await pb.collection("products").getFullList<Product>({
