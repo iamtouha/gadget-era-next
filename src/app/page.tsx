@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getFileUrl, getPageData } from "@/utils/functions";
-import HeroImg from "../../public/home-cover.jpg";
 import { ArrowRightIcon } from "@heroicons/react/24/solid";
 import styles from "../styles/homepage.module.css";
 
@@ -18,7 +17,13 @@ const Homepage = async () => {
   return (
     <main className="container mx-auto xl:max-w-screen-xl">
       <section aria-label="hero section" className={styles["hero-section"]}>
-        <Image priority src={HeroImg} alt="Gadget Era Home" />
+        <Image
+          priority
+          src="/home-cover.jpg"
+          width={1280}
+          height={500}
+          alt="Gadget Era Home"
+        />
         <div>
           <div className={styles["hero-text"]}>
             <h1>
