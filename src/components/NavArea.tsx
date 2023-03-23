@@ -3,8 +3,6 @@ import { useState, useEffect, Fragment } from "react";
 import Link from "next/link";
 import { Menu, Transition } from "@headlessui/react";
 import {
-  SunIcon,
-  MoonIcon,
   Bars3Icon,
   ShoppingCartIcon,
   UserCircleIcon,
@@ -12,15 +10,6 @@ import {
 import { usePathname } from "next/navigation";
 import Searchbar from "./Searchbar";
 import { useCartStore } from "@/stores/cart";
-
-const getTheme = () => {
-  const theme = localStorage.getItem("theme") as "dark" | "light" | null;
-  if (theme) return theme;
-  return window.matchMedia &&
-    window.matchMedia("(prefers-color-scheme: dark)").matches
-    ? "dark"
-    : "light";
-};
 
 const routes = [
   { name: "Home", path: "/" },
@@ -32,26 +21,11 @@ const routes = [
 const NavArea = () => {
   const cartLength = useCartStore((state) => state.items.length);
   const [loaded, loadedSet] = useState(false);
-  const [mode, modeSet] = useState("light");
   const pathname = usePathname();
 
   useEffect(() => {
     loadedSet(true);
-    modeSet(getTheme());
   }, []);
-
-  useEffect(() => {
-    if (mode === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [mode]);
-
-  const setTheme = (mode: "dark" | "light") => {
-    modeSet(mode);
-    localStorage.setItem("theme", mode);
-  };
 
   return (
     <>
@@ -94,20 +68,7 @@ const NavArea = () => {
           <ShoppingCartIcon className="h-5 w-5 sm:h-6 sm:w-6 md:h-5 md:w-5" />
           <span className="hidden md:block">Cart</span>
         </Link>
-        <button
-          aria-label="Toggle Dark Mode button"
-          className="block p-2 hover:text-primary-500 dark:hidden"
-          onClick={() => setTheme("dark")}
-        >
-          <MoonIcon className="h-5 w-5 sm:h-6 sm:w-6 md:h-5 md:w-5" />
-        </button>
-        <button
-          aria-label="Toggle light Mode button"
-          className="hidden p-2 hover:text-primary-500 dark:block"
-          onClick={() => setTheme("light")}
-        >
-          <SunIcon className="h-5 w-5 sm:h-6 sm:w-6 md:h-5 md:w-5" />
-        </button>
+
         <Menu as={"div"} className="relative lg:hidden">
           <div>
             <Menu.Button

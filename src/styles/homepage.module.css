@@ -8,7 +8,7 @@
   @apply absolute inset-0 flex flex-col items-start justify-center px-6 py-4;
 }
 .hero-text {
-  @apply bg-neutral-200/70 py-8 px-6 text-center shadow sm:w-1/2 sm:text-left xl:w-[45%];
+  @apply bg-neutral-200/70 py-8 px-6 text-center shadow sm:w-1/2 sm:text-left xl:w-[45%] dark:bg-neutral-600/70 dark:shadow-none;
 }
 :global(.dark) .hero-text {
   @apply bg-neutral-600/70 shadow-none;
@@ -17,7 +17,7 @@
   @apply mb-4 text-2xl font-medium lg:text-4xl w-full;
 }
 .hero-text p {
-  @apply mb-8 text-sm text-neutral-700;
+  @apply mb-8 text-sm text-neutral-700 dark:text-neutral-200;
 }
 :global(.dark) .hero-text p {
   @apply text-neutral-200;

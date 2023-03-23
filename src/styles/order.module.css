@@ -1,13 +1,13 @@
 .input {
-    @apply mt-1 w-full border border-neutral-300 px-4 py-2 bg-neutral-100;
+  @apply mt-1 w-full border border-neutral-300 px-4 py-2 bg-neutral-100 dark:bg-neutral-800 dark:border-neutral-700;
 }
 .label {
-    @apply block mt-2;
+  @apply block mt-2;
 }
-.errors{
-    @apply text-red-500 py-1 text-sm;
+.errors {
+  @apply text-red-500 py-1 text-sm;
 }
- 
+
 :global(.dark) .input {
   @apply bg-neutral-800 border-neutral-700;
 }
