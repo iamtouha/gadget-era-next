@@ -18,7 +18,6 @@ type Props = {
   searchParams?: { [key: string]: string | string[] | undefined };
 };
 
-
 const Products = async (props: Props) => {
   const productsList = await getProducts(props.searchParams);
 
@@ -27,7 +26,7 @@ const Products = async (props: Props) => {
       {productsList.totalItems === 0 ? (
         <EmptyProductsList caption="No product found." />
       ) : null}
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
         {productsList.items.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
