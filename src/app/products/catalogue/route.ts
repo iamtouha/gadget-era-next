@@ -20,8 +20,7 @@ export async function GET() {
     image_link: getFileUrl("products", item.id, item.images[0] ?? ""),
     age_group: "all ages",
     brand: (item.expand?.brand as Brand).name,
-    google_product_category: (item.expand?.category as Category)
-      .google_taxonomy_id,
+    item_group_id: item.model,
     status: item.published ? "active" : "archived",
   }));
   let columns = Object.keys(data_source[0]).join();
