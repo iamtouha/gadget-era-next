@@ -1,8 +1,10 @@
 import { getFileUrl } from "@/utils/functions";
 import pb from "@/utils/pb";
-import type { Brand, Category, Product } from "@/utils/types";  
+import type { Brand, Category, Product } from "@/utils/types";
 
-export async function GET(request: Request) {
+export const revalidate = 0;
+
+export async function GET() {
   const products = await pb.collection("products").getFullList<Product>({
     expand: "category,brand",
   });
