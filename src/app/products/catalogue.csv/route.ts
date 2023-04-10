@@ -18,6 +18,10 @@ export async function GET() {
     condition: "new",
     link: `https://www.gadgeterabd.com/product/${item.key}`,
     image_link: getFileUrl("products", item.id, item.images[0] ?? ""),
+    additional_image_link: item.images
+      .filter((_, i) => !!i)
+      .map((path) => getFileUrl("products", item.id, path))
+      .join("|"),
     age_group: "all ages",
     brand: (item.expand?.brand as Brand).name,
     item_group_id: item.model,
@@ -32,7 +36,7 @@ export async function GET() {
   return new Response(`${columns}\n${items}`, {
     headers: {
       "Content-Type": "text/csv",
-      "Content-Disposition": `attachment;filename=catalogue ${new Date().toDateString()}.csv`,
+      "Content-Disposition": `attachment;filename=catalogue-${new Date().toISOString()}.csv`,
     },
   });
 }
