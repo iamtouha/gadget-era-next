@@ -20,7 +20,7 @@ const Brands = async () => {
 
   return (
     <>
-      <main className="container mx-auto mt-6 p-2 xl:max-w-screen-xl">
+      <main className="container mx-auto mt-6 p-2 xl:max-w-screen-xl min-h-screen">
         <h1 className="mb-8 text-2xl lg:text-3xl">Brands</h1>
         <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
           {brands.map((brand) => (

@@ -20,7 +20,7 @@ const Categories = async () => {
 
   return (
     <>
-      <main className="container mx-auto mt-6 p-2 xl:max-w-screen-xl">
+      <main className="container mx-auto mt-6 p-2 xl:max-w-screen-xl min-h-screen">
         <h1 className="mb-8 text-2xl lg:text-3xl">Categories</h1>
         <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
           {categories.map((category) => (

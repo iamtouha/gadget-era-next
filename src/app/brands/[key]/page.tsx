@@ -48,7 +48,7 @@ const Brand = async ({ params, searchParams }: Props) => {
   }
 
   return (
-    <main className="container mx-auto mt-6 p-2 xl:max-w-screen-xl">
+    <main className="container mx-auto mt-6 p-2 xl:max-w-screen-xl min-h-screen">
       <div className="mb-8 flex flex-col items-center gap-4 md:flex-row md:items-end">
         <div className="bg-neutral-100 p-2 dark:bg-neutral-600">
           <Image
