@@ -41,7 +41,7 @@ const Pagination: React.FC<PaginationProps> = ({
         }`}
         disabled={isFirstPage}
       >
-        <span className="sm:block">First Page</span>
+        <span className="hidden sm:block">First Page</span>
         <ChevronDoubleLeftIcon className="h-4 w-4 sm:hidden block" />
       </button>
 
@@ -54,7 +54,7 @@ const Pagination: React.FC<PaginationProps> = ({
         }`}
         disabled={isFirstPage}
       >
-        <span className="sm:block">Prev.</span>
+        <span className="hidden sm:block">Prev.</span>
         <ChevronLeftIcon className="h-4 w-4 sm:hidden block" />
       </button>
 
@@ -82,7 +82,7 @@ const Pagination: React.FC<PaginationProps> = ({
         }`}
         disabled={isLastPage}
       >
-        <span className="sm:block">Next</span>
+        <span className="hidden sm:block">Next</span>
         <ChevronRightIcon className="h-4 w-4 sm:hidden block" />
       </button>
 
@@ -95,7 +95,7 @@ const Pagination: React.FC<PaginationProps> = ({
         }`}
         disabled={isLastPage}
       >
-        <span className="sm:block">Last Page</span>
+        <span className="hidden sm:block">Last Page</span>
         <ChevronDoubleRightIcon className="h-4 w-4 sm:hidden block" />
       </button>
     </div>
