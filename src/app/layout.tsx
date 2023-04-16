@@ -4,6 +4,7 @@ import "../styles/globals.css";
 import "react-toastify/dist/ReactToastify.css";
 import CustomToastContainer from "@/components/ToastContainer";
 import Footer from "@/components/Footer";
+import VercelAnalytics from "@/components/Analytics";
 
 const poppins = Poppins({
   weight: ["300", "400", "500", "600", "700"],
@@ -52,6 +53,7 @@ export default function DashboardLayout({
             <CustomToastContainer />
           </div>
           <Footer />
+          <VercelAnalytics />
         </body>
       </html>
     </>
