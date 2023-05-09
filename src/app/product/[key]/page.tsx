@@ -1,13 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
+import { notFound } from "next/navigation";
 import parse from "html-react-parser";
 import type { Metadata } from "next";
 import { getFileUrl } from "@/utils/functions";
 import { getProduct, getVariants } from "@/utils/functions";
 import { currency } from "@/utils/formatter";
-import ProductActions from "@/components/ProductActions";
+import ProductActions from "./ProductActions";
 import styles from "@/styles/product.module.css";
-import { notFound } from "next/navigation";
 
 type Props = { params: { key: string } };
 

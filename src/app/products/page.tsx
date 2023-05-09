@@ -23,14 +23,17 @@ const Products = async (props: Props) => {
 
   return (
     <>
-      {productsList.totalItems === 0 ? (
-        <EmptyProductsList caption="No product found." />
-      ) : null}
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
-        {productsList.items.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+      <div className="min-h-screen">
+        {productsList.totalItems === 0 ? (
+          <EmptyProductsList caption="No product found." />
+        ) : null}
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
+          {productsList.items.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
       </div>
+
       <Pagination
         currentPage={+((props.searchParams?.page as string) ?? 1)}
         totalPages={productsList.totalPages}

@@ -1,4 +1,4 @@
-import FilterForm from "@/components/FilterForm";
+import FilterForm from "./Filter";
 import ProductsLoadingUI from "./loading";
 import { Suspense } from "react";
 import { getBrands, getCategories } from "@/utils/functions";

@@ -40,6 +40,7 @@ const Pagination: React.FC<PaginationProps> = ({
             : "cursor-pointer bg-primary-500/30 transition-colors hover:bg-primary-600/50"
         }`}
         disabled={isFirstPage}
+        aria-label="first page"
       >
         <span className="hidden sm:block">First Page</span>
         <ChevronDoubleLeftIcon className="h-4 w-4 sm:hidden block" />
@@ -53,6 +54,7 @@ const Pagination: React.FC<PaginationProps> = ({
             : "cursor-pointer bg-primary-500/30 transition-colors hover:bg-primary-600/50"
         }`}
         disabled={isFirstPage}
+        aria-label="previous page"
       >
         <span className="hidden sm:block">Prev.</span>
         <ChevronLeftIcon className="h-4 w-4 sm:hidden block" />
@@ -81,6 +83,7 @@ const Pagination: React.FC<PaginationProps> = ({
             : "cursor-pointer bg-primary-500/30 transition-colors hover:bg-primary-600/50"
         }`}
         disabled={isLastPage}
+        aria-label="next page"
       >
         <span className="hidden sm:block">Next</span>
         <ChevronRightIcon className="h-4 w-4 sm:hidden block" />
@@ -94,6 +97,7 @@ const Pagination: React.FC<PaginationProps> = ({
             : "cursor-pointer bg-primary-500/30 transition-colors hover:bg-primary-600/50"
         }`}
         disabled={isLastPage}
+        aria-label="last page"
       >
         <span className="hidden sm:block">Last Page</span>
         <ChevronDoubleRightIcon className="h-4 w-4 sm:hidden block" />
