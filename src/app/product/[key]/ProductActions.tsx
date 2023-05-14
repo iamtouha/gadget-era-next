@@ -29,7 +29,7 @@ const ProductActions = ({ product }: { product: Product }) => {
       />
       {loadedOnClient && cart.has(product.id) ? (
         <button
-          className="border-2 border-primary-500 py-2 px-4 transition-colors hover:bg-primary-500/20"
+          className="border-2 border-primary-500 py-2 px-2 sm:px-4 transition-colors hover:bg-primary-500/20"
           onClick={() => cart.remove(product.id)}
         >
           Remove from Cart
@@ -37,7 +37,7 @@ const ProductActions = ({ product }: { product: Product }) => {
       ) : (
         <button
           disabled={!product.in_stock}
-          className="bg-primary-500 py-2 px-4 transition-colors hover:bg-primary-600 disabled:opacity-75 disabled:hover:bg-primary-500"
+          className="bg-primary-500 py-2 px-2 sm:px-4 transition-colors hover:bg-primary-600 disabled:opacity-75 disabled:hover:bg-primary-500"
           onClick={() => cart.add(product, units)}
         >
           {!product.in_stock ? "Out of Stock" : "Add to Cart"}
@@ -45,7 +45,7 @@ const ProductActions = ({ product }: { product: Product }) => {
       )}
       <button
         disabled={!product.in_stock}
-        className="border-2 border-primary-500 py-2 px-4 transition-colors hover:bg-primary-500/20 disabled:opacity-75 disabled:hover:bg-transparent"
+        className="border-2 border-primary-500 py-2 px-2 sm:px-4 transition-colors hover:bg-primary-500/20 disabled:opacity-75 disabled:hover:bg-transparent"
         onClick={() => {
           cart.add(product, units);
           router.push("/");
