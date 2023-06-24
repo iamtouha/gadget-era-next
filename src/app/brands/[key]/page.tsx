@@ -1,6 +1,6 @@
 import React from "react";
 import type { Metadata } from "next";
-import { getBrand, getFileUrl } from "@/utils/functions";
+import { getBrand, getFileUrl } from "@/lib/functions";
 import ProductCard from "@/components/ProductCard";
 import EmptyProductsList from "@/components/EmptyList";
 import Pagination from "@/components/Pagination";

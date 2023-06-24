@@ -14,7 +14,7 @@ import {
   ArrowPathIcon,
   ExclamationTriangleIcon,
 } from "@heroicons/react/20/solid";
-import type { Product } from "@/utils/types";
+import type { Product } from "@/lib/types";
 
 const Searchbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -51,7 +51,7 @@ const Searchbar = () => {
       .finally(() => {
         isLoadingSet(false);
       });
-  }, 200); 
+  }, 200);
 
   useEffect(() => {
     loadResult(query);

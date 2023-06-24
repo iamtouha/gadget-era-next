@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useCartStore } from "@/stores/cart";
-import type { Product } from "@/utils/types";
+import type { Product } from "@/lib/types";
 import { useRouter } from "next/navigation";
 
 const ProductActions = ({ product }: { product: Product }) => {

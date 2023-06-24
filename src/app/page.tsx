@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getFileUrl, getPageData } from "@/utils/functions";
+import { getFileUrl, getPageData } from "@/lib/functions";
 import { ArrowRightIcon } from "@heroicons/react/24/solid";
 import styles from "../styles/homepage.module.css";
 

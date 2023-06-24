@@ -1,10 +1,10 @@
 import { notFound } from "next/navigation";
-import type { Order, OrderItem } from "@/utils/types";
+import type { Order, OrderItem } from "@/lib/types";
 import Image from "next/image";
-import { getFileUrl } from "@/utils/functions";
-import pb from "@/utils/pb";
+import { getFileUrl } from "@/lib/functions";
+import pb from "@/lib/pb";
 import dayjs from "dayjs";
-import { currency } from "@/utils/formatter";
+import { currency } from "@/lib/utils/formatter";
 import config from "@/assets/config.json";
 import Invoice from "@/components/Invoice";
 import OrderActions from "@/components/OrderActions";

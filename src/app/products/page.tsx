@@ -1,5 +1,5 @@
 import ProductCard from "@/components/ProductCard";
-import { getProducts } from "@/utils/functions";
+import { getProducts } from "@/lib/functions";
 import Pagination from "@/components/Pagination";
 import EmptyProductsList from "@/components/EmptyList";
 

@@ -5,14 +5,14 @@ import useSWRMutation from "swr/mutation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCartStore } from "@/stores/cart";
-import { currency } from "@/utils/formatter";
-import { orderFormSchema, type OrderFormInput } from "@/utils/schema";
+import { currency } from "@/lib/utils/formatter";
+import { orderFormSchema, type OrderFormInput } from "@/lib/utils/schema";
 import config from "@/assets/config.json";
 import styles from "@/styles/order.module.css";
-import type { Order } from "@/utils/types";
+import type { Order } from "@/lib/types";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-import { fetchUser } from "@/utils/functions";
+import { fetchUser } from "@/lib/functions";
 import { Metadata } from "next";
 
 // export const generateMetadata: () => Metadata = () => ({

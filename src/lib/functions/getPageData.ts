@@ -1,5 +1,5 @@
 import { env } from "@/env/client.mjs";
-import type { Category, ListServerPayload, Product } from "@/utils/types";
+import type { Category, ListServerPayload, Product } from "@/lib/types";
 
 export default async function getPageData() {
   const params = new URLSearchParams();

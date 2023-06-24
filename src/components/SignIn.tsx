@@ -4,9 +4,9 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import useSWRMutation from "swr/mutation";
 import { toast } from "react-toastify";
-import { signinFormSchema, type SigninFormInput } from "@/utils/schema";
+import { signinFormSchema, type SigninFormInput } from "@/lib/utils/schema";
 import { useRouter } from "next/navigation";
-import { User } from "@/utils/types";
+import { User } from "@/lib/types";
 
 type SigninReturn = {
   user?: User;

@@ -3,10 +3,10 @@
 import useSwr from "swr";
 import { ArrowLeftOnRectangleIcon } from "@heroicons/react/24/solid";
 import Loading from "./Loading";
-import pb from "@/utils/pb";
+import pb from "@/lib/pb";
 import { deleteCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
-import { fetchUser } from "@/utils/functions";
+import { fetchUser } from "@/lib/functions";
 
 const UserAccount = () => {
   const router = useRouter();

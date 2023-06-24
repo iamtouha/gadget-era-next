@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import config from "@/assets/config.json";
-import { currency, number } from "@/utils/formatter";
-import type { Order, OrderItem } from "@/utils/types";
+import { currency, number } from "@/lib/utils/formatter";
+import type { Order, OrderItem } from "@/lib/types";
 import {
   EnvelopeIcon,
   GlobeAltIcon,

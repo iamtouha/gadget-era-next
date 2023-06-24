@@ -1,7 +1,7 @@
 "use client";
 
-import { currency } from "@/utils/formatter";
-import { Order } from "@/utils/types";
+import { currency } from "@/lib/utils/formatter";
+import { Order } from "@/lib/types";
 import Link from "next/link";
 import useSWR from "swr";
 import Loading from "./Loading";

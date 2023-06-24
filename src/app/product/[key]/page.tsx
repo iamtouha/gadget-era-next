@@ -3,9 +3,9 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import parse from "html-react-parser";
 import type { Metadata } from "next";
-import { getFileUrl } from "@/utils/functions";
-import { getProduct, getVariants } from "@/utils/functions";
-import { currency } from "@/utils/formatter";
+import { getFileUrl } from "@/lib/functions";
+import { getProduct, getVariants } from "@/lib/functions";
+import { currency } from "@/lib/utils/formatter";
 import ProductActions from "./ProductActions";
 import styles from "@/styles/product.module.css";
 

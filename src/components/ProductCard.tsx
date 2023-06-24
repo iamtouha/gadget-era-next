@@ -1,8 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
-import { currency } from "@/utils/formatter";
-import { getFileUrl } from "@/utils/functions";
-import type { Product } from "@/utils/types";
+import { currency } from "@/lib/utils/formatter";
+import { getFileUrl } from "@/lib/functions";
+import type { Product } from "@/lib/types";
 
 const ProductCard = ({ product }: { product: Product }) => {
   return (

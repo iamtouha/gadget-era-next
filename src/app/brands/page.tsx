@@ -1,5 +1,5 @@
-import { getBrands, getFileUrl } from "@/utils/functions";
-import type { Brand } from "@/utils/types";
+import { getBrands, getFileUrl } from "@/lib/functions";
+import type { Brand } from "@/lib/types";
 import Link from "next/link";
 
 export const metadata = {

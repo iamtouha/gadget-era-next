@@ -1,7 +1,7 @@
 import FilterForm from "./Filter";
 import ProductsLoadingUI from "./loading";
 import { Suspense } from "react";
-import { getBrands, getCategories } from "@/utils/functions";
+import { getBrands, getCategories } from "@/lib/functions";
 
 type Props = {
   children: React.ReactNode;

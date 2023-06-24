@@ -3,10 +3,10 @@ import { z } from "zod";
 import { customAlphabet } from "nanoid";
 import nodemailer from "nodemailer";
 import { env } from "@/env/server.mjs";
-import pb from "@/utils/pb";
-import { currency } from "@/utils/formatter";
-import { orderFormSchema, type OrderFormInput } from "@/utils/schema";
-import type { Order, OrderItem } from "@/utils/types";
+import pb from "@/lib/pb";
+import { currency } from "@/lib/utils/formatter";
+import { orderFormSchema, type OrderFormInput } from "@/lib/utils/schema";
+import type { Order, OrderItem } from "@/lib/types";
 
 const getReference = customAlphabet("0123456789", 6);
 const getId = customAlphabet("0123456789ABCDEF", 15);

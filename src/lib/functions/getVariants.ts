@@ -1,5 +1,5 @@
 import { env } from "@/env/client.mjs";
-import { ListServerPayload, Product } from "@/utils/types";
+import { ListServerPayload, Product } from "@/lib/types";
 
 export default async function getVariants(model: string) {
   const urlParams = new URLSearchParams({

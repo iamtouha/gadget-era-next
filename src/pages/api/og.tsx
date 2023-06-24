@@ -1,4 +1,4 @@
-import { ImageResponse } from "@vercel/og";
+import { ImageResponse } from "next/server";
 import type { NextApiRequest } from "next";
 
 export const config = {

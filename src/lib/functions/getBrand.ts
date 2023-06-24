@@ -1,33 +1,32 @@
 import { env } from "@/env/client.mjs";
-import type { ListServerPayload, Category, Product } from "@/utils/types";
+import type { ListServerPayload, Brand, Product } from "@/lib/types";
 
 type Params = {
   key: string;
   page: number;
 };
 
-export default async function getCategory({ key, page }: Params) {
+export default async function getBrand({ key, page }: Params) {
   const params = new URLSearchParams({
     page: "1",
     perPage: "1",
     filter: `(key='${key}')`,
   });
 
-  const categoriesRes = await fetch(
+  const brandsRes = await fetch(
     `${
       env.NEXT_PUBLIC_SERVER_URL
-    }/api/collections/categories/records?${params.toString()}`,
+    }/api/collections/brands/records?${params.toString()}`,
     { next: { revalidate: 86400 } }
   );
-  if (!categoriesRes.ok) {
-    throw new Error("Could not fetch category.");
+  if (!brandsRes.ok) {
+    throw new Error("Could not fetch brand.");
   }
-  const categoryList =
-    (await categoriesRes.json()) as ListServerPayload<Category>;
+  const brandList = (await brandsRes.json()) as ListServerPayload<Brand>;
 
-  const category = categoryList.items[0];
+  const brand = brandList.items[0];
 
-  if (!category) {
+  if (!brand) {
     return null;
   }
 
@@ -35,7 +34,7 @@ export default async function getCategory({ key, page }: Params) {
     page: `${page}`,
     perPage: "12",
     sort: "-created",
-    filter: `(published=true && category='${category.id}')`,
+    filter: `(published=true && brand='${brand.id}')`,
   });
 
   const productsRes = await fetch(
@@ -44,12 +43,11 @@ export default async function getCategory({ key, page }: Params) {
     }/api/collections/products/records?${productParams.toString()}`
   );
 
-
   if (!productsRes.ok) {
-    throw new Error("Could not fetch category.");
+    throw new Error("Could not fetch brand.");
   }
 
   const productsList = (await productsRes.json()) as ListServerPayload<Product>;
 
-  return { ...category, ...productsList };
+  return { ...brand, ...productsList };
 }

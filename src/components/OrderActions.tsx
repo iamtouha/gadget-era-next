@@ -1,7 +1,7 @@
 "use client";
 // import { Dialog, Transition } from "@headlessui/react";
 import { /*Fragment, */ useState } from "react";
-import type { Order } from "@/utils/types";
+import type { Order } from "@/lib/types";
 
 function OrderActions(/* { order }: { order: Order } */) {
   // let [isOpen, setIsOpen] = useState(false);

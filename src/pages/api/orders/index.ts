@@ -1,5 +1,5 @@
 import { env } from "@/env/server.mjs";
-import { ListServerPayload, Order } from "@/utils/types";
+import { ListServerPayload, Order } from "@/lib/types";
 import { getCookie } from "cookies-next";
 import type { NextApiRequest, NextApiResponse } from "next";
 

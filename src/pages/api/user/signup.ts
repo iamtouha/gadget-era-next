@@ -1,5 +1,5 @@
-import pb from "@/utils/pb";
-import { signupFormSchema, type SignupFormInput } from "@/utils/schema";
+import pb from "@/lib/pb";
+import { signupFormSchema, type SignupFormInput } from "@/lib/utils/schema";
 import { setCookie } from "cookies-next";
 import type { NextApiRequest, NextApiResponse } from "next";
 import type { ClientResponseError } from "pocketbase";
@@ -33,7 +33,9 @@ export default async function handler(
   } catch (error) {
     const errorData = (error as ClientResponseError).data;
     if (!errorData) {
-      res.status(400).send({ message: (error as Record<string, unknown>).message });
+      res
+        .status(400)
+        .send({ message: (error as Record<string, unknown>).message });
     }
     const { data } = errorData as { data: { [key: string]: { code: string } } };
     if (

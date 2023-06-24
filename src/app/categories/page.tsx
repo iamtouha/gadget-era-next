@@ -1,5 +1,5 @@
-import { getCategories, getFileUrl } from "@/utils/functions";
-import type { Category } from "@/utils/types";
+import { getCategories, getFileUrl } from "@/lib/functions";
+import type { Category } from "@/lib/types";
 import Image from "next/image";
 import Link from "next/link";
 

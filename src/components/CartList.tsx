@@ -1,8 +1,8 @@
 "use client";
 
 import { useCartStore } from "@/stores/cart";
-import { currency } from "@/utils/formatter";
-import { getFileUrl } from "@/utils/functions";
+import { currency } from "@/lib/utils/formatter";
+import { getFileUrl } from "@/lib/functions";
 import { TrashIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { useEffect, useState } from "react";

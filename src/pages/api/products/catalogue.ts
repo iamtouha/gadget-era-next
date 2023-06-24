@@ -1,6 +1,6 @@
-import { getFileUrl } from "@/utils/functions";
-import pb from "@/utils/pb";
-import type { Brand, Category, Product } from "@/utils/types";
+import { getFileUrl } from "@/lib/functions";
+import pb from "@/lib/pb";
+import type { Brand, Category, Product } from "@/lib/types";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(

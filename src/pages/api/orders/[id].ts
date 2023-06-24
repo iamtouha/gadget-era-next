@@ -1,6 +1,6 @@
-import pb from "@/utils/pb";
+import pb from "@/lib/pb";
 import type { NextApiRequest, NextApiResponse } from "next";
-import type { Order, OrderItem } from "@/utils/types";
+import type { Order, OrderItem } from "@/lib/types";
 
 export default async function handler(
   req: NextApiRequest,

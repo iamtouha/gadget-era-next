@@ -1,9 +1,9 @@
 import { env } from "@/env/client.mjs";
-import type { Category, ListServerPayload } from "@/utils/types";
+import type { Brand, ListServerPayload } from "@/lib/types";
 
 type Props = { perPage: number; page: number } | undefined;
 
-export default async function getCategories(props: Props = undefined) {
+export default async function getBrands(props: Props = undefined) {
   const params = new URLSearchParams();
   params.set("sort", "-created");
   params.set("filter", "(published=true)");
@@ -13,12 +13,12 @@ export default async function getCategories(props: Props = undefined) {
   const res = await fetch(
     `${
       env.NEXT_PUBLIC_SERVER_URL
-    }/api/collections/categories/records?${params.toString()}`,
+    }/api/collections/brands/records?${params.toString()}`,
     { next: { revalidate: 86400 } }
   );
   if (!res.ok) {
-    throw new Error("Could not fetch categories.");
+    throw new Error("Could not fetch brands.");
   }
-  const data = (await res.json()) as ListServerPayload<Category>;
+  const data = (await res.json()) as ListServerPayload<Brand>;
   return data.items;
 }
