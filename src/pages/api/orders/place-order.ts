@@ -128,7 +128,7 @@ const sendOrderConfirmationEmail = async (orderDetails: Order) => {
       <p>Your order will be shipped to the following address: ${
         orderDetails.address
       }</p>
-      <p>To track your order, <a href="https://www/gadgeterabd.com/order/${
+      <p>To track your order, <a href="https://www.gadgeterabd.com/order/${
         orderDetails.id
       }">Click Here</a></p>
       <p>Thank you again for choosing Gadget Era. We look forward to delivering your order and providing you with the best possible customer experience.</p>
